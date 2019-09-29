@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.eevolution.model;
 
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for HR_DepartmentProduct
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_HR_DepartmentProduct 
 {
@@ -41,6 +41,19 @@ public interface I_HR_DepartmentProduct
     BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
+
+    /** Column name ActualQty */
+    public static final String COLUMNNAME_ActualQty = "ActualQty";
+
+	/** Set Actual Quantity.
+	  * The actual quantity
+	  */
+	public void setActualQty (BigDecimal ActualQty);
+
+	/** Get Actual Quantity.
+	  * The actual quantity
+	  */
+	public BigDecimal getActualQty();
 
     /** Column name AD_Client_ID */
     public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
@@ -62,19 +75,6 @@ public interface I_HR_DepartmentProduct
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
-
-    /** Column name ActualQty */
-    public static final String COLUMNNAME_ActualQty = "ActualQty";
-
-	/** Set Actual Quantity.
-	  * The actual quantity
-	  */
-	public void setActualQty (BigDecimal ActualQty);
-
-	/** Get Actual Quantity.
-	  * The actual quantity
-	  */
-	public BigDecimal getActualQty();
 
     /** Column name Comments */
     public static final String COLUMNNAME_Comments = "Comments";
@@ -131,6 +131,17 @@ public interface I_HR_DepartmentProduct
 	  */
 	public Timestamp getDateTo();
 
+    /** Column name HR_Department_ID */
+    public static final String COLUMNNAME_HR_Department_ID = "HR_Department_ID";
+
+	/** Set Payroll Department	  */
+	public void setHR_Department_ID (int HR_Department_ID);
+
+	/** Get Payroll Department	  */
+	public int getHR_Department_ID();
+
+	public org.eevolution.model.I_HR_Department getHR_Department() throws RuntimeException;
+
     /** Column name HR_DepartmentProduct_ID */
     public static final String COLUMNNAME_HR_DepartmentProduct_ID = "HR_DepartmentProduct_ID";
 
@@ -139,21 +150,6 @@ public interface I_HR_DepartmentProduct
 
 	/** Get Department Consumption Limit	  */
 	public int getHR_DepartmentProduct_ID();
-
-    /** Column name HR_Department_ID */
-    public static final String COLUMNNAME_HR_Department_ID = "HR_Department_ID";
-
-	/** Set Department.
-	  * Department of the organization
-	  */
-	public void setHR_Department_ID (int HR_Department_ID);
-
-	/** Get Department.
-	  * Department of the organization
-	  */
-	public int getHR_Department_ID();
-
-	public org.eevolution.model.I_HR_Department getHR_Department() throws RuntimeException;
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -211,4 +207,17 @@ public interface I_HR_DepartmentProduct
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

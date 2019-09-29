@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for M_Transaction
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_M_Transaction 
 {
@@ -181,45 +181,6 @@ public interface I_M_Transaction
 
 	public org.compiere.model.I_M_MovementLine getM_MovementLine() throws RuntimeException;
 
-    /** Column name M_Product_ID */
-    public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
-
-	/** Set Product.
-	  * Product, Service, Item
-	  */
-	public void setM_Product_ID (int M_Product_ID);
-
-	/** Get Product.
-	  * Product, Service, Item
-	  */
-	public int getM_Product_ID();
-
-	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException;
-
-    /** Column name M_ProductionLine_ID */
-    public static final String COLUMNNAME_M_ProductionLine_ID = "M_ProductionLine_ID";
-
-	/** Set Production Line.
-	  * Document Line representing a production
-	  */
-	public void setM_ProductionLine_ID (int M_ProductionLine_ID);
-
-	/** Get Production Line.
-	  * Document Line representing a production
-	  */
-	public int getM_ProductionLine_ID();
-
-	public org.compiere.model.I_M_ProductionLine getM_ProductionLine() throws RuntimeException;
-
-    /** Column name M_Transaction_ID */
-    public static final String COLUMNNAME_M_Transaction_ID = "M_Transaction_ID";
-
-	/** Set Inventory Transaction	  */
-	public void setM_Transaction_ID (int M_Transaction_ID);
-
-	/** Get Inventory Transaction	  */
-	public int getM_Transaction_ID();
-
     /** Column name MovementDate */
     public static final String COLUMNNAME_MovementDate = "MovementDate";
 
@@ -259,6 +220,45 @@ public interface I_M_Transaction
 	  */
 	public String getMovementType();
 
+    /** Column name M_Product_ID */
+    public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
+
+	/** Set Product.
+	  * Product, Service, Item
+	  */
+	public void setM_Product_ID (int M_Product_ID);
+
+	/** Get Product.
+	  * Product, Service, Item
+	  */
+	public int getM_Product_ID();
+
+	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException;
+
+    /** Column name M_ProductionLine_ID */
+    public static final String COLUMNNAME_M_ProductionLine_ID = "M_ProductionLine_ID";
+
+	/** Set Production Line.
+	  * Document Line representing a production
+	  */
+	public void setM_ProductionLine_ID (int M_ProductionLine_ID);
+
+	/** Get Production Line.
+	  * Document Line representing a production
+	  */
+	public int getM_ProductionLine_ID();
+
+	public org.compiere.model.I_M_ProductionLine getM_ProductionLine() throws RuntimeException;
+
+    /** Column name M_Transaction_ID */
+    public static final String COLUMNNAME_M_Transaction_ID = "M_Transaction_ID";
+
+	/** Set Inventory Transaction	  */
+	public void setM_Transaction_ID (int M_Transaction_ID);
+
+	/** Get Inventory Transaction	  */
+	public int getM_Transaction_ID();
+
     /** Column name PP_Cost_Collector_ID */
     public static final String COLUMNNAME_PP_Cost_Collector_ID = "PP_Cost_Collector_ID";
 
@@ -285,4 +285,17 @@ public interface I_M_Transaction
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

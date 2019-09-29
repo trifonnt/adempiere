@@ -32,12 +32,15 @@ import org.compiere.model.MSession;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.wf.MWorkflowProcessor;
+import org.eevolution.model.MProjectProcessor;
 
 /**
- *	Adempiere Server Manager
+ *	ADempiere Server Manager
  *	
  *  @author Jorg Janke
- *  @version $Id: AdempiereServerMgr.java,v 1.4 2006/10/09 00:23:26 jjanke Exp $
+ *  @author Carlos Parada, cparada@erpya.com, ERPCyA http://www.erpya.com
+ *  		<a href="https://github.com/adempiere/adempiere/issues/2202">
+ *			@see FR [ 2202 ] Add Support to Project Processor</a>
  */
 public class AdempiereServerMgr
 {
@@ -175,7 +178,14 @@ public class AdempiereServerMgr
 			server.setPriority(Thread.NORM_PRIORITY-1);
 			m_servers.add(server);
 		}
-		
+		//	FR [ 2202 ] Project Processor 
+		MProjectProcessor[] projectModels = MProjectProcessor.getActive(m_ctx);
+		for (MProjectProcessor mProjectProcessor : projectModels) {
+			AdempiereServer server = AdempiereServer.create(mProjectProcessor);
+			server.start();
+			server.setPriority(Thread.NORM_PRIORITY-1);
+			m_servers.add(server);
+		}
 		log.fine("#" + noServers);
 		return startAll();
 	}	//	startEnvironment

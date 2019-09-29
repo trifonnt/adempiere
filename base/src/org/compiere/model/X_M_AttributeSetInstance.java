@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -24,14 +24,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for M_AttributeSetInstance
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInstance, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_M_AttributeSetInstance (Properties ctx, int M_AttributeSetInstance_ID, String trxName)
@@ -39,8 +39,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
       super (ctx, M_AttributeSetInstance_ID, trxName);
       /** if (M_AttributeSetInstance_ID == 0)
         {
-			setM_AttributeSetInstance_ID (0);
 			setM_AttributeSet_ID (0);
+			setM_AttributeSetInstance_ID (0);
         } */
     }
 
@@ -123,6 +123,34 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
 		return (String)get_Value(COLUMNNAME_Lot);
 	}
 
+	public org.compiere.model.I_M_AttributeSet getM_AttributeSet() throws RuntimeException
+    {
+		return (org.compiere.model.I_M_AttributeSet)MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
+			.getPO(getM_AttributeSet_ID(), get_TrxName());	}
+
+	/** Set Attribute Set.
+		@param M_AttributeSet_ID 
+		Product Attribute Set
+	  */
+	public void setM_AttributeSet_ID (int M_AttributeSet_ID)
+	{
+		if (M_AttributeSet_ID < 0) 
+			set_Value (COLUMNNAME_M_AttributeSet_ID, null);
+		else 
+			set_Value (COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
+	}
+
+	/** Get Attribute Set.
+		@return Product Attribute Set
+	  */
+	public int getM_AttributeSet_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_AttributeSet_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Attribute Set Instance.
 		@param M_AttributeSetInstance_ID 
 		Product Attribute Set Instance
@@ -153,34 +181,6 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     {
         return new KeyNamePair(get_ID(), String.valueOf(getM_AttributeSetInstance_ID()));
     }
-
-	public org.compiere.model.I_M_AttributeSet getM_AttributeSet() throws RuntimeException
-    {
-		return (org.compiere.model.I_M_AttributeSet)MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-			.getPO(getM_AttributeSet_ID(), get_TrxName());	}
-
-	/** Set Attribute Set.
-		@param M_AttributeSet_ID 
-		Product Attribute Set
-	  */
-	public void setM_AttributeSet_ID (int M_AttributeSet_ID)
-	{
-		if (M_AttributeSet_ID < 0) 
-			set_Value (COLUMNNAME_M_AttributeSet_ID, null);
-		else 
-			set_Value (COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
-	}
-
-	/** Get Attribute Set.
-		@return Product Attribute Set
-	  */
-	public int getM_AttributeSet_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_AttributeSet_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
 
 	public org.compiere.model.I_M_Lot getM_Lot() throws RuntimeException
     {
@@ -225,5 +225,22 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
 	public String getSerNo () 
 	{
 		return (String)get_Value(COLUMNNAME_SerNo);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

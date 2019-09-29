@@ -40,6 +40,7 @@ import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Ini;
+import org.compiere.util.SecureEngine;
 import org.compiere.util.ValueNamePair;
 
 /**
@@ -48,6 +49,9 @@ import org.compiere.util.ValueNamePair;
  *  @author     Jorg Janke
  *  @author     Marek Mosiewicz<marek.mosiewicz@jotel.com.pl> - support for RMI over HTTP
  *  @version    $Id: CConnection.java,v 1.5 2006/07/30 00:55:13 jjanke Exp $
+ *  @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
+ *		<li> FR [ 391 ] Add connection support to MariaDB
+ *		@see https://github.com/adempiere/adempiere/issues/464
  */
 public class CConnection implements Serializable, Cloneable
 {
@@ -107,10 +111,18 @@ public class CConnection implements Serializable, Cloneable
 		if (s_cc == null)
 		{
 			String attributes = Ini.getProperty (Ini.P_CONNECTION);
+
+			// get from jnlp property
+			if (attributes == null || attributes.length () == 0)
+			{
+				attributes = SecureEngine.decrypt(System.getProperty(Ini.P_CONNECTION));
+			}
+			
 			if (attributes == null || attributes.length () == 0)
 			{
 				//hengsin, zero setup for webstart client
 				CConnection cc = null;
+				/*
 				if (apps_host != null && Adempiere.isWebStartClient() && !CConnection.isServerEmbedded())
 				{
 					cc = new CConnection(apps_host);
@@ -122,7 +134,7 @@ public class CConnection implements Serializable, Cloneable
 						Ini.setProperty(Ini.P_CONNECTION, cc.toStringLong());
 						Ini.saveProperties(Ini.isClient());
 					}
-				}
+				}*/
 				if (s_cc == null)
 				{
 					if (cc == null) cc = new CConnection(apps_host);
@@ -213,6 +225,8 @@ public class CConnection implements Serializable, Cloneable
 
 	/** Database Type       */
 	private String 		m_type = "";
+	/**	Supported DB UUID		*/
+	private boolean 	isSupportedUUIDFromDB = false;
 
 	/** Database Host       */
 	private String 		m_db_host = "MyDBServer";
@@ -220,10 +234,6 @@ public class CConnection implements Serializable, Cloneable
 	private int m_db_port = 0;
 	/** Database name       */
 	private String 		m_db_name = "MyDBName";
-
-	/** Connection Profile		*/
-	private String	 	m_connectionProfile = PROFILE_LAN;
-
 	/** In Memory connection    */
 	private boolean 	m_bequeath = false;
 
@@ -831,7 +841,7 @@ public class CConnection implements Serializable, Cloneable
 	}
 
 	/**
-	 *  Set Database Type.  Since 3.8.0 - The call should be followed with setDatabaseDefaults() if 
+	 *  Set Database Type.  Since 3.8.0 - The call should be followed with setDatabaseDefaults() if
 	 *  the type is changed.
 	 *  Checked against installed databases
 	 *  @param type database Type, e.g. Database.DB_ORACLE
@@ -848,14 +858,14 @@ public class CConnection implements Serializable, Cloneable
 			}
 		}
 	} 	//  setType
-	
+
 	/**
-	 * Sets the defaults for the type of database. 
+	 * Sets the defaults for the type of database.
 	 * Since 3.8.0.
 	 */
 	public void setDatabaseDefaults() {
 		//  Check the database type and then set the ports to the default values
-		
+
 		//  Oracle
 		if (isOracle ())
 		{
@@ -883,7 +893,7 @@ public class CConnection implements Serializable, Cloneable
 		}//  added by dete
 		//end vpj-cd e-evolution 09 ene 2006
 	} // setDatabaseDefaluts
-	
+
 	/**
 	 *  Supports BLOB
 	 *  @return true if BLOB is supported
@@ -915,7 +925,15 @@ public class CConnection implements Serializable, Cloneable
 	public boolean isMySQL(){
 		return Database.DB_MYSQL.equals(m_type);
 	} //  added by dete
-	
+
+	/**
+	 * Verify if is Maria DB
+	 * @return
+	 */
+	public boolean isMariaDB(){
+		return Database.DB_MARIADB.equals(m_type);
+	}
+
 	/**
 	 *  Is Database Connection OK
 	 *  @return true if database connection is OK
@@ -1624,6 +1642,22 @@ public class CConnection implements Serializable, Cloneable
 	 */
 	public static boolean isServerEmbedded() {
 		return "true".equalsIgnoreCase(System.getProperty(SERVER_EMBEDDED));
+	}
+	
+	/**
+	 * verify if is supported UUID from DB
+	 * @return
+	 */
+	public boolean isSupportedUUIDFromDB() {
+		return isSupportedUUIDFromDB;
+	}
+	
+	/**
+	 * Set info about UUID from DB supported
+	 * @param isSupportedUUIDFromDB
+	 */
+	public void setIsSupportedUUIDFromDB(boolean isSupportedUUIDFromDB) {
+		this.isSupportedUUIDFromDB = isSupportedUUIDFromDB;
 	}
 
 	public void setAppServerCredential(String principal, String credential)

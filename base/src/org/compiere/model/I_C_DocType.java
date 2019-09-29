@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_DocType
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_DocType 
 {
@@ -92,6 +92,19 @@ public interface I_C_DocType
 
 	public org.compiere.model.I_C_DocType getC_DocTypeDifference() throws RuntimeException;
 
+    /** Column name C_DocType_ID */
+    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
+
+	/** Set Document Type.
+	  * Document type or rules
+	  */
+	public void setC_DocType_ID (int C_DocType_ID);
+
+	/** Get Document Type.
+	  * Document type or rules
+	  */
+	public int getC_DocType_ID();
+
     /** Column name C_DocTypeInvoice_ID */
     public static final String COLUMNNAME_C_DocTypeInvoice_ID = "C_DocTypeInvoice_ID";
 
@@ -106,6 +119,21 @@ public interface I_C_DocType
 	public int getC_DocTypeInvoice_ID();
 
 	public org.compiere.model.I_C_DocType getC_DocTypeInvoice() throws RuntimeException;
+
+    /** Column name C_DocTypePayment_ID */
+    public static final String COLUMNNAME_C_DocTypePayment_ID = "C_DocTypePayment_ID";
+
+	/** Set Document Type for Payment.
+	  * Document type used for Payments generated from this Pay Selection document
+	  */
+	public void setC_DocTypePayment_ID (int C_DocTypePayment_ID);
+
+	/** Get Document Type for Payment.
+	  * Document type used for Payments generated from this Pay Selection document
+	  */
+	public int getC_DocTypePayment_ID();
+
+	public org.compiere.model.I_C_DocType getC_DocTypePayment() throws RuntimeException;
 
     /** Column name C_DocTypeProforma_ID */
     public static final String COLUMNNAME_C_DocTypeProforma_ID = "C_DocTypeProforma_ID";
@@ -136,19 +164,6 @@ public interface I_C_DocType
 	public int getC_DocTypeShipment_ID();
 
 	public org.compiere.model.I_C_DocType getC_DocTypeShipment() throws RuntimeException;
-
-    /** Column name C_DocType_ID */
-    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
-
-	/** Set Document Type.
-	  * Document type or rules
-	  */
-	public void setC_DocType_ID (int C_DocType_ID);
-
-	/** Get Document Type.
-	  * Document type or rules
-	  */
-	public int getC_DocType_ID();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -311,6 +326,41 @@ public interface I_C_DocType
 	  */
 	public boolean isActive();
 
+    /** Column name IsAllocateImmediate */
+    public static final String COLUMNNAME_IsAllocateImmediate = "IsAllocateImmediate";
+
+	/** Set Allocate Prepayments	  */
+	public void setIsAllocateImmediate (boolean IsAllocateImmediate);
+
+	/** Get Allocate Prepayments	  */
+	public boolean isAllocateImmediate();
+
+    /** Column name IsBankTransfer */
+    public static final String COLUMNNAME_IsBankTransfer = "IsBankTransfer";
+
+	/** Set Bank Transfer.
+	  * Bank Transfer
+	  */
+	public void setIsBankTransfer (boolean IsBankTransfer);
+
+	/** Get Bank Transfer.
+	  * Bank Transfer
+	  */
+	public boolean isBankTransfer();
+
+    /** Column name IsCopyDocNoOnReversal */
+    public static final String COLUMNNAME_IsCopyDocNoOnReversal = "IsCopyDocNoOnReversal";
+
+	/** Set Copy Document No On Reversal.
+	  * It Copy the Document No on Reversal Document instead of generate a new Sequence
+	  */
+	public void setIsCopyDocNoOnReversal (boolean IsCopyDocNoOnReversal);
+
+	/** Get Copy Document No On Reversal.
+	  * It Copy the Document No on Reversal Document instead of generate a new Sequence
+	  */
+	public boolean isCopyDocNoOnReversal();
+
     /** Column name IsCreateCounter */
     public static final String COLUMNNAME_IsCreateCounter = "IsCreateCounter";
 
@@ -363,19 +413,6 @@ public interface I_C_DocType
 	  */
 	public boolean isDocNoControlled();
 
-    /** Column name IsInTransit */
-    public static final String COLUMNNAME_IsInTransit = "IsInTransit";
-
-	/** Set In Transit.
-	  * Movement is in transit
-	  */
-	public void setIsInTransit (boolean IsInTransit);
-
-	/** Get In Transit.
-	  * Movement is in transit
-	  */
-	public boolean isInTransit();
-
     /** Column name IsIndexed */
     public static final String COLUMNNAME_IsIndexed = "IsIndexed";
 
@@ -388,6 +425,19 @@ public interface I_C_DocType
 	  * Index the document for the internal search engine
 	  */
 	public boolean isIndexed();
+
+    /** Column name IsInTransit */
+    public static final String COLUMNNAME_IsInTransit = "IsInTransit";
+
+	/** Set In Transit.
+	  * Movement is in transit
+	  */
+	public void setIsInTransit (boolean IsInTransit);
+
+	/** Get In Transit.
+	  * Movement is in transit
+	  */
+	public boolean isInTransit();
 
     /** Column name IsOverwriteDateOnComplete */
     public static final String COLUMNNAME_IsOverwriteDateOnComplete = "IsOverwriteDateOnComplete";
@@ -433,18 +483,18 @@ public interface I_C_DocType
 	  */
 	public boolean isPrepareSplitDocument();
 
-    /** Column name IsSOTrx */
-    public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
+    /** Column name IsReversedWithOriginalAcct */
+    public static final String COLUMNNAME_IsReversedWithOriginalAcct = "IsReversedWithOriginalAcct";
 
-	/** Set Sales Transaction.
-	  * This is a Sales Transaction
+	/** Set Is Reversed with original Accounting.
+	  * Is Reversed with original Accounting
 	  */
-	public void setIsSOTrx (boolean IsSOTrx);
+	public void setIsReversedWithOriginalAcct (boolean IsReversedWithOriginalAcct);
 
-	/** Get Sales Transaction.
-	  * This is a Sales Transaction
+	/** Get Is Reversed with original Accounting.
+	  * Is Reversed with original Accounting
 	  */
-	public boolean isSOTrx();
+	public boolean isReversedWithOriginalAcct();
 
     /** Column name IsShipConfirm */
     public static final String COLUMNNAME_IsShipConfirm = "IsShipConfirm";
@@ -458,6 +508,19 @@ public interface I_C_DocType
 	  * Require Ship or Receipt Confirmation before processing
 	  */
 	public boolean isShipConfirm();
+
+    /** Column name IsSOTrx */
+    public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
+
+	/** Set Sales Transaction.
+	  * This is a Sales Transaction
+	  */
+	public void setIsSOTrx (boolean IsSOTrx);
+
+	/** Get Sales Transaction.
+	  * This is a Sales Transaction
+	  */
+	public boolean isSOTrx();
 
     /** Column name IsSplitWhenDifference */
     public static final String COLUMNNAME_IsSplitWhenDifference = "IsSplitWhenDifference";
@@ -484,6 +547,19 @@ public interface I_C_DocType
 	  * Alphanumeric identifier of the entity
 	  */
 	public String getName();
+
+    /** Column name PrintDocument */
+    public static final String COLUMNNAME_PrintDocument = "PrintDocument";
+
+	/** Set Print Document.
+	  * Document to print
+	  */
+	public void setPrintDocument (String PrintDocument);
+
+	/** Get Print Document.
+	  * Document to print
+	  */
+	public String getPrintDocument();
 
     /** Column name PrintName */
     public static final String COLUMNNAME_PrintName = "PrintName";
@@ -513,4 +589,17 @@ public interface I_C_DocType
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

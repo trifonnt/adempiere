@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for T_Replenish
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_T_Replenish 
 {
@@ -148,21 +148,6 @@ public interface I_T_Replenish
 
 	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException;
 
-    /** Column name M_WarehouseSource_ID */
-    public static final String COLUMNNAME_M_WarehouseSource_ID = "M_WarehouseSource_ID";
-
-	/** Set Source Warehouse.
-	  * Optional Warehouse to replenish from
-	  */
-	public void setM_WarehouseSource_ID (int M_WarehouseSource_ID);
-
-	/** Get Source Warehouse.
-	  * Optional Warehouse to replenish from
-	  */
-	public int getM_WarehouseSource_ID();
-
-	public org.compiere.model.I_M_Warehouse getM_WarehouseSource() throws RuntimeException;
-
     /** Column name M_Warehouse_ID */
     public static final String COLUMNNAME_M_Warehouse_ID = "M_Warehouse_ID";
 
@@ -177,6 +162,21 @@ public interface I_T_Replenish
 	public int getM_Warehouse_ID();
 
 	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
+
+    /** Column name M_WarehouseSource_ID */
+    public static final String COLUMNNAME_M_WarehouseSource_ID = "M_WarehouseSource_ID";
+
+	/** Set Source Warehouse.
+	  * Optional Warehouse to replenish from
+	  */
+	public void setM_WarehouseSource_ID (int M_WarehouseSource_ID);
+
+	/** Get Source Warehouse.
+	  * Optional Warehouse to replenish from
+	  */
+	public int getM_WarehouseSource_ID();
+
+	public org.compiere.model.I_M_Warehouse getM_WarehouseSource() throws RuntimeException;
 
     /** Column name Order_Min */
     public static final String COLUMNNAME_Order_Min = "Order_Min";
@@ -252,19 +252,6 @@ public interface I_T_Replenish
 	/** Get Quantity to Order	  */
 	public BigDecimal getQtyToOrder();
 
-    /** Column name ReplenishType */
-    public static final String COLUMNNAME_ReplenishType = "ReplenishType";
-
-	/** Set Replenish Type.
-	  * Method for re-ordering a product
-	  */
-	public void setReplenishType (String ReplenishType);
-
-	/** Get Replenish Type.
-	  * Method for re-ordering a product
-	  */
-	public String getReplenishType();
-
     /** Column name ReplenishmentCreate */
     public static final String COLUMNNAME_ReplenishmentCreate = "ReplenishmentCreate";
 
@@ -277,6 +264,19 @@ public interface I_T_Replenish
 	  * Create from Replenishment
 	  */
 	public String getReplenishmentCreate();
+
+    /** Column name ReplenishType */
+    public static final String COLUMNNAME_ReplenishType = "ReplenishType";
+
+	/** Set Replenish Type.
+	  * Method for re-ordering a product
+	  */
+	public void setReplenishType (String ReplenishType);
+
+	/** Get Replenish Type.
+	  * Method for re-ordering a product
+	  */
+	public String getReplenishType();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -293,4 +293,17 @@ public interface I_T_Replenish
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

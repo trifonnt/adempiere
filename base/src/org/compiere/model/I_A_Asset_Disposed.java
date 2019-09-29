@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for A_Asset_Disposed
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_A_Asset_Disposed 
 {
@@ -40,27 +40,6 @@ public interface I_A_Asset_Disposed
     BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
-
-    /** Column name AD_Client_ID */
-    public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
-
-	/** Get Client.
-	  * Client/Tenant for this installation.
-	  */
-	public int getAD_Client_ID();
-
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
 
     /** Column name A_Accumulated_Depr */
     public static final String COLUMNNAME_A_Accumulated_Depr = "A_Accumulated_Depr";
@@ -92,10 +71,14 @@ public interface I_A_Asset_Disposed
     /** Column name A_Asset_Cost */
     public static final String COLUMNNAME_A_Asset_Cost = "A_Asset_Cost";
 
-	/** Set Asset Cost	  */
+	/** Set Fixed Asset Cost.
+	  * Cost of acquisition of the Fixed Asset
+	  */
 	public void setA_Asset_Cost (BigDecimal A_Asset_Cost);
 
-	/** Get Asset Cost	  */
+	/** Get Fixed Asset Cost.
+	  * Cost of acquisition of the Fixed Asset
+	  */
 	public BigDecimal getA_Asset_Cost();
 
     /** Column name A_Asset_Disposed_ID */
@@ -110,13 +93,13 @@ public interface I_A_Asset_Disposed
     /** Column name A_Asset_ID */
     public static final String COLUMNNAME_A_Asset_ID = "A_Asset_ID";
 
-	/** Set Asset.
-	  * Asset used internally or by customers
+	/** Set Fixed Asset.
+	  * Fixed Asset used internally or by customers
 	  */
 	public void setA_Asset_ID (int A_Asset_ID);
 
-	/** Get Asset.
-	  * Asset used internally or by customers
+	/** Get Fixed Asset.
+	  * Fixed Asset used internally or by customers
 	  */
 	public int getA_Asset_ID();
 
@@ -141,6 +124,14 @@ public interface I_A_Asset_Disposed
 	public int getA_Asset_Trade_ID();
 
 	public org.compiere.model.I_A_Asset getA_Asset_Trade() throws RuntimeException;
+
+    /** Column name AD_Client_ID */
+    public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
+
+	/** Get Client.
+	  * Client/Tenant for this installation.
+	  */
+	public int getAD_Client_ID();
 
     /** Column name A_Disposal_Amt */
     public static final String COLUMNNAME_A_Disposal_Amt = "A_Disposal_Amt";
@@ -178,6 +169,19 @@ public interface I_A_Asset_Disposed
 	/** Get Disposed Reason	  */
 	public String getA_Disposed_Reason();
 
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name A_Proceeds */
     public static final String COLUMNNAME_A_Proceeds = "A_Proceeds";
 
@@ -202,21 +206,6 @@ public interface I_A_Asset_Disposed
 
 	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
 
-    /** Column name C_InvoiceLine_ID */
-    public static final String COLUMNNAME_C_InvoiceLine_ID = "C_InvoiceLine_ID";
-
-	/** Set Invoice Line.
-	  * Invoice Detail Line
-	  */
-	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID);
-
-	/** Get Invoice Line.
-	  * Invoice Detail Line
-	  */
-	public int getC_InvoiceLine_ID();
-
-	public org.compiere.model.I_C_InvoiceLine getC_InvoiceLine() throws RuntimeException;
-
     /** Column name C_Invoice_ID */
     public static final String COLUMNNAME_C_Invoice_ID = "C_Invoice_ID";
 
@@ -231,6 +220,21 @@ public interface I_A_Asset_Disposed
 	public int getC_Invoice_ID();
 
 	public org.compiere.model.I_C_Invoice getC_Invoice() throws RuntimeException;
+
+    /** Column name C_InvoiceLine_ID */
+    public static final String COLUMNNAME_C_InvoiceLine_ID = "C_InvoiceLine_ID";
+
+	/** Set Invoice Line.
+	  * Invoice Detail Line
+	  */
+	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID);
+
+	/** Get Invoice Line.
+	  * Invoice Detail Line
+	  */
+	public int getC_InvoiceLine_ID();
+
+	public org.compiere.model.I_C_InvoiceLine getC_InvoiceLine() throws RuntimeException;
 
     /** Column name C_Period_ID */
     public static final String COLUMNNAME_C_Period_ID = "C_Period_ID";
@@ -405,12 +409,12 @@ public interface I_A_Asset_Disposed
     /** Column name PostingType */
     public static final String COLUMNNAME_PostingType = "PostingType";
 
-	/** Set PostingType.
+	/** Set Posting Type.
 	  * The type of posted amount for the transaction
 	  */
 	public void setPostingType (String PostingType);
 
-	/** Get PostingType.
+	/** Get Posting Type.
 	  * The type of posted amount for the transaction
 	  */
 	public String getPostingType();
@@ -465,4 +469,17 @@ public interface I_A_Asset_Disposed
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

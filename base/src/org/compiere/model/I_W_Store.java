@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for W_Store
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_W_Store 
 {
@@ -372,19 +372,6 @@ public interface I_W_Store
 	  */
 	public String getStylesheet();
 
-    /** Column name URL */
-    public static final String COLUMNNAME_URL = "URL";
-
-	/** Set URL.
-	  * Full URL address - e.g. http://www.adempiere.org
-	  */
-	public void setURL (String URL);
-
-	/** Get URL.
-	  * Full URL address - e.g. http://www.adempiere.org
-	  */
-	public String getURL();
-
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
 
@@ -401,57 +388,31 @@ public interface I_W_Store
 	  */
 	public int getUpdatedBy();
 
-    /** Column name WStoreEMail */
-    public static final String COLUMNNAME_WStoreEMail = "WStoreEMail";
+    /** Column name URL */
+    public static final String COLUMNNAME_URL = "URL";
 
-	/** Set Web Store EMail.
-	  * EMail address used as the sender (From)
+	/** Set URL.
+	  * Full URL address - e.g. http://www.adempiere.org
 	  */
-	public void setWStoreEMail (String WStoreEMail);
+	public void setURL (String URL);
 
-	/** Get Web Store EMail.
-	  * EMail address used as the sender (From)
+	/** Get URL.
+	  * Full URL address - e.g. http://www.adempiere.org
 	  */
-	public String getWStoreEMail();
+	public String getURL();
 
-    /** Column name WStoreUser */
-    public static final String COLUMNNAME_WStoreUser = "WStoreUser";
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
 
-	/** Set WebStore User.
-	  * User ID of the Web Store EMail address
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
 	  */
-	public void setWStoreUser (String WStoreUser);
+	public void setUUID (String UUID);
 
-	/** Get WebStore User.
-	  * User ID of the Web Store EMail address
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
 	  */
-	public String getWStoreUser();
-
-    /** Column name WStoreUserPW */
-    public static final String COLUMNNAME_WStoreUserPW = "WStoreUserPW";
-
-	/** Set WebStore Password.
-	  * Password of the Web Store EMail address
-	  */
-	public void setWStoreUserPW (String WStoreUserPW);
-
-	/** Get WebStore Password.
-	  * Password of the Web Store EMail address
-	  */
-	public String getWStoreUserPW();
-
-    /** Column name W_Store_ID */
-    public static final String COLUMNNAME_W_Store_ID = "W_Store_ID";
-
-	/** Set Web Store.
-	  * A Web Store of the Client
-	  */
-	public void setW_Store_ID (int W_Store_ID);
-
-	/** Get Web Store.
-	  * A Web Store of the Client
-	  */
-	public int getW_Store_ID();
+	public String getUUID();
 
     /** Column name WebContext */
     public static final String COLUMNNAME_WebContext = "WebContext";
@@ -569,4 +530,56 @@ public interface I_W_Store
 	  * Web Site Parameter 6 (default footer right)
 	  */
 	public String getWebParam6();
+
+    /** Column name WStoreEMail */
+    public static final String COLUMNNAME_WStoreEMail = "WStoreEMail";
+
+	/** Set Web Store EMail.
+	  * EMail address used as the sender (From)
+	  */
+	public void setWStoreEMail (String WStoreEMail);
+
+	/** Get Web Store EMail.
+	  * EMail address used as the sender (From)
+	  */
+	public String getWStoreEMail();
+
+    /** Column name W_Store_ID */
+    public static final String COLUMNNAME_W_Store_ID = "W_Store_ID";
+
+	/** Set Web Store.
+	  * A Web Store of the Client
+	  */
+	public void setW_Store_ID (int W_Store_ID);
+
+	/** Get Web Store.
+	  * A Web Store of the Client
+	  */
+	public int getW_Store_ID();
+
+    /** Column name WStoreUser */
+    public static final String COLUMNNAME_WStoreUser = "WStoreUser";
+
+	/** Set WebStore User.
+	  * User ID of the Web Store EMail address
+	  */
+	public void setWStoreUser (String WStoreUser);
+
+	/** Get WebStore User.
+	  * User ID of the Web Store EMail address
+	  */
+	public String getWStoreUser();
+
+    /** Column name WStoreUserPW */
+    public static final String COLUMNNAME_WStoreUserPW = "WStoreUserPW";
+
+	/** Set WebStore Password.
+	  * Password of the Web Store EMail address
+	  */
+	public void setWStoreUserPW (String WStoreUserPW);
+
+	/** Get WebStore Password.
+	  * Password of the Web Store EMail address
+	  */
+	public String getWStoreUserPW();
 }

@@ -32,6 +32,9 @@ import org.compiere.util.Msg;
  *
  *  @author Jorg Janke
  *  @version $Id: ProcessInfoUtil.java,v 1.2 2006/07/30 00:54:44 jjanke Exp $
+ *  
+ *  @author Michael McKay, mckayERP@gmail.com
+ *  	<li><a href="https://github.com/adempiere/adempiere/issues/2453">#2534</a>Duplicated entries in process log
  */
 public class ProcessInfoUtil
 {
@@ -114,11 +117,15 @@ public class ProcessInfoUtil
 	 */
 	public static void setLogFromDB (ProcessInfo pi)
 	{
+		// #2453 Check if the log already exists - don't overwrite or duplicate
+		if (pi.getLogList() != null && pi.getLogList().size() > 0)
+			return;
+		
 	//	s_log.fine("setLogFromDB - AD_PInstance_ID=" + pi.getAD_PInstance_ID());
-		String sql = "SELECT Log_ID, P_ID, P_Date, P_Number, P_Msg "
+		String sql = "SELECT AD_PInstance_Log_ID, P_ID, P_Date, P_Number, P_Msg "
 			+ "FROM AD_PInstance_Log "
 			+ "WHERE AD_PInstance_ID=? "
-			+ "ORDER BY Log_ID";
+			+ "ORDER BY AD_PInstance_Log_ID";
 
 		try
 		{
@@ -157,7 +164,7 @@ public class ProcessInfoUtil
 		for (int i = 0; i < logs.length; i++)
 		{
 			StringBuffer sql = new StringBuffer ("INSERT INTO AD_PInstance_Log "
-				+ "(AD_PInstance_ID, Log_ID, P_Date, P_ID, P_Number, P_Msg)"
+				+ "(AD_PInstance_ID, AD_PInstance_Log_ID, P_Date, P_ID, P_Number, P_Msg)"
 				+ " VALUES (");
 			sql.append(pi.getAD_PInstance_ID()).append(",")
 				.append(logs[i].getLog_ID()).append(",");
@@ -180,7 +187,6 @@ public class ProcessInfoUtil
 			//
 			DB.executeUpdate(sql.toString(), null);
 		}
-		pi.setLogList(null);	//	otherwise log entries are twice
 	}   //  saveLogToDB
 
 	/**

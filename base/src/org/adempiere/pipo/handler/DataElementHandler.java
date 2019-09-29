@@ -198,6 +198,7 @@ public class DataElementHandler extends AbstractElementHandler {
 			if (d_rowname != null && !d_rowname.equals("") && ((Integer)(genericPO.get_Value(d_tablename+"_ID"))).intValue() == 0) {
 				log.info("new genericPO, table: "+d_tablename+" name:"+d_rowname);
 				genericPO.set_ValueOfColumn("Name", d_rowname);
+				genericPO.setIsDirectLoad(true);
 				// Set defaults.
 				//TODO: get defaults from configuration
 				HashMap defaults = new HashMap();
@@ -221,9 +222,9 @@ public class DataElementHandler extends AbstractElementHandler {
 		public void endElement(Properties ctx, Element element) throws SAXException {
 			if (genericPO != null) {
 				if (genericPO.save(getTrxName(ctx))== true)
-					record_log (ctx, 1, genericPO.get_TableName(),"Data", genericPO.get_ID(),AD_Backup_ID, objectStatus,d_tablename,get_IDWithColumn(ctx, "AD_Table", "TableName", d_tablename));
+					recordLog (ctx, 1, genericPO.get_TableName(),"Data", genericPO.get_ID(),AD_Backup_ID, objectStatus,d_tablename,get_IDWithColumn(ctx, "AD_Table", "TableName", d_tablename));
 				else {
-					record_log (ctx, 0, genericPO.get_TableName(),"Data", genericPO.get_ID(),AD_Backup_ID, objectStatus,d_tablename,get_IDWithColumn(ctx, "AD_Table", "TableName", d_tablename));
+					recordLog (ctx, 0, genericPO.get_TableName(),"Data", genericPO.get_ID(),AD_Backup_ID, objectStatus,d_tablename,get_IDWithColumn(ctx, "AD_Table", "TableName", d_tablename));
 					throw new POSaveFailedException("GenericPO");
 				}
 				

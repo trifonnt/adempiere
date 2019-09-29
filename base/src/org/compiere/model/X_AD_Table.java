@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -23,14 +23,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for AD_Table
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_AD_Table extends PO implements I_AD_Table, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_AD_Table (Properties ctx, int AD_Table_ID, String trxName)
@@ -38,9 +38,9 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
       super (ctx, AD_Table_ID, trxName);
       /** if (AD_Table_ID == 0)
         {
-			setAD_Table_ID (0);
 			setAccessLevel (null);
 // 4
+			setAD_Table_ID (0);
 			setEntityType (null);
 // U
 			setIsChangeLog (false);
@@ -85,6 +85,38 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
       return sb.toString();
     }
 
+	/** AccessLevel AD_Reference_ID=5 */
+	public static final int ACCESSLEVEL_AD_Reference_ID=5;
+	/** Organization = 1 */
+	public static final String ACCESSLEVEL_Organization = "1";
+	/** Client+Organization = 3 */
+	public static final String ACCESSLEVEL_ClientPlusOrganization = "3";
+	/** System only = 4 */
+	public static final String ACCESSLEVEL_SystemOnly = "4";
+	/** All = 7 */
+	public static final String ACCESSLEVEL_All = "7";
+	/** System+Client = 6 */
+	public static final String ACCESSLEVEL_SystemPlusClient = "6";
+	/** Client only = 2 */
+	public static final String ACCESSLEVEL_ClientOnly = "2";
+	/** Set Data Access Level.
+		@param AccessLevel 
+		Access Level required
+	  */
+	public void setAccessLevel (String AccessLevel)
+	{
+
+		set_Value (COLUMNNAME_AccessLevel, AccessLevel);
+	}
+
+	/** Get Data Access Level.
+		@return Access Level required
+	  */
+	public String getAccessLevel () 
+	{
+		return (String)get_Value(COLUMNNAME_AccessLevel);
+	}
+
 	/** Set Auto Complete Min Length.
 		@param ACTriggerLength 
 		Identifier autocomplete trigger length
@@ -100,6 +132,34 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
 	public int getACTriggerLength () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_ACTriggerLength);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.spin.model.I_AD_ContextInfo getAD_ContextInfo() throws RuntimeException
+    {
+		return (org.spin.model.I_AD_ContextInfo)MTable.get(getCtx(), org.spin.model.I_AD_ContextInfo.Table_Name)
+			.getPO(getAD_ContextInfo_ID(), get_TrxName());	}
+
+	/** Set Context Info.
+		@param AD_ContextInfo_ID 
+		Context Info Maintaining
+	  */
+	public void setAD_ContextInfo_ID (int AD_ContextInfo_ID)
+	{
+		if (AD_ContextInfo_ID < 1) 
+			set_Value (COLUMNNAME_AD_ContextInfo_ID, null);
+		else 
+			set_Value (COLUMNNAME_AD_ContextInfo_ID, Integer.valueOf(AD_ContextInfo_ID));
+	}
+
+	/** Get Context Info.
+		@return Context Info Maintaining
+	  */
+	public int getAD_ContextInfo_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_AD_ContextInfo_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -182,38 +242,6 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** AccessLevel AD_Reference_ID=5 */
-	public static final int ACCESSLEVEL_AD_Reference_ID=5;
-	/** Organization = 1 */
-	public static final String ACCESSLEVEL_Organization = "1";
-	/** Client+Organization = 3 */
-	public static final String ACCESSLEVEL_ClientPlusOrganization = "3";
-	/** System only = 4 */
-	public static final String ACCESSLEVEL_SystemOnly = "4";
-	/** All = 7 */
-	public static final String ACCESSLEVEL_All = "7";
-	/** System+Client = 6 */
-	public static final String ACCESSLEVEL_SystemPlusClient = "6";
-	/** Client only = 2 */
-	public static final String ACCESSLEVEL_ClientOnly = "2";
-	/** Set Data Access Level.
-		@param AccessLevel 
-		Access Level required
-	  */
-	public void setAccessLevel (String AccessLevel)
-	{
-
-		set_Value (COLUMNNAME_AccessLevel, AccessLevel);
-	}
-
-	/** Get Data Access Level.
-		@return Access Level required
-	  */
-	public String getAccessLevel () 
-	{
-		return (String)get_Value(COLUMNNAME_AccessLevel);
 	}
 
 	/** Set Copy Columns From Table.
@@ -373,6 +401,30 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
 		return false;
 	}
 
+	/** Set Is Document.
+		@param IsDocument 
+		This flag determinate if the record is a document
+	  */
+	public void setIsDocument (boolean IsDocument)
+	{
+		set_Value (COLUMNNAME_IsDocument, Boolean.valueOf(IsDocument));
+	}
+
+	/** Get Is Document.
+		@return This flag determinate if the record is a document
+	  */
+	public boolean isDocument () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsDocument);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set High Volume.
 		@param IsHighVolume 
 		Use Search instead of Pick list
@@ -388,6 +440,30 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
 	public boolean isHighVolume () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsHighVolume);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Ignore Migration.
+		@param IsIgnoreMigration 
+		Ignore this record in log migration
+	  */
+	public void setIsIgnoreMigration (boolean IsIgnoreMigration)
+	{
+		set_Value (COLUMNNAME_IsIgnoreMigration, Boolean.valueOf(IsIgnoreMigration));
+	}
+
+	/** Get Ignore Migration.
+		@return Ignore this record in log migration
+	  */
+	public boolean isIgnoreMigration () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsIgnoreMigration);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
@@ -559,4 +635,21 @@ public class X_AD_Table extends PO implements I_AD_Table, I_Persistent
     {
         return new KeyNamePair(get_ID(), getTableName());
     }
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
+	}
 }

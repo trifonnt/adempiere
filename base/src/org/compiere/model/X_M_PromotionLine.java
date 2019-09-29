@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -21,17 +21,18 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.util.Env;
+import org.compiere.util.KeyNamePair;
 
 /** Generated Model for M_PromotionLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_M_PromotionLine (Properties ctx, int M_PromotionLine_ID, String trxName)
@@ -41,8 +42,8 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
         {
 			setIsMandatoryPL (true);
 // Y
-			setM_PromotionLine_ID (0);
 			setM_Promotion_ID (0);
+			setM_PromotionLine_ID (0);
         } */
     }
 
@@ -98,6 +99,26 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 		return false;
 	}
 
+	/** Set Minimum Amt.
+		@param MinimumAmt 
+		Minimum Amount in Document Currency
+	  */
+	public void setMinimumAmt (BigDecimal MinimumAmt)
+	{
+		set_Value (COLUMNNAME_MinimumAmt, MinimumAmt);
+	}
+
+	/** Get Minimum Amt.
+		@return Minimum Amount in Document Currency
+	  */
+	public BigDecimal getMinimumAmt () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_MinimumAmt);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
 	public org.compiere.model.I_M_PromotionGroup getM_PromotionGroup() throws RuntimeException
     {
 		return (org.compiere.model.I_M_PromotionGroup)MTable.get(getCtx(), org.compiere.model.I_M_PromotionGroup.Table_Name)
@@ -118,26 +139,6 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 	public int getM_PromotionGroup_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_M_PromotionGroup_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set Promotion Line.
-		@param M_PromotionLine_ID Promotion Line	  */
-	public void setM_PromotionLine_ID (int M_PromotionLine_ID)
-	{
-		if (M_PromotionLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_M_PromotionLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_M_PromotionLine_ID, Integer.valueOf(M_PromotionLine_ID));
-	}
-
-	/** Get Promotion Line.
-		@return Promotion Line	  */
-	public int getM_PromotionLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_PromotionLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -168,23 +169,48 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 		return ii.intValue();
 	}
 
-	/** Set Minimum Amt.
-		@param MinimumAmt 
-		Minimum Amount in Document Currency
-	  */
-	public void setMinimumAmt (BigDecimal MinimumAmt)
+    /** Get Record ID/ColumnName
+        @return ID/ColumnName pair
+      */
+    public KeyNamePair getKeyNamePair() 
+    {
+        return new KeyNamePair(get_ID(), String.valueOf(getM_Promotion_ID()));
+    }
+
+	/** Set Promotion Line.
+		@param M_PromotionLine_ID Promotion Line	  */
+	public void setM_PromotionLine_ID (int M_PromotionLine_ID)
 	{
-		set_Value (COLUMNNAME_MinimumAmt, MinimumAmt);
+		if (M_PromotionLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_M_PromotionLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_M_PromotionLine_ID, Integer.valueOf(M_PromotionLine_ID));
 	}
 
-	/** Get Minimum Amt.
-		@return Minimum Amount in Document Currency
-	  */
-	public BigDecimal getMinimumAmt () 
+	/** Get Promotion Line.
+		@return Promotion Line	  */
+	public int getM_PromotionLine_ID () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_MinimumAmt);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_PromotionLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

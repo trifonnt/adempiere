@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for CM_Ad
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_CM_Ad 
 {
@@ -40,27 +40,6 @@ public interface I_CM_Ad
     BigDecimal accessLevel = BigDecimal.valueOf(6);
 
     /** Load Meta Data */
-
-    /** Column name AD_Client_ID */
-    public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
-
-	/** Get Client.
-	  * Client/Tenant for this installation.
-	  */
-	public int getAD_Client_ID();
-
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
 
     /** Column name ActualClick */
     public static final String COLUMNNAME_ActualClick = "ActualClick";
@@ -87,6 +66,27 @@ public interface I_CM_Ad
 	  * How many impressions have been counted
 	  */
 	public int getActualImpression();
+
+    /** Column name AD_Client_ID */
+    public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
+
+	/** Get Client.
+	  * Client/Tenant for this installation.
+	  */
+	public int getAD_Client_ID();
+
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
 
     /** Column name CM_Ad_Cat_ID */
     public static final String COLUMNNAME_CM_Ad_Cat_ID = "CM_Ad_Cat_ID";
@@ -303,19 +303,6 @@ public interface I_CM_Ad
 	  */
 	public int getStartImpression();
 
-    /** Column name TargetURL */
-    public static final String COLUMNNAME_TargetURL = "TargetURL";
-
-	/** Set Target URL.
-	  * URL for the Target
-	  */
-	public void setTargetURL (String TargetURL);
-
-	/** Get Target URL.
-	  * URL for the Target
-	  */
-	public String getTargetURL();
-
     /** Column name Target_Frame */
     public static final String COLUMNNAME_Target_Frame = "Target_Frame";
 
@@ -328,6 +315,19 @@ public interface I_CM_Ad
 	  * Which target should be used if user clicks?
 	  */
 	public String getTarget_Frame();
+
+    /** Column name TargetURL */
+    public static final String COLUMNNAME_TargetURL = "TargetURL";
+
+	/** Set Target URL.
+	  * URL for the Target
+	  */
+	public void setTargetURL (String TargetURL);
+
+	/** Get Target URL.
+	  * URL for the Target
+	  */
+	public String getTargetURL();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -344,4 +344,17 @@ public interface I_CM_Ad
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

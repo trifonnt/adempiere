@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -25,14 +25,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for C_CashLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_C_CashLine (Properties ctx, int C_CashLine_ID, String trxName)
@@ -41,10 +41,10 @@ public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent
       /** if (C_CashLine_ID == 0)
         {
 			setAmount (Env.ZERO);
-			setC_CashLine_ID (0);
-			setC_Cash_ID (0);
 			setCashType (null);
 // E
+			setC_Cash_ID (0);
+			setC_CashLine_ID (0);
 			setLine (0);
 // @SQL=SELECT COALESCE(MAX(Line),0)+10 AS DefaultValue FROM C_CashLine WHERE C_Cash_ID=@C_Cash_ID@
 			setProcessed (false);
@@ -99,6 +99,38 @@ public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent
 		return bd;
 	}
 
+	/** CashType AD_Reference_ID=217 */
+	public static final int CASHTYPE_AD_Reference_ID=217;
+	/** Bank Account Transfer = T */
+	public static final String CASHTYPE_BankAccountTransfer = "T";
+	/** Invoice = I */
+	public static final String CASHTYPE_Invoice = "I";
+	/** General Expense = E */
+	public static final String CASHTYPE_GeneralExpense = "E";
+	/** General Receipts = R */
+	public static final String CASHTYPE_GeneralReceipts = "R";
+	/** Charge = C */
+	public static final String CASHTYPE_Charge = "C";
+	/** Difference = D */
+	public static final String CASHTYPE_Difference = "D";
+	/** Set Cash Type.
+		@param CashType 
+		Source of Cash
+	  */
+	public void setCashType (String CashType)
+	{
+
+		set_ValueNoCheck (COLUMNNAME_CashType, CashType);
+	}
+
+	/** Get Cash Type.
+		@return Source of Cash
+	  */
+	public String getCashType () 
+	{
+		return (String)get_Value(COLUMNNAME_CashType);
+	}
+
 	public org.compiere.model.I_C_BankAccount getC_BankAccount() throws RuntimeException
     {
 		return (org.compiere.model.I_C_BankAccount)MTable.get(getCtx(), org.compiere.model.I_C_BankAccount.Table_Name)
@@ -122,29 +154,6 @@ public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent
 	public int getC_BankAccount_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_BankAccount_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set Cash Journal Line.
-		@param C_CashLine_ID 
-		Cash Journal Line
-	  */
-	public void setC_CashLine_ID (int C_CashLine_ID)
-	{
-		if (C_CashLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_CashLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_CashLine_ID, Integer.valueOf(C_CashLine_ID));
-	}
-
-	/** Get Cash Journal Line.
-		@return Cash Journal Line
-	  */
-	public int getC_CashLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_CashLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -185,6 +194,29 @@ public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent
     {
         return new KeyNamePair(get_ID(), String.valueOf(getC_Cash_ID()));
     }
+
+	/** Set Cash Journal Line.
+		@param C_CashLine_ID 
+		Cash Journal Line
+	  */
+	public void setC_CashLine_ID (int C_CashLine_ID)
+	{
+		if (C_CashLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_C_CashLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_C_CashLine_ID, Integer.valueOf(C_CashLine_ID));
+	}
+
+	/** Get Cash Journal Line.
+		@return Cash Journal Line
+	  */
+	public int getC_CashLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_CashLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
 
 	public org.compiere.model.I_C_Charge getC_Charge() throws RuntimeException
     {
@@ -298,38 +330,6 @@ public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent
 		return ii.intValue();
 	}
 
-	/** CashType AD_Reference_ID=217 */
-	public static final int CASHTYPE_AD_Reference_ID=217;
-	/** Bank Account Transfer = T */
-	public static final String CASHTYPE_BankAccountTransfer = "T";
-	/** Invoice = I */
-	public static final String CASHTYPE_Invoice = "I";
-	/** General Expense = E */
-	public static final String CASHTYPE_GeneralExpense = "E";
-	/** General Receipts = R */
-	public static final String CASHTYPE_GeneralReceipts = "R";
-	/** Charge = C */
-	public static final String CASHTYPE_Charge = "C";
-	/** Difference = D */
-	public static final String CASHTYPE_Difference = "D";
-	/** Set Cash Type.
-		@param CashType 
-		Source of Cash
-	  */
-	public void setCashType (String CashType)
-	{
-
-		set_ValueNoCheck (COLUMNNAME_CashType, CashType);
-	}
-
-	/** Get Cash Type.
-		@return Source of Cash
-	  */
-	public String getCashType () 
-	{
-		return (String)get_Value(COLUMNNAME_CashType);
-	}
-
 	/** Set Description.
 		@param Description 
 		Optional short description of the record
@@ -433,6 +433,23 @@ public class X_C_CashLine extends PO implements I_C_CashLine, I_Persistent
 			return "Y".equals(oo);
 		}
 		return false;
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	/** Set Write-off Amount.

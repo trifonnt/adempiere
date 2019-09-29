@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -25,14 +25,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for C_TaxDeclarationLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_C_TaxDeclarationLine extends PO implements I_C_TaxDeclarationLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_C_TaxDeclarationLine (Properties ctx, int C_TaxDeclarationLine_ID, String trxName)
@@ -42,8 +42,8 @@ public class X_C_TaxDeclarationLine extends PO implements I_C_TaxDeclarationLine
         {
 			setC_BPartner_ID (0);
 			setC_Currency_ID (0);
-			setC_TaxDeclarationLine_ID (0);
 			setC_TaxDeclaration_ID (0);
+			setC_TaxDeclarationLine_ID (0);
 			setC_Tax_ID (0);
 			setDateAcct (new Timestamp( System.currentTimeMillis() ));
 			setIsManual (true);
@@ -166,34 +166,6 @@ public class X_C_TaxDeclarationLine extends PO implements I_C_TaxDeclarationLine
 		return ii.intValue();
 	}
 
-	public org.compiere.model.I_C_InvoiceLine getC_InvoiceLine() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_InvoiceLine)MTable.get(getCtx(), org.compiere.model.I_C_InvoiceLine.Table_Name)
-			.getPO(getC_InvoiceLine_ID(), get_TrxName());	}
-
-	/** Set Invoice Line.
-		@param C_InvoiceLine_ID 
-		Invoice Detail Line
-	  */
-	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID)
-	{
-		if (C_InvoiceLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_InvoiceLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_InvoiceLine_ID, Integer.valueOf(C_InvoiceLine_ID));
-	}
-
-	/** Get Invoice Line.
-		@return Invoice Detail Line
-	  */
-	public int getC_InvoiceLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_InvoiceLine_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_C_Invoice getC_Invoice() throws RuntimeException
     {
 		return (org.compiere.model.I_C_Invoice)MTable.get(getCtx(), org.compiere.model.I_C_Invoice.Table_Name)
@@ -222,24 +194,29 @@ public class X_C_TaxDeclarationLine extends PO implements I_C_TaxDeclarationLine
 		return ii.intValue();
 	}
 
-	/** Set Tax Declaration Line.
-		@param C_TaxDeclarationLine_ID 
-		Tax Declaration Document Information
+	public org.compiere.model.I_C_InvoiceLine getC_InvoiceLine() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_InvoiceLine)MTable.get(getCtx(), org.compiere.model.I_C_InvoiceLine.Table_Name)
+			.getPO(getC_InvoiceLine_ID(), get_TrxName());	}
+
+	/** Set Invoice Line.
+		@param C_InvoiceLine_ID 
+		Invoice Detail Line
 	  */
-	public void setC_TaxDeclarationLine_ID (int C_TaxDeclarationLine_ID)
+	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID)
 	{
-		if (C_TaxDeclarationLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_TaxDeclarationLine_ID, null);
+		if (C_InvoiceLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_C_InvoiceLine_ID, null);
 		else 
-			set_ValueNoCheck (COLUMNNAME_C_TaxDeclarationLine_ID, Integer.valueOf(C_TaxDeclarationLine_ID));
+			set_ValueNoCheck (COLUMNNAME_C_InvoiceLine_ID, Integer.valueOf(C_InvoiceLine_ID));
 	}
 
-	/** Get Tax Declaration Line.
-		@return Tax Declaration Document Information
+	/** Get Invoice Line.
+		@return Invoice Detail Line
 	  */
-	public int getC_TaxDeclarationLine_ID () 
+	public int getC_InvoiceLine_ID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_TaxDeclarationLine_ID);
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_InvoiceLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -268,6 +245,29 @@ public class X_C_TaxDeclarationLine extends PO implements I_C_TaxDeclarationLine
 	public int getC_TaxDeclaration_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_TaxDeclaration_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Tax Declaration Line.
+		@param C_TaxDeclarationLine_ID 
+		Tax Declaration Document Information
+	  */
+	public void setC_TaxDeclarationLine_ID (int C_TaxDeclarationLine_ID)
+	{
+		if (C_TaxDeclarationLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_C_TaxDeclarationLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_C_TaxDeclarationLine_ID, Integer.valueOf(C_TaxDeclarationLine_ID));
+	}
+
+	/** Get Tax Declaration Line.
+		@return Tax Declaration Document Information
+	  */
+	public int getC_TaxDeclarationLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_TaxDeclarationLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -417,5 +417,22 @@ public class X_C_TaxDeclarationLine extends PO implements I_C_TaxDeclarationLine
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

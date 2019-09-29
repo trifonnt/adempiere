@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -26,14 +26,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for A_Asset_Info_Ins
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_A_Asset_Info_Ins extends PO implements I_A_Asset_Info_Ins, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_A_Asset_Info_Ins (Properties ctx, int A_Asset_Info_Ins_ID, String trxName)
@@ -74,9 +74,9 @@ public class X_A_Asset_Info_Ins extends PO implements I_A_Asset_Info_Ins, I_Pers
       return sb.toString();
     }
 
-	/** Set Asset.
+	/** Set Fixed Asset.
 		@param A_Asset_ID 
-		Asset used internally or by customers
+		Fixed Asset used internally or by customers
 	  */
 	public void setA_Asset_ID (int A_Asset_ID)
 	{
@@ -86,8 +86,8 @@ public class X_A_Asset_Info_Ins extends PO implements I_A_Asset_Info_Ins, I_Pers
 			set_ValueNoCheck (COLUMNNAME_A_Asset_ID, Integer.valueOf(A_Asset_ID));
 	}
 
-	/** Get Asset.
-		@return Asset used internally or by customers
+	/** Get Fixed Asset.
+		@return Fixed Asset used internally or by customers
 	  */
 	public int getA_Asset_ID () 
 	{
@@ -142,6 +142,20 @@ public class X_A_Asset_Info_Ins extends PO implements I_A_Asset_Info_Ins, I_Pers
 		return bd;
 	}
 
+	/** Set Insurance Company.
+		@param A_Insurance_Co Insurance Company	  */
+	public void setA_Insurance_Co (String A_Insurance_Co)
+	{
+		set_Value (COLUMNNAME_A_Insurance_Co, A_Insurance_Co);
+	}
+
+	/** Get Insurance Company.
+		@return Insurance Company	  */
+	public String getA_Insurance_Co () 
+	{
+		return (String)get_Value(COLUMNNAME_A_Insurance_Co);
+	}
+
 	/** Set Asset Insurance Value.
 		@param A_Ins_Value Asset Insurance Value	  */
 	public void setA_Ins_Value (BigDecimal A_Ins_Value)
@@ -157,20 +171,6 @@ public class X_A_Asset_Info_Ins extends PO implements I_A_Asset_Info_Ins, I_Pers
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
-	}
-
-	/** Set Insurance Company.
-		@param A_Insurance_Co Insurance Company	  */
-	public void setA_Insurance_Co (String A_Insurance_Co)
-	{
-		set_Value (COLUMNNAME_A_Insurance_Co, A_Insurance_Co);
-	}
-
-	/** Get Insurance Company.
-		@return Insurance Company	  */
-	public String getA_Insurance_Co () 
-	{
-		return (String)get_Value(COLUMNNAME_A_Insurance_Co);
 	}
 
 	/** Set Asset Policy No.
@@ -230,5 +230,22 @@ public class X_A_Asset_Info_Ins extends PO implements I_A_Asset_Info_Ins, I_Pers
 	public String getText () 
 	{
 		return (String)get_Value(COLUMNNAME_Text);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

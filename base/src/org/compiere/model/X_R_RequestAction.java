@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -25,14 +25,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for R_RequestAction
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_R_RequestAction (Properties ctx, int R_RequestAction_ID, String trxName)
@@ -72,6 +72,34 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_A_Asset getA_Asset() throws RuntimeException
+    {
+		return (org.compiere.model.I_A_Asset)MTable.get(getCtx(), org.compiere.model.I_A_Asset.Table_Name)
+			.getPO(getA_Asset_ID(), get_TrxName());	}
+
+	/** Set Fixed Asset.
+		@param A_Asset_ID 
+		Fixed Asset used internally or by customers
+	  */
+	public void setA_Asset_ID (int A_Asset_ID)
+	{
+		if (A_Asset_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_A_Asset_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_A_Asset_ID, Integer.valueOf(A_Asset_ID));
+	}
+
+	/** Get Fixed Asset.
+		@return Fixed Asset used internally or by customers
+	  */
+	public int getA_Asset_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_A_Asset_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
 
 	public org.compiere.model.I_AD_Role getAD_Role() throws RuntimeException
     {
@@ -124,34 +152,6 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 	public int getAD_User_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_AD_User_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.compiere.model.I_A_Asset getA_Asset() throws RuntimeException
-    {
-		return (org.compiere.model.I_A_Asset)MTable.get(getCtx(), org.compiere.model.I_A_Asset.Table_Name)
-			.getPO(getA_Asset_ID(), get_TrxName());	}
-
-	/** Set Asset.
-		@param A_Asset_ID 
-		Asset used internally or by customers
-	  */
-	public void setA_Asset_ID (int A_Asset_ID)
-	{
-		if (A_Asset_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_A_Asset_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_A_Asset_ID, Integer.valueOf(A_Asset_ID));
-	}
-
-	/** Get Asset.
-		@return Asset used internally or by customers
-	  */
-	public int getA_Asset_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_A_Asset_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -241,6 +241,34 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 		return ii.intValue();
 	}
 
+	/** ConfidentialType AD_Reference_ID=340 */
+	public static final int CONFIDENTIALTYPE_AD_Reference_ID=340;
+	/** Public Information = A */
+	public static final String CONFIDENTIALTYPE_PublicInformation = "A";
+	/** Partner Confidential = C */
+	public static final String CONFIDENTIALTYPE_PartnerConfidential = "C";
+	/** Internal = I */
+	public static final String CONFIDENTIALTYPE_Internal = "I";
+	/** Private Information = P */
+	public static final String CONFIDENTIALTYPE_PrivateInformation = "P";
+	/** Set Confidentiality.
+		@param ConfidentialType 
+		Type of Confidentiality
+	  */
+	public void setConfidentialType (String ConfidentialType)
+	{
+
+		set_ValueNoCheck (COLUMNNAME_ConfidentialType, ConfidentialType);
+	}
+
+	/** Get Confidentiality.
+		@return Type of Confidentiality
+	  */
+	public String getConfidentialType () 
+	{
+		return (String)get_Value(COLUMNNAME_ConfidentialType);
+	}
+
 	public org.compiere.model.I_C_Order getC_Order() throws RuntimeException
     {
 		return (org.compiere.model.I_C_Order)MTable.get(getCtx(), org.compiere.model.I_C_Order.Table_Name)
@@ -323,34 +351,6 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** ConfidentialType AD_Reference_ID=340 */
-	public static final int CONFIDENTIALTYPE_AD_Reference_ID=340;
-	/** Public Information = A */
-	public static final String CONFIDENTIALTYPE_PublicInformation = "A";
-	/** Partner Confidential = C */
-	public static final String CONFIDENTIALTYPE_PartnerConfidential = "C";
-	/** Internal = I */
-	public static final String CONFIDENTIALTYPE_Internal = "I";
-	/** Private Information = P */
-	public static final String CONFIDENTIALTYPE_PrivateInformation = "P";
-	/** Set Confidentiality.
-		@param ConfidentialType 
-		Type of Confidentiality
-	  */
-	public void setConfidentialType (String ConfidentialType)
-	{
-
-		set_ValueNoCheck (COLUMNNAME_ConfidentialType, ConfidentialType);
-	}
-
-	/** Get Confidentiality.
-		@return Type of Confidentiality
-	  */
-	public String getConfidentialType () 
-	{
-		return (String)get_Value(COLUMNNAME_ConfidentialType);
 	}
 
 	/** Set Complete Plan.
@@ -521,34 +521,6 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 		return ii.intValue();
 	}
 
-	public org.compiere.model.I_M_Product getM_ProductSpent() throws RuntimeException
-    {
-		return (org.compiere.model.I_M_Product)MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-			.getPO(getM_ProductSpent_ID(), get_TrxName());	}
-
-	/** Set Product Used.
-		@param M_ProductSpent_ID 
-		Product/Resource/Service used in Request
-	  */
-	public void setM_ProductSpent_ID (int M_ProductSpent_ID)
-	{
-		if (M_ProductSpent_ID < 1) 
-			set_Value (COLUMNNAME_M_ProductSpent_ID, null);
-		else 
-			set_Value (COLUMNNAME_M_ProductSpent_ID, Integer.valueOf(M_ProductSpent_ID));
-	}
-
-	/** Get Product Used.
-		@return Product/Resource/Service used in Request
-	  */
-	public int getM_ProductSpent_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_ProductSpent_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException
     {
 		return (org.compiere.model.I_M_Product)MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
@@ -572,6 +544,34 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 	public int getM_Product_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_M_Product_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_M_Product getM_ProductSpent() throws RuntimeException
+    {
+		return (org.compiere.model.I_M_Product)MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
+			.getPO(getM_ProductSpent_ID(), get_TrxName());	}
+
+	/** Set Product Used.
+		@param M_ProductSpent_ID 
+		Product/Resource/Service used in Request
+	  */
+	public void setM_ProductSpent_ID (int M_ProductSpent_ID)
+	{
+		if (M_ProductSpent_ID < 1) 
+			set_Value (COLUMNNAME_M_ProductSpent_ID, null);
+		else 
+			set_Value (COLUMNNAME_M_ProductSpent_ID, Integer.valueOf(M_ProductSpent_ID));
+	}
+
+	/** Get Product Used.
+		@return Product/Resource/Service used in Request
+	  */
+	public int getM_ProductSpent_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_ProductSpent_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -821,34 +821,6 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 		return ii.intValue();
 	}
 
-	public org.compiere.model.I_R_RequestType getR_RequestType() throws RuntimeException
-    {
-		return (org.compiere.model.I_R_RequestType)MTable.get(getCtx(), org.compiere.model.I_R_RequestType.Table_Name)
-			.getPO(getR_RequestType_ID(), get_TrxName());	}
-
-	/** Set Request Type.
-		@param R_RequestType_ID 
-		Type of request (e.g. Inquiry, Complaint, ..)
-	  */
-	public void setR_RequestType_ID (int R_RequestType_ID)
-	{
-		if (R_RequestType_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_R_RequestType_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_R_RequestType_ID, Integer.valueOf(R_RequestType_ID));
-	}
-
-	/** Get Request Type.
-		@return Type of request (e.g. Inquiry, Complaint, ..)
-	  */
-	public int getR_RequestType_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_R_RequestType_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_R_Request getR_Request() throws RuntimeException
     {
 		return (org.compiere.model.I_R_Request)MTable.get(getCtx(), org.compiere.model.I_R_Request.Table_Name)
@@ -872,6 +844,34 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 	public int getR_Request_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_R_Request_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_R_RequestType getR_RequestType() throws RuntimeException
+    {
+		return (org.compiere.model.I_R_RequestType)MTable.get(getCtx(), org.compiere.model.I_R_RequestType.Table_Name)
+			.getPO(getR_RequestType_ID(), get_TrxName());	}
+
+	/** Set Request Type.
+		@param R_RequestType_ID 
+		Type of request (e.g. Inquiry, Complaint, ..)
+	  */
+	public void setR_RequestType_ID (int R_RequestType_ID)
+	{
+		if (R_RequestType_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_R_RequestType_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_R_RequestType_ID, Integer.valueOf(R_RequestType_ID));
+	}
+
+	/** Get Request Type.
+		@return Type of request (e.g. Inquiry, Complaint, ..)
+	  */
+	public int getR_RequestType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_R_RequestType_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -1031,5 +1031,22 @@ public class X_R_RequestAction extends PO implements I_R_RequestAction, I_Persis
 	public String getTaskStatus () 
 	{
 		return (String)get_Value(COLUMNNAME_TaskStatus);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

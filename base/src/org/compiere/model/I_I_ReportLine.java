@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for I_ReportLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_I_ReportLine 
 {
@@ -62,6 +62,15 @@ public interface I_I_ReportLine
 	  */
 	public int getAD_Org_ID();
 
+    /** Column name CalculationType */
+    public static final String COLUMNNAME_CalculationType = "CalculationType";
+
+	/** Set Calculation	  */
+	public void setCalculationType (String CalculationType);
+
+	/** Get Calculation	  */
+	public String getCalculationType();
+
     /** Column name C_ElementValue_ID */
     public static final String COLUMNNAME_C_ElementValue_ID = "C_ElementValue_ID";
 
@@ -76,15 +85,6 @@ public interface I_I_ReportLine
 	public int getC_ElementValue_ID();
 
 	public org.compiere.model.I_C_ElementValue getC_ElementValue() throws RuntimeException;
-
-    /** Column name CalculationType */
-    public static final String COLUMNNAME_CalculationType = "CalculationType";
-
-	/** Set Calculation	  */
-	public void setCalculationType (String CalculationType);
-
-	/** Get Calculation	  */
-	public String getCalculationType();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -254,17 +254,6 @@ public interface I_I_ReportLine
 	  */
 	public String getPAPeriodType();
 
-    /** Column name PA_ReportLineSet_ID */
-    public static final String COLUMNNAME_PA_ReportLineSet_ID = "PA_ReportLineSet_ID";
-
-	/** Set Report Line Set	  */
-	public void setPA_ReportLineSet_ID (int PA_ReportLineSet_ID);
-
-	/** Get Report Line Set	  */
-	public int getPA_ReportLineSet_ID();
-
-	public org.compiere.model.I_PA_ReportLineSet getPA_ReportLineSet() throws RuntimeException;
-
     /** Column name PA_ReportLine_ID */
     public static final String COLUMNNAME_PA_ReportLine_ID = "PA_ReportLine_ID";
 
@@ -275,6 +264,17 @@ public interface I_I_ReportLine
 	public int getPA_ReportLine_ID();
 
 	public org.compiere.model.I_PA_ReportLine getPA_ReportLine() throws RuntimeException;
+
+    /** Column name PA_ReportLineSet_ID */
+    public static final String COLUMNNAME_PA_ReportLineSet_ID = "PA_ReportLineSet_ID";
+
+	/** Set Report Line Set	  */
+	public void setPA_ReportLineSet_ID (int PA_ReportLineSet_ID);
+
+	/** Get Report Line Set	  */
+	public int getPA_ReportLineSet_ID();
+
+	public org.compiere.model.I_PA_ReportLineSet getPA_ReportLineSet() throws RuntimeException;
 
     /** Column name PA_ReportSource_ID */
     public static final String COLUMNNAME_PA_ReportSource_ID = "PA_ReportSource_ID";
@@ -294,12 +294,12 @@ public interface I_I_ReportLine
     /** Column name PostingType */
     public static final String COLUMNNAME_PostingType = "PostingType";
 
-	/** Set PostingType.
+	/** Set Posting Type.
 	  * The type of posted amount for the transaction
 	  */
 	public void setPostingType (String PostingType);
 
-	/** Get PostingType.
+	/** Get Posting Type.
 	  * The type of posted amount for the transaction
 	  */
 	public String getPostingType();
@@ -338,6 +338,15 @@ public interface I_I_ReportLine
 	  * Name of the Report Line Set
 	  */
 	public String getReportLineSetName();
+
+    /** Column name ReportLineStyle */
+    public static final String COLUMNNAME_ReportLineStyle = "ReportLineStyle";
+
+	/** Set Report Line Style	  */
+	public void setReportLineStyle (String ReportLineStyle);
+
+	/** Get Report Line Style	  */
+	public String getReportLineStyle();
 
     /** Column name SeqNo */
     public static final String COLUMNNAME_SeqNo = "SeqNo";
@@ -383,12 +392,16 @@ public interface I_I_ReportLine
 	  */
 	public int getUpdatedBy();
 
-    /** Column name reportlinestyle */
-    public static final String COLUMNNAME_reportlinestyle = "reportlinestyle";
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
 
-	/** Set reportlinestyle	  */
-	public void setreportlinestyle (String reportlinestyle);
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
 
-	/** Get reportlinestyle	  */
-	public String getreportlinestyle();
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

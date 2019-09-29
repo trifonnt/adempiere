@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for AD_PrintTableFormat
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_AD_PrintTableFormat 
 {
@@ -218,6 +218,21 @@ public interface I_AD_PrintTableFormat
 
 	public org.compiere.model.I_AD_PrintColor getHdrLine_PrintColor() throws RuntimeException;
 
+    /** Column name Hdr_PrintFont_ID */
+    public static final String COLUMNNAME_Hdr_PrintFont_ID = "Hdr_PrintFont_ID";
+
+	/** Set Header Row Font.
+	  * Header row Font
+	  */
+	public void setHdr_PrintFont_ID (int Hdr_PrintFont_ID);
+
+	/** Get Header Row Font.
+	  * Header row Font
+	  */
+	public int getHdr_PrintFont_ID();
+
+	public org.compiere.model.I_AD_PrintFont getHdr_PrintFont() throws RuntimeException;
+
     /** Column name HdrStroke */
     public static final String COLUMNNAME_HdrStroke = "HdrStroke";
 
@@ -273,21 +288,6 @@ public interface I_AD_PrintTableFormat
 	public int getHdrTextFG_PrintColor_ID();
 
 	public org.compiere.model.I_AD_PrintColor getHdrTextFG_PrintColor() throws RuntimeException;
-
-    /** Column name Hdr_PrintFont_ID */
-    public static final String COLUMNNAME_Hdr_PrintFont_ID = "Hdr_PrintFont_ID";
-
-	/** Set Header Row Font.
-	  * Header row Font
-	  */
-	public void setHdr_PrintFont_ID (int Hdr_PrintFont_ID);
-
-	/** Get Header Row Font.
-	  * Header row Font
-	  */
-	public int getHdr_PrintFont_ID();
-
-	public org.compiere.model.I_AD_PrintFont getHdr_PrintFont() throws RuntimeException;
 
     /** Column name HeaderCenter */
     public static final String COLUMNNAME_HeaderCenter = "HeaderCenter";
@@ -406,19 +406,6 @@ public interface I_AD_PrintTableFormat
 	  */
 	public boolean isPaintBoundaryLines();
 
-    /** Column name IsPaintHLines */
-    public static final String COLUMNNAME_IsPaintHLines = "IsPaintHLines";
-
-	/** Set Paint Horizontal Lines.
-	  * Paint horizontal lines
-	  */
-	public void setIsPaintHLines (boolean IsPaintHLines);
-
-	/** Get Paint Horizontal Lines.
-	  * Paint horizontal lines
-	  */
-	public boolean isPaintHLines();
-
     /** Column name IsPaintHeaderLines */
     public static final String COLUMNNAME_IsPaintHeaderLines = "IsPaintHeaderLines";
 
@@ -431,6 +418,19 @@ public interface I_AD_PrintTableFormat
 	  * Paint Lines over/under the Header Line 
 	  */
 	public boolean isPaintHeaderLines();
+
+    /** Column name IsPaintHLines */
+    public static final String COLUMNNAME_IsPaintHLines = "IsPaintHLines";
+
+	/** Set Paint Horizontal Lines.
+	  * Paint horizontal lines
+	  */
+	public void setIsPaintHLines (boolean IsPaintHLines);
+
+	/** Get Paint Horizontal Lines.
+	  * Paint horizontal lines
+	  */
+	public boolean isPaintHLines();
 
     /** Column name IsPaintVLines */
     public static final String COLUMNNAME_IsPaintVLines = "IsPaintVLines";
@@ -458,6 +458,21 @@ public interface I_AD_PrintTableFormat
 	  */
 	public boolean isPrintFunctionSymbols();
 
+    /** Column name Line_PrintColor_ID */
+    public static final String COLUMNNAME_Line_PrintColor_ID = "Line_PrintColor_ID";
+
+	/** Set Line Color.
+	  * Table line color
+	  */
+	public void setLine_PrintColor_ID (int Line_PrintColor_ID);
+
+	/** Get Line Color.
+	  * Table line color
+	  */
+	public int getLine_PrintColor_ID();
+
+	public org.compiere.model.I_AD_PrintColor getLine_PrintColor() throws RuntimeException;
+
     /** Column name LineStroke */
     public static final String COLUMNNAME_LineStroke = "LineStroke";
 
@@ -483,21 +498,6 @@ public interface I_AD_PrintTableFormat
 	  * Type of the Line Stroke
 	  */
 	public String getLineStrokeType();
-
-    /** Column name Line_PrintColor_ID */
-    public static final String COLUMNNAME_Line_PrintColor_ID = "Line_PrintColor_ID";
-
-	/** Set Line Color.
-	  * Table line color
-	  */
-	public void setLine_PrintColor_ID (int Line_PrintColor_ID);
-
-	/** Get Line Color.
-	  * Table line color
-	  */
-	public int getLine_PrintColor_ID();
-
-	public org.compiere.model.I_AD_PrintColor getLine_PrintColor() throws RuntimeException;
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
@@ -527,4 +527,17 @@ public interface I_AD_PrintTableFormat
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

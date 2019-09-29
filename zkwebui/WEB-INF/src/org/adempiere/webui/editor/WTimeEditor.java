@@ -19,8 +19,8 @@ import java.util.logging.Level;
 
 import org.adempiere.webui.event.ContextMenuEvent;
 import org.adempiere.webui.event.ContextMenuListener;
-import org.adempiere.webui.event.ValueChangeEvent;
-import org.adempiere.webui.window.WFieldRecordInfo;
+import org.adempiere.exceptions.ValueChangeEvent;
+import org.adempiere.webui.window.WRecordInfo;
 import org.compiere.model.GridField;
 import org.compiere.util.CLogger;
 import org.zkoss.zk.ui.event.Event;
@@ -30,6 +30,11 @@ import org.zkoss.zul.Timebox;
 /**
  *
  * @author Low Heng Sin
+ * @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
+ *		<li> FR [ 146 ] Remove unnecessary class, add support for info to specific column
+ *		@see https://github.com/adempiere/adempiere/issues/146
+ * @author Michael McKay, mckayERP@gmail.com
+ * 		<li><a href="https://github.com/adempiere/adempiere/issues/2383">#2383</a> Override the getPopupMenu method.
  */
 public class WTimeEditor extends WEditor implements ContextMenuListener
 {
@@ -102,7 +107,7 @@ public class WTimeEditor extends WEditor implements ContextMenuListener
 		popupMenu.addMenuListener(this);
 		if (gridField != null && gridField.getGridTab() != null)
 		{
-			WFieldRecordInfo.addMenu(popupMenu);
+			WRecordInfo.addMenu(popupMenu);
 		}
 		getComponent().setContext(popupMenu.getId());
 	}
@@ -198,7 +203,17 @@ public class WTimeEditor extends WEditor implements ContextMenuListener
 	public void onMenu(ContextMenuEvent evt) {
 		if (WEditorPopupMenu.CHANGE_LOG_EVENT.equals(evt.getContextEvent()))
 		{
-			WFieldRecordInfo.start(gridField);
+			WRecordInfo.start(gridField);
 		}
 	}
+	
+	// #2383
+	/**
+	 *  Get the pop up menu for this editor
+	 */
+    public WEditorPopupMenu getPopupMenu()
+	{
+	   	return popupMenu;
+	}
+
 }

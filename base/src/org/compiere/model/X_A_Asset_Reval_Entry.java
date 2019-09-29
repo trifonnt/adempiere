@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -24,14 +24,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for A_Asset_Reval_Entry
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_A_Asset_Reval_Entry (Properties ctx, int A_Asset_Reval_Entry_ID, String trxName)
@@ -41,10 +41,10 @@ public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, 
         {
 			setA_Asset_Reval_Entry_ID (0);
 			setA_Effective_Date (new Timestamp( System.currentTimeMillis() ));
-			setA_Rev_Code (null);
 			setA_Reval_Cal_Method (null);
 			setA_Reval_Effective_Date (null);
 			setA_Reval_Multiplier (null);
+			setA_Rev_Code (null);
 			setC_Currency_ID (0);
 			setDescription (null);
 			setDocumentNo (null);
@@ -124,29 +124,6 @@ public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, 
 		return (Timestamp)get_Value(COLUMNNAME_A_Effective_Date);
 	}
 
-	/** A_Rev_Code AD_Reference_ID=53262 */
-	public static final int A_REV_CODE_AD_Reference_ID=53262;
-	/** Revaluation Code #1 = R01 */
-	public static final String A_REV_CODE_RevaluationCode1 = "R01";
-	/** Revaluation Code #2 = R02 */
-	public static final String A_REV_CODE_RevaluationCode2 = "R02";
-	/** Revaluation Code #3 = R03 */
-	public static final String A_REV_CODE_RevaluationCode3 = "R03";
-	/** Set Rev. Code.
-		@param A_Rev_Code Rev. Code	  */
-	public void setA_Rev_Code (String A_Rev_Code)
-	{
-
-		set_Value (COLUMNNAME_A_Rev_Code, A_Rev_Code);
-	}
-
-	/** Get Rev. Code.
-		@return Rev. Code	  */
-	public String getA_Rev_Code () 
-	{
-		return (String)get_Value(COLUMNNAME_A_Rev_Code);
-	}
-
 	/** A_Reval_Cal_Method AD_Reference_ID=53259 */
 	public static final int A_REVAL_CAL_METHOD_AD_Reference_ID=53259;
 	/** Default = DFT */
@@ -212,6 +189,29 @@ public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, 
 	public String getA_Reval_Multiplier () 
 	{
 		return (String)get_Value(COLUMNNAME_A_Reval_Multiplier);
+	}
+
+	/** A_Rev_Code AD_Reference_ID=53262 */
+	public static final int A_REV_CODE_AD_Reference_ID=53262;
+	/** Revaluation Code #1 = R01 */
+	public static final String A_REV_CODE_RevaluationCode1 = "R01";
+	/** Revaluation Code #2 = R02 */
+	public static final String A_REV_CODE_RevaluationCode2 = "R02";
+	/** Revaluation Code #3 = R03 */
+	public static final String A_REV_CODE_RevaluationCode3 = "R03";
+	/** Set Rev. Code.
+		@param A_Rev_Code Rev. Code	  */
+	public void setA_Rev_Code (String A_Rev_Code)
+	{
+
+		set_Value (COLUMNNAME_A_Rev_Code, A_Rev_Code);
+	}
+
+	/** Get Rev. Code.
+		@return Rev. Code	  */
+	public String getA_Rev_Code () 
+	{
+		return (String)get_Value(COLUMNNAME_A_Rev_Code);
 	}
 
 	public org.compiere.model.I_C_AcctSchema getC_AcctSchema() throws RuntimeException
@@ -434,7 +434,7 @@ public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, 
 	public static final String POSTINGTYPE_Statistical = "S";
 	/** Reservation = R */
 	public static final String POSTINGTYPE_Reservation = "R";
-	/** Set PostingType.
+	/** Set Posting Type.
 		@param PostingType 
 		The type of posted amount for the transaction
 	  */
@@ -444,7 +444,7 @@ public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, 
 		set_Value (COLUMNNAME_PostingType, PostingType);
 	}
 
-	/** Get PostingType.
+	/** Get Posting Type.
 		@return The type of posted amount for the transaction
 	  */
 	public String getPostingType () 
@@ -495,5 +495,22 @@ public class X_A_Asset_Reval_Entry extends PO implements I_A_Asset_Reval_Entry, 
 			return "Y".equals(oo);
 		}
 		return false;
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

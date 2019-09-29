@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for Test
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_Test 
 {
@@ -40,6 +40,17 @@ public interface I_Test
     BigDecimal accessLevel = BigDecimal.valueOf(4);
 
     /** Load Meta Data */
+
+    /** Column name Account_Acct */
+    public static final String COLUMNNAME_Account_Acct = "Account_Acct";
+
+	/** Set Account_Acct	  */
+	public void setAccount_Acct (int Account_Acct);
+
+	/** Get Account_Acct	  */
+	public int getAccount_Acct();
+
+	public I_C_ValidCombination getAccount_A() throws RuntimeException;
 
     /** Column name AD_Client_ID */
     public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
@@ -61,17 +72,6 @@ public interface I_Test
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
-
-    /** Column name Account_Acct */
-    public static final String COLUMNNAME_Account_Acct = "Account_Acct";
-
-	/** Set Account_Acct	  */
-	public void setAccount_Acct (int Account_Acct);
-
-	/** Get Account_Acct	  */
-	public int getAccount_Acct();
-
-	public I_C_ValidCombination getAccount_A() throws RuntimeException;
 
     /** Column name BinaryData */
     public static final String COLUMNNAME_BinaryData = "BinaryData";
@@ -116,6 +116,19 @@ public interface I_Test
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
+    /** Column name CharacterData */
+    public static final String COLUMNNAME_CharacterData = "CharacterData";
+
+	/** Set Character Data.
+	  * Long Character Field
+	  */
+	public void setCharacterData (String CharacterData);
+
+	/** Get Character Data.
+	  * Long Character Field
+	  */
+	public String getCharacterData();
+
     /** Column name C_Location_ID */
     public static final String COLUMNNAME_C_Location_ID = "C_Location_ID";
 
@@ -146,34 +159,6 @@ public interface I_Test
 
 	public org.compiere.model.I_C_Payment getC_Payment() throws RuntimeException;
 
-    /** Column name C_UOM_ID */
-    public static final String COLUMNNAME_C_UOM_ID = "C_UOM_ID";
-
-	/** Set UOM.
-	  * Unit of Measure
-	  */
-	public void setC_UOM_ID (int C_UOM_ID);
-
-	/** Get UOM.
-	  * Unit of Measure
-	  */
-	public int getC_UOM_ID();
-
-	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
-
-    /** Column name CharacterData */
-    public static final String COLUMNNAME_CharacterData = "CharacterData";
-
-	/** Set Character Data.
-	  * Long Character Field
-	  */
-	public void setCharacterData (String CharacterData);
-
-	/** Get Character Data.
-	  * Long Character Field
-	  */
-	public String getCharacterData();
-
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
 
@@ -189,6 +174,21 @@ public interface I_Test
 	  * User who created this records
 	  */
 	public int getCreatedBy();
+
+    /** Column name C_UOM_ID */
+    public static final String COLUMNNAME_C_UOM_ID = "C_UOM_ID";
+
+	/** Set UOM.
+	  * Unit of Measure
+	  */
+	public void setC_UOM_ID (int C_UOM_ID);
+
+	/** Get UOM.
+	  * Unit of Measure
+	  */
+	public int getC_UOM_ID();
+
+	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
 
     /** Column name Description */
     public static final String COLUMNNAME_Description = "Description";
@@ -321,6 +321,15 @@ public interface I_Test
 	/** Get DateTime	  */
 	public Timestamp getT_DateTime();
 
+    /** Column name Test_ID */
+    public static final String COLUMNNAME_Test_ID = "Test_ID";
+
+	/** Set Test ID	  */
+	public void setTest_ID (int Test_ID);
+
+	/** Get Test ID	  */
+	public int getTest_ID();
+
     /** Column name T_Integer */
     public static final String COLUMNNAME_T_Integer = "T_Integer";
 
@@ -348,15 +357,6 @@ public interface I_Test
 	/** Get Qty	  */
 	public BigDecimal getT_Qty();
 
-    /** Column name Test_ID */
-    public static final String COLUMNNAME_Test_ID = "Test_ID";
-
-	/** Set Test ID	  */
-	public void setTest_ID (int Test_ID);
-
-	/** Get Test ID	  */
-	public int getTest_ID();
-
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
 
@@ -372,4 +372,17 @@ public interface I_Test
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

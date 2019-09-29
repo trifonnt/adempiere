@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -24,14 +24,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for M_PromotionReward
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_M_PromotionReward extends PO implements I_M_PromotionReward, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_M_PromotionReward (Properties ctx, int M_PromotionReward_ID, String trxName)
@@ -42,8 +42,8 @@ public class X_M_PromotionReward extends PO implements I_M_PromotionReward, I_Pe
 			setC_Charge_ID (0);
 			setIsForAllDistribution (false);
 // N
-			setM_PromotionReward_ID (0);
 			setM_Promotion_ID (0);
+			setM_PromotionReward_ID (0);
 			setRewardType (null);
 			setSeqNo (0);
 // @SQL=SELECT COALESCE(MAX(SeqNo),0)+10 AS DefaultValue FROM M_PromotionReward WHERE M_Promotion_ID=@M_Promotion_ID@
@@ -223,26 +223,6 @@ public class X_M_PromotionReward extends PO implements I_M_PromotionReward, I_Pe
 		return ii.intValue();
 	}
 
-	/** Set Promotion Reward.
-		@param M_PromotionReward_ID Promotion Reward	  */
-	public void setM_PromotionReward_ID (int M_PromotionReward_ID)
-	{
-		if (M_PromotionReward_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_M_PromotionReward_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_M_PromotionReward_ID, Integer.valueOf(M_PromotionReward_ID));
-	}
-
-	/** Get Promotion Reward.
-		@return Promotion Reward	  */
-	public int getM_PromotionReward_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_PromotionReward_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_M_Promotion getM_Promotion() throws RuntimeException
     {
 		return (org.compiere.model.I_M_Promotion)MTable.get(getCtx(), org.compiere.model.I_M_Promotion.Table_Name)
@@ -263,6 +243,26 @@ public class X_M_PromotionReward extends PO implements I_M_PromotionReward, I_Pe
 	public int getM_Promotion_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_M_Promotion_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Promotion Reward.
+		@param M_PromotionReward_ID Promotion Reward	  */
+	public void setM_PromotionReward_ID (int M_PromotionReward_ID)
+	{
+		if (M_PromotionReward_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_M_PromotionReward_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_M_PromotionReward_ID, Integer.valueOf(M_PromotionReward_ID));
+	}
+
+	/** Get Promotion Reward.
+		@return Promotion Reward	  */
+	public int getM_PromotionReward_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_PromotionReward_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -360,5 +360,22 @@ public class X_M_PromotionReward extends PO implements I_M_PromotionReward, I_Pe
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

@@ -211,8 +211,10 @@ public class MProcessPara extends X_AD_Process_Para
 	 */
 	public String toString ()
 	{
-		StringBuffer sb = new StringBuffer ("MProcessPara[")
-			.append (get_ID ())
+		StringBuffer sb = new StringBuffer ("MProcessPara[AD_Process_ID = ")
+			.append (get_ID ()).append(", ")
+			.append("ColumnName = ").append(getColumnName()).append(", ")
+			.append("Name = ").append(getName())
 			.append ("]");
 		return sb.toString ();
 	}	//	toString
@@ -266,6 +268,20 @@ public class MProcessPara extends X_AD_Process_Para
 		count = DB.executeUpdateEx(sql, new Object[] { getAD_Process_Para_ID(), source.getAD_Process_Para_ID() }, get_TrxName());
 		log.log(Level.FINE, "AD_Process_Para_Trl inserted: " + count);
 		
+	}
+	
+	/**
+	 * Duplicate Process Parameter
+	 * @return
+	 */
+	public MProcessPara getDuplicated() {
+		try {
+			return (MProcessPara) super.clone();
+		} catch (CloneNotSupportedException e) {
+			log.warning("Error " + e.getLocalizedMessage());
+		}
+		//	Default
+		return null;
 	}
 
 }	//	MProcessPara

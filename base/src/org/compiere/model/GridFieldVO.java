@@ -18,15 +18,13 @@
 package org.compiere.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
+import org.compiere.util.Util;
 
 
 /**
@@ -38,183 +36,135 @@ import org.compiere.util.Env;
  *  @author Carlos Ruiz, qss FR [1877902]
  *  @author Juan David Arboleda (arboleda), GlobalQSS, [ 1795398 ] Process Parameter: add display and readonly logic
  *  @see  http://sourceforge.net/tracker/?func=detail&atid=879335&aid=1877902&group_id=176962 to FR [1877902]
+ *  @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
+ *		<li>BR [ 344 ] Smart Browse Search View is not MVC
+ * 		@see https://github.com/adempiere/adempiere/issues/344
+ * 		<li>FR [ 349 ] GridFieldVO attribute is ambiguous
+ * 		@see https://github.com/adempiere/adempiere/issues/349
+ * 		<a href="https://github.com/adempiere/adempiere/issues/566">
+ * 		@see FR [ 566 ] Process parameter don't have a parameter like only information</a>
+ *  @author Raul Munoz, rmunoz@erpcya.com, ERPCyA http://www.erpcya.com
+ *    <li>  FR [ 566 ] Get Correct Validation Code 
+ *    <li>  FR [ 1710 ] Get Correct Validation Code 
  *  @version  $Id: GridFieldVO.java,v 1.3 2006/07/30 00:58:04 jjanke Exp $
  */
-public class GridFieldVO implements Serializable
-{
-
-	/**
-	 *  Return the SQL statement used for the MFieldVO.create
-	 *  @param ctx context
-	 *  @return SQL with or w/o translation and 1 parameter
-	 */
-	public static String getSQL (Properties ctx)
-	{
-		//	IsActive is part of View
-		String sql = "SELECT * FROM AD_Field_v WHERE AD_Tab_ID=?"
-			+ " ORDER BY IsDisplayed DESC, SeqNo";
-		if (!Env.isBaseLanguage(ctx, "AD_Tab"))
-			sql = "SELECT * FROM AD_Field_vt WHERE AD_Tab_ID=?"
-				+ " AND AD_Language='" + Env.getAD_Language(ctx) + "'"
-				+ " ORDER BY IsDisplayed DESC, SeqNo";
-		return sql;
-	}   //  getSQL
+public class GridFieldVO implements Serializable {
 
 	public String InfoFactoryClass = null;
-
+	
 	/**
 	 *  Create Field Value Object
 	 *  @param ctx context
-	 *  @param WindowNo window
-	 *  @param TabNo tab
-	 *  @param AD_Window_ID window
-	 *  @param AD_Tab_ID tab
+	 *  @param windowNo window
+	 *  @param tabNo tab
+	 *  @param windowId window
+	 *  @param tabId tab
 	 *  @param readOnly r/o
 	 *  @param rs resultset AD_Field_v
 	 *  @return MFieldVO
 	 */
-	public static GridFieldVO create (Properties ctx, int WindowNo, int TabNo, 
-		int AD_Window_ID, int AD_Tab_ID, boolean readOnly, ResultSet rs)
-	{
-		GridFieldVO vo = new GridFieldVO (ctx, WindowNo, TabNo, 
-			AD_Window_ID, AD_Tab_ID, readOnly);
-		String columnName = "ColumnName";
-		int AD_Field_ID = 0;
-		try
-		{
-			vo.ColumnName = rs.getString("ColumnName");
-			if (vo.ColumnName == null)
-				return null;
-
-			CLogger.get().fine(vo.ColumnName);
-
-			ResultSetMetaData rsmd = rs.getMetaData();
-			for (int i = 1; i <= rsmd.getColumnCount(); i++)
-			{
-				columnName = rsmd.getColumnName (i);
-				if (columnName.equalsIgnoreCase("Name"))
-					vo.Header = rs.getString(i);
-				else if (columnName.equalsIgnoreCase("AD_Reference_ID"))
-					vo.displayType = rs.getInt(i);
-				else if (columnName.equalsIgnoreCase("AD_Column_ID"))
-					vo.AD_Column_ID = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("AD_Table_ID"))
-					vo.AD_Table_ID = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("DisplayLength"))
-					vo.DisplayLength = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("IsSameLine"))
-					vo.IsSameLine = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsDisplayed"))
-					vo.IsDisplayed = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsDisplayedGrid"))
-					vo.IsDisplayedGrid = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("SeqNoGrid"))
-					vo.SeqNoGrid = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("DisplayLogic"))
-					vo.DisplayLogic = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("DefaultValue"))
-					vo.DefaultValue = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("IsMandatory"))
-					vo.IsMandatory = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsReadOnly"))
-					vo.IsReadOnly = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsUpdateable"))
-					vo.IsUpdateable = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsAlwaysUpdateable"))
-					vo.IsAlwaysUpdateable = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsHeading"))
-					vo.IsHeading = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsFieldOnly"))
-					vo.IsFieldOnly = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsEncryptedField"))
-					vo.IsEncryptedField = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsEncryptedColumn"))
-					vo.IsEncryptedColumn = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsSelectionColumn"))
-					vo.IsSelectionColumn = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("SortNo"))
-					vo.SortNo = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("FieldLength"))
-					vo.FieldLength = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("VFormat"))
-					vo.VFormat = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("ValueMin"))
-					vo.ValueMin = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("ValueMax"))
-					vo.ValueMax = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("FieldGroup"))
-					vo.FieldGroup = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("FieldGroupType"))
-					vo.FieldGroupType = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("IsKey"))
-					vo.IsKey = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("IsParent"))
-					vo.IsParent = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("Description"))
-					vo.Description = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("Help"))
-					vo.Help = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("Callout"))
-					vo.Callout = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("AD_Process_ID"))
-					vo.AD_Process_ID = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("AD_Chart_ID"))
-					vo.AD_Chart_ID = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("ReadOnlyLogic"))
-					vo.ReadOnlyLogic = rs.getString (i);
-				else if (columnName.equalsIgnoreCase("MandatoryLogic"))
-					vo.MandatoryLogic = rs.getString (i);	
-				else if (columnName.equalsIgnoreCase("ObscureType"))
-					vo.ObscureType = rs.getString (i);
-				//
-				else if (columnName.equalsIgnoreCase("AD_Reference_Value_ID"))
-					vo.AD_Reference_Value_ID = rs.getInt(i);
-				else if (columnName.equalsIgnoreCase("ValidationCode"))
-					vo.ValidationCode = rs.getString(i);
-				else if (columnName.equalsIgnoreCase("ColumnSQL"))
-					vo.ColumnSQL = rs.getString(i);
-				//Feature Request FR [ 1757088 ]
-				else if (columnName.equalsIgnoreCase("Included_Tab_ID"))
-					vo.Included_Tab_ID = rs.getInt(i);
-				// Collapse Default State
-				else if (columnName.equalsIgnoreCase("IsCollapsedByDefault"))
-					vo.IsCollapsedByDefault = "Y".equals(rs.getString(i));
-				//Info Factory class
-				else if (columnName.equalsIgnoreCase("InfoFactoryClass"))
-					vo.InfoFactoryClass  = rs.getString(i);
-//				Feature Request FR [ 2003044 ]
-				else if (columnName.equalsIgnoreCase("IsAutocomplete"))
-					vo.IsAutocomplete  = "Y".equals(rs.getString(i));
-				// FR 3051618 - Grid View improvements
-				//else if (columnName.equalsIgnoreCase("HideInListView"))
-				//	vo.HideInListView = "Y".equals(rs.getString(i));
-				else if (columnName.equalsIgnoreCase("PreferredWidth"))
-					vo.PreferredWidth = rs.getInt(i);
-				//Allows Copy
-				else if (columnName.equalsIgnoreCase(I_AD_Field.COLUMNNAME_IsAllowCopy))
-					vo.IsAllowsCopy = "Y".equals(rs.getString(i));
-				else if (columnName.equalsIgnoreCase("IsRange"))
-					vo.IsRange = "Y".equals(rs.getString (i));
-				else if (columnName.equalsIgnoreCase("isEmbedded"))
-					vo.isEmbedded = "Y".equals(rs.getString (i));
-			}
-			if (vo.Header == null)
-				vo.Header = vo.ColumnName;
-			AD_Field_ID  = rs.getInt("AD_Field_ID");
+	public static GridFieldVO create (Properties ctx, int windowNo, int tabNo, 
+		int windowId, int tabId, boolean readOnly, MField field) {
+		GridFieldVO vo = new GridFieldVO (ctx, windowNo, tabNo, windowId, tabId, readOnly);
+		MColumn column = MColumn.get(ctx, field.getAD_Column_ID());
+		vo.ColumnName = column.getColumnName();
+		vo.Header = field.getName();
+		vo.displayType = field.getAD_Reference_ID();
+		if(vo.displayType == 0) {
+			vo.displayType = column.getAD_Reference_ID();
 		}
-		catch (SQLException e)
-		{
-			CLogger.get().log(Level.SEVERE, "ColumnName=" + columnName, e);
-			return null;
+		vo.AD_Field_ID = field.getAD_Field_ID();
+		vo.AD_Column_ID = field.getAD_Column_ID();
+		vo.AD_Table_ID = column.getAD_Table_ID();
+		vo.DisplayLength = field.getDisplayLength();
+		vo.IsSameLine = field.isSameLine();
+		vo.IsDisplayed = field.isDisplayed();
+		vo.IsDisplayedGrid = field.isDisplayedGrid();
+		vo.SeqNoGrid = field.getSeqNoGrid();
+		vo.DisplayLogic = field.getDisplayLogic();
+		vo.DefaultValue = field.getDefaultValue();
+		//	Default Value
+		if(Util.isEmpty(vo.DefaultValue)) {
+			vo.DefaultValue = column.getDefaultValue();
 		}
-		// ASP
-		if (vo.IsDisplayed) {
-			MClient client = MClient.get(ctx);
-			// ASP for fields has a different approach - it must be defined as a field but hidden
-			//   in order to have the proper context variable filled with defaults
-			// Validate field and put IsDisplayed=N if must be hidden
-			if (! client.isDisplayField(AD_Field_ID))
-				vo.IsDisplayed = false;
+		//	Mandatory
+		if(!Util.isEmpty(field.getIsMandatory())) {
+			vo.IsMandatory = field.getIsMandatory().equals("Y");
+		} else {
+			vo.IsMandatory = column.isMandatory();
+		}
+		vo.IsReadOnly = field.isReadOnly();
+		vo.IsUpdateable = column.isUpdateable();
+		vo.IsAlwaysUpdateable = column.isAlwaysUpdateable();
+		vo.IsHeading = field.isHeading();
+		vo.IsFieldOnly = field.isFieldOnly();
+		vo.IsEncryptedField = field.isEncrypted();
+		vo.IsEncryptedColumn = column.isEncrypted();
+		vo.IsSelectionColumn = column.isSelectionColumn();
+		vo.SortNo = (field.getSortNo() != null? field.getSortNo().intValue(): 0);
+		vo.FieldLength = column.getFieldLength();
+		vo.VFormat = column.getVFormat();
+		vo.ValueMin = column.getValueMin();
+		vo.ValueMax = column.getValueMax();
+		if(field.getAD_FieldGroup_ID() > 0) {
+			X_AD_FieldGroup fieldGroup = new X_AD_FieldGroup(ctx, field.getAD_FieldGroup_ID(), null);
+			vo.FieldGroup = fieldGroup.getName();
+			vo.FieldGroupType = fieldGroup.getFieldGroupType();
+			vo.IsCollapsedByDefault = fieldGroup.isCollapsedByDefault();
+		}
+		vo.IsKey = column.isKey();
+		vo.IsParent = column.isParent();
+		vo.Description = field.getDescription();
+		if(Util.isEmpty(vo.Description)) {
+			vo.Description = column.getDescription();
+		}
+		vo.Help = field.getHelp();
+		if(Util.isEmpty(vo.Help)) {
+			vo.Help = column.getHelp();
+		}
+		vo.Callout = column.getCallout();
+		vo.AD_Process_ID = column.getAD_Process_ID();
+		vo.AD_Image_ID = field.getAD_Image_ID();
+		if(vo.AD_Image_ID == 0) {
+			vo.AD_Image_ID = column.getAD_Image_ID();
+		}
+		vo.AD_Chart_ID = column.getAD_Chart_ID();
+		vo.ReadOnlyLogic = column.getReadOnlyLogic();
+		vo.MandatoryLogic = column.getMandatoryLogic();
+		vo.ObscureType = field.getObscureType();
+		//
+		vo.AD_Reference_Value_ID = field.getAD_Reference_Value_ID();
+		if(vo.AD_Reference_Value_ID == 0) {
+			vo.AD_Reference_Value_ID = column.getAD_Reference_Value_ID();
+		}
+		//	Validation Rule
+		int validationRuleId = field.getAD_Val_Rule_ID();
+		if(validationRuleId == 0) {
+			validationRuleId = column.getAD_Val_Rule_ID();
+		}
+		if(validationRuleId > 0) {
+			MValRule validation = MValRule.get(ctx, validationRuleId);
+			vo.ValidationCode = validation.getCode();
+		}
+		vo.ColumnSQL = column.getColumnSQL();
+		vo.Included_Tab_ID = field.getIncluded_Tab_ID();
+		//Info Factory class
+		vo.InfoFactoryClass = field.getInfoFactoryClass();
+		if(Util.isEmpty(vo.InfoFactoryClass)) {
+			vo.InfoFactoryClass= column.getInfoFactoryClass(); 
+		}
+		vo.IsAutocomplete = column.isAutocomplete();
+		vo.PreferredWidth = field.getPreferredWidth();
+		//Allows Copy
+		vo.IsAllowsCopy = field.isAllowCopy();
+		vo.IsRangeLookup = column.isRange();
+		vo.isEmbedded = field.isEmbedded();
+//		else if (columnName.equalsIgnoreCase("IsAllowNewAttributeInstance"))
+//			vo.IsAllowNewAttributeInstance  = "Y".equals(rs.getString(i));
+		vo.AD_FieldDefinition_ID  = field.getAD_FieldDefinition_ID();
+		vo.IsQuickEntry = field.isQuickEntry();
+		if (vo.Header == null) {
+			vo.Header = vo.ColumnName;
 		}
 		//
 		vo.initFinish();
@@ -225,46 +175,45 @@ public class GridFieldVO implements Serializable
 	 *  Init Field for Process Parameter
 	 *  @param ctx context
 	 *  @param WindowNo window
-	 *  @param rs result set AD_Process_Para
+	 *  @param processParameter process parameter
 	 *  @return MFieldVO
 	 */
-	public static GridFieldVO createParameter (Properties ctx, int WindowNo, ResultSet rs)
-	{
+	public static GridFieldVO createParameter (Properties ctx, int WindowNo, MProcessPara processParameter) {
 		GridFieldVO vo = new GridFieldVO (ctx, WindowNo, 0, 0, 0, false);
 		vo.isProcess = true;
 		vo.IsDisplayed = true;
 		vo.IsReadOnly = false;
 		vo.IsUpdateable = true;
 
-		try
-		{
-			vo.AD_Table_ID = 0;
-			vo.AD_Column_ID = rs.getInt("AD_Process_Para_ID");	//	**
-			vo.ColumnName = rs.getString("ColumnName");
-			vo.Header = rs.getString("Name");
-			vo.Description = rs.getString("Description");
-			vo.Help = rs.getString("Help");
-			vo.displayType = rs.getInt("AD_Reference_ID");
-			vo.IsMandatory = rs.getString("IsMandatory").equals("Y");
-			vo.FieldLength = rs.getInt("FieldLength");
-			vo.DisplayLength = vo.FieldLength;
-			vo.DefaultValue = rs.getString("DefaultValue");
-			vo.DefaultValue2 = rs.getString("DefaultValue2");
-			vo.VFormat = rs.getString("VFormat");
-			vo.ValueMin = rs.getString("ValueMin");
-			vo.ValueMax = rs.getString("ValueMax");
-			vo.isRange = rs.getString("IsRange").equals("Y");
-			//
-			vo.AD_Reference_Value_ID = rs.getInt("AD_Reference_Value_ID");
-			vo.ValidationCode = rs.getString("ValidationCode");
-			vo.ReadOnlyLogic = rs.getString("ReadOnlyLogic");
-			vo.DisplayLogic= rs.getString("DisplayLogic");
-			
+		vo.AD_Table_ID = 0;
+		vo.AD_Column_ID = processParameter.getAD_Process_Para_ID();	//	**
+		vo.ColumnName = processParameter.getColumnName();
+		vo.Header = processParameter.get_Translation(I_AD_Process_Para.COLUMNNAME_Name);
+		vo.Description = processParameter.get_Translation(I_AD_Process_Para.COLUMNNAME_Description);
+		vo.Help = processParameter.get_Translation(I_AD_Process_Para.COLUMNNAME_Help);
+		vo.displayType = processParameter.getAD_Reference_ID();
+		vo.IsMandatory = processParameter.isMandatory();
+		vo.FieldLength = processParameter.getFieldLength();
+		vo.DisplayLength = vo.FieldLength;
+		vo.DefaultValue = processParameter.getDefaultValue();
+		vo.DefaultValue2 = processParameter.getDefaultValue2();
+		vo.VFormat = processParameter.getVFormat();
+		vo.ValueMin = processParameter.getValueMin();
+		vo.ValueMax = processParameter.getValueMax();
+		vo.IsRange = processParameter.isRange();
+		//
+		vo.AD_Reference_Value_ID = processParameter.getAD_Reference_Value_ID();
+    //  FR [ 566 ]
+		if(processParameter.getAD_Val_Rule_ID() != 0) {
+		  MValRule valRule = MValRule.get(ctx, processParameter.getAD_Val_Rule_ID());
+		  vo.ValidationCode = valRule.getCode();
 		}
-		catch (SQLException e)
-		{
-			CLogger.get().log(Level.SEVERE, "createParameter", e);
-		}
+		
+		//	
+		vo.ReadOnlyLogic = processParameter.getReadOnlyLogic();
+		vo.DisplayLogic= processParameter.getDisplayLogic();
+		//	FR [ 566 ]
+		vo.IsInfoOnly = processParameter.isInfoOnly();
 		//
 		vo.initFinish();
 		if (vo.DefaultValue2 == null)
@@ -301,12 +250,15 @@ public class GridFieldVO implements Serializable
 		voT.VFormat = voF.VFormat;
 		voT.ValueMin = voF.ValueMin;
 		voT.ValueMax = voF.ValueMax;
-		voT.isRange = voF.isRange;
+		voT.IsRange = voF.IsRange;
 		voT.isEmbedded= voF.isEmbedded;
 		voT.DisplayLogic = voF.DisplayLogic;
 		voT.ReadOnlyLogic = voF.ReadOnlyLogic;
 		voT.ValidationCode = voF.ValidationCode;
 		voT.InfoFactoryClass = voF.InfoFactoryClass;
+		voT.ColumnNameAlias = voF.ColumnNameAlias;
+		//	FR [ 566 ]
+		voT.IsInfoOnly = voF.IsInfoOnly;
 		
 		//
 		// Genied: For a range parameter the second field 
@@ -349,6 +301,26 @@ public class GridFieldVO implements Serializable
 		vo.initFinish();
 		return vo;
 	}   //  initStdField
+	
+	public static GridFieldVO createField (Properties ctx, int WindowNo, int TabNo, 
+			int AD_Window_ID, int AD_Tab_ID, boolean tabReadOnly,
+			boolean isCreated, boolean isTimestamp)
+		{
+			GridFieldVO vo = new GridFieldVO (ctx, WindowNo, TabNo, 
+				AD_Window_ID, AD_Tab_ID, tabReadOnly);
+			vo.ColumnName = isCreated ? "Created" : "Updated";
+			if (!isTimestamp)
+				vo.ColumnName += "By";
+			vo.displayType = isTimestamp ? DisplayType.DateTime : DisplayType.Table;
+			if (!isTimestamp)
+				vo.AD_Reference_Value_ID = 110;		//	AD_User Table Reference
+			vo.IsDisplayed = false;
+			vo.IsMandatory = false;
+			vo.IsReadOnly = false;
+			vo.IsUpdateable = true;
+			vo.initFinish();
+			return vo;
+		}   //  initStdField
 
 	
 	/**************************************************************************
@@ -378,7 +350,8 @@ public class GridFieldVO implements Serializable
 	
 	
 	/** RangeLookup     */	
-	public boolean      IsRange = false;
+	//	FR [ 349 ]
+	public boolean      IsRangeLookup = false;
 	/** isEmbedded **/
 	public boolean      isEmbedded = false;	
 	/** Window No                   */
@@ -415,6 +388,8 @@ public class GridFieldVO implements Serializable
 	public boolean      IsDisplayed = false;
 	/**	Displayed Grid		*/
 	public boolean      IsDisplayedGrid = true;
+	/**	Displayed in Quick Entry Form		*/
+	public boolean      IsQuickEntry = false;
 	/** Grid Display sequence	*/
 	public int	SeqNoGrid = 0;
 	/** Preferred size in list view */
@@ -463,6 +438,8 @@ public class GridFieldVO implements Serializable
 	public String       Callout = "";
 	/**	Process			*/
 	public int          AD_Process_ID = 0;
+	/** Image 			*/
+	public int			AD_Image_ID = 0;
 	/** Chart			*/
 	public int			AD_Chart_ID = 0;
 	/**	Description		*/
@@ -475,22 +452,25 @@ public class GridFieldVO implements Serializable
 	public String       ReadOnlyLogic = "";
 	/**	Display Obscure	*/
 	public String		ObscureType = null;
-
-	public boolean IsAllowsCopy = false;
-
+	/**	Allow Copy		*/
+	public boolean 		IsAllowsCopy = false;
+	/**	Is information Only	*/
+	public boolean		IsInfoOnly = false;
 	/**	Lookup Validation code	*/
 	public String		ValidationCode = "";
 	/**	Reference Value			*/
 	public int			AD_Reference_Value_ID = 0;
 
 	/**	Process Parameter Range		*/
-	public boolean      isRange = false;
+	public boolean      IsRange = false;
 	/**	Process Parameter Value2	*/
 	public String       DefaultValue2 = "";
 
 	/** Lookup Value Object     */
 	public MLookupInfo  lookupInfo = null;
 	
+	/** Field ID */
+	public int AD_Field_ID = 0;
 	
 	//*  Feature Request FR [ 1757088 ]
 	public int          Included_Tab_ID = 0;
@@ -499,6 +479,17 @@ public class GridFieldVO implements Serializable
 	public boolean IsCollapsedByDefault = false;
 	/**  Autocompletion for textfields - Feature Request FR [ 1757088 ] */
 	public boolean IsAutocomplete = false;
+	/** Define alias by smart browser */
+	public String ColumnNameAlias = "";
+	//	FR [ 344 ]
+	/**	Is ColumnSQL like reference	*/
+	public boolean IsColumnSQLReference = false;
+	/* Allow copy - IDEMPIERE-67 - Carlos Ruiz - globalqss */
+	public boolean IsAllowCopy = false;
+	/** Allow New Attribute Instance Adaxa Ticket#1406 - jobriant */
+	public boolean IsAllowNewAttributeInstance = false;
+	/** Allow New Attribute Instance Adaxa Ticket#1406 - jobriant */
+	public int AD_FieldDefinition_ID = 0;
 	
 	/**
 	 *  Set Context including contained elements
@@ -535,25 +526,38 @@ public class GridFieldVO implements Serializable
 			ReadOnlyLogic = "";
 		if (MandatoryLogic == null)
 			MandatoryLogic = "";
+		if (ColumnNameAlias == null)
+			ColumnNameAlias = "";
 
 
 		//  Create Lookup, if not ID
 		if (DisplayType.isLookup(displayType) && IsDisplayed)
 		{
+			loadLookupInfo();
+		}
+	}   //  initFinish
+
+	/**
+	+	 * load lookup info.
+	+	 * used by findwindow to loadlookupinfo for invisible field
+	+	 */
+		public void loadLookupInfo() {
 			try
 			{
 				lookupInfo = MLookupFactory.getLookupInfo (ctx, WindowNo, AD_Column_ID, displayType,
 					Env.getLanguage(ctx), ColumnName, AD_Reference_Value_ID,
 					IsParent, ValidationCode);
-				lookupInfo.InfoFactoryClass = this.InfoFactoryClass;
+				if (lookupInfo == null)
+					displayType = DisplayType.ID;
+				else
+					lookupInfo.InfoFactoryClass = this.InfoFactoryClass;
 			}
 			catch (Exception e)     //  Cannot create Lookup
 			{
 				CLogger.get().log(Level.SEVERE, "No LookupInfo for " + ColumnName, e);
 				displayType = DisplayType.ID;
 			}
-		}
-	}   //  initFinish
+		}  //  loadLookupInfo
 
 	/**
 	 * 	Clone Field.
@@ -609,6 +613,7 @@ public class GridFieldVO implements Serializable
 		clone.IsParent = IsParent;
 		clone.Callout = Callout;
 		clone.AD_Process_ID = AD_Process_ID;
+		clone.AD_Image_ID = AD_Image_ID;
 		clone.AD_Chart_ID = AD_Chart_ID;
 		clone.Description = Description;
 		clone.Help = Help;
@@ -621,24 +626,81 @@ public class GridFieldVO implements Serializable
 		clone.lookupInfo = lookupInfo;
 
 		//  Process Parameter
-		clone.isRange = isRange;
+		clone.IsRange = IsRange;
+		//	FR [ 349 ]
+		clone.IsRangeLookup = IsRangeLookup;
 		clone.isEmbedded = isEmbedded;
 		clone.DefaultValue2 = DefaultValue2;
+		clone.ColumnNameAlias = ColumnNameAlias;		
+		//	FR [ 566 ]
+		clone.IsInfoOnly = IsInfoOnly;
+		// IsQuickEntry
+		clone.IsQuickEntry = IsQuickEntry;
 
+		clone.AD_FieldDefinition_ID = AD_FieldDefinition_ID;	
 		return clone;
 	}	//	clone
 	
 	
+	@Override
+  public String toString() {
+    return "GridFieldVO [InfoFactoryClass=" + InfoFactoryClass + ", ctx=" + ctx + ", IsRangeLookup=" + IsRangeLookup
+        + ", isEmbedded=" + isEmbedded + ", WindowNo=" + WindowNo + ", TabNo=" + TabNo + ", AD_Window_ID="
+        + AD_Window_ID + ", AD_Tab_ID=" + AD_Tab_ID + ", tabReadOnly=" + tabReadOnly + ", isProcess=" + isProcess
+        + ", ColumnName=" + ColumnName + ", ColumnSQL=" + ColumnSQL + ", Header=" + Header + ", displayType="
+        + displayType + ", AD_Table_ID=" + AD_Table_ID + ", AD_Column_ID=" + AD_Column_ID + ", DisplayLength="
+        + DisplayLength + ", IsSameLine=" + IsSameLine + ", IsDisplayed=" + IsDisplayed + ", IsDisplayedGrid="
+        + IsDisplayedGrid + ", SeqNoGrid=" + SeqNoGrid + ", PreferredWidth=" + PreferredWidth + ", DisplayLogic="
+        + DisplayLogic + ", DefaultValue=" + DefaultValue + ", IsMandatory=" + IsMandatory + ", IsReadOnly="
+        + IsReadOnly + ", IsUpdateable=" + IsUpdateable + ", IsAlwaysUpdateable=" + IsAlwaysUpdateable + ", IsHeading="
+        + IsHeading + ", IsFieldOnly=" + IsFieldOnly + ", IsEncryptedField=" + IsEncryptedField
+        + ", IsEncryptedColumn=" + IsEncryptedColumn + ", IsSelectionColumn=" + IsSelectionColumn + ", SortNo="
+        + SortNo + ", FieldLength=" + FieldLength + ", VFormat=" + VFormat + ", ValueMin=" + ValueMin + ", ValueMax="
+        + ValueMax + ", FieldGroup=" + FieldGroup + ", FieldGroupType=" + FieldGroupType + ", IsKey=" + IsKey
+        + ", IsParent=" + IsParent + ", Callout=" + Callout + ", AD_Process_ID=" + AD_Process_ID
+		+ ", AD_Image_ID=" + AD_Image_ID+ ", AD_Chart_ID="
+        + AD_Chart_ID + ", Description=" + Description + ", Help=" + Help + ", MandatoryLogic=" + MandatoryLogic
+        + ", ReadOnlyLogic=" + ReadOnlyLogic + ", ObscureType=" + ObscureType + ", IsAllowsCopy=" + IsAllowsCopy
+        + ", IsInfoOnly=" + IsInfoOnly + ", ValidationCode=" + ValidationCode + ", AD_Reference_Value_ID="
+        + AD_Reference_Value_ID + ", IsRange=" + IsRange + ", DefaultValue2=" + DefaultValue2 + ", lookupInfo="
+        + lookupInfo + ", Included_Tab_ID=" + Included_Tab_ID + ", IsCollapsedByDefault=" + IsCollapsedByDefault
+        + ", IsAutocomplete=" + IsAutocomplete + ", ColumnNameAlias=" + ColumnNameAlias + ", IsColumnSQLReference="
+        + IsColumnSQLReference +  ", AD_FieldDefinition_ID=" + AD_FieldDefinition_ID +  "]";
+  }
+
 	/**
-	 * 	String Representation
-	 *	@return info
+	 * @author <a href="mailto:sbhimani@logilite.com">Sachin Bhimani</a> - Feature #1449
+	 * @param ctx
+	 * @param WindowNo
+	 * @param AD_Column_ID
+	 * @param ColumnName
+	 * @param Name
+	 * @param AD_Reference_ID
+	 * @param AD_Reference_Value_ID
+	 * @param IsMandatory
+	 * @param IsEncrypted
+	 * @return GridFieldVO
 	 */
-	public String toString ()
+	public static GridFieldVO createParameter(Properties ctx, int WindowNo, int AD_Column_ID, String ColumnName,
+			String Name, int AD_Reference_ID, int AD_Reference_Value_ID, boolean IsMandatory, boolean IsEncrypted)
 	{
-		StringBuffer sb = new StringBuffer ("MFieldVO[");
-		sb.append(AD_Column_ID).append("-").append(ColumnName)
-			.append ("]");
-		return sb.toString ();
-	}	//	toString
+		GridFieldVO vo = new GridFieldVO(ctx, WindowNo, 0, 0, 0, false);
+		vo.isProcess = true;
+		vo.IsDisplayed = true;
+		vo.IsReadOnly = false;
+		vo.IsUpdateable = true;
+		vo.AD_Table_ID = 0;
+		vo.AD_Column_ID = AD_Column_ID;
+		vo.ColumnName = ColumnName;
+		vo.Header = Name;
+		vo.displayType = AD_Reference_ID;
+		vo.AD_Reference_Value_ID = AD_Reference_Value_ID;
+		vo.IsMandatory = IsMandatory;
+		vo.IsEncryptedField = IsEncrypted;
+		vo.initFinish();
+
+		return vo;
+
+	} // createParameter
 	
 }   //  MFieldVO

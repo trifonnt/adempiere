@@ -23,8 +23,8 @@ import java.util.Date;
 import org.adempiere.webui.component.Datebox;
 import org.adempiere.webui.event.ContextMenuEvent;
 import org.adempiere.webui.event.ContextMenuListener;
-import org.adempiere.webui.event.ValueChangeEvent;
-import org.adempiere.webui.window.WFieldRecordInfo;
+import org.adempiere.exceptions.ValueChangeEvent;
+import org.adempiere.webui.window.WRecordInfo;
 import org.compiere.model.GridField;
 import org.compiere.util.CLogger;
 import org.zkoss.zk.ui.event.Event;
@@ -37,7 +37,12 @@ import org.zkoss.zk.ui.event.Events;
  * @version $Revision: 0.10 $
  *
  * @author	Michael McKay
- * 				<li>release/380 - add old value comparison to support lookup/info windows
+ * 		<li>release/380 - add old value comparison to support lookup/info windows
+ * 		<li><a href="https://github.com/adempiere/adempiere/issues/2383">#2383</a> Override the getPopupMenu method.
+ * 
+ * @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
+ *		<li> FR [ 146 ] Remove unnecessary class, add support for info to specific column
+ *		@see https://github.com/adempiere/adempiere/issues/146
  */
  
 public class WDateEditor extends WEditor implements ContextMenuListener
@@ -113,7 +118,7 @@ public class WDateEditor extends WEditor implements ContextMenuListener
 		popupMenu.addMenuListener(this);
 		if (gridField != null && gridField.getGridTab() != null)
 		{
-			WFieldRecordInfo.addMenu(popupMenu);
+			WRecordInfo.addMenu(popupMenu);
 		}
 		getComponent().setContext(popupMenu.getId());
 	}
@@ -210,7 +215,7 @@ public class WDateEditor extends WEditor implements ContextMenuListener
 	public void onMenu(ContextMenuEvent evt) {
 		if (WEditorPopupMenu.CHANGE_LOG_EVENT.equals(evt.getContextEvent()))
 		{
-			WFieldRecordInfo.start(gridField);
+			WRecordInfo.start(gridField);
 		}
 	}
 	/**
@@ -245,6 +250,15 @@ public class WDateEditor extends WEditor implements ContextMenuListener
 				return true;
 			else
 				return false;
+	}
+
+	// #2383
+	/**
+	 *  Get the pop up menu for this editor
+	 */
+    public WEditorPopupMenu getPopupMenu()
+	{
+	   	return popupMenu;
 	}
 
 }

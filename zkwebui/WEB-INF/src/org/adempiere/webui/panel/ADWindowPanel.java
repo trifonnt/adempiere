@@ -68,8 +68,14 @@ import org.zkoss.zul.Vbox;
  * @author e-Evolution , victor.perez@e-evolution.com
  *    <li>Implement embedded or horizontal tab panel https://adempiere.atlassian.net/browse/ADEMPIERE-319
  *    <li>New ADempiere 3.8.0 ZK Theme Light  https://adempiere.atlassian.net/browse/ADEMPIERE-320
- *
- * @date Feb 25, 2007
+ * @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
+ *		<li>FR [ 265 ] ProcessParameterPanel is not MVC
+ *		@see https://github.com/adempiere/adempiere/issues/265
+ *		<a href="https://github.com/adempiere/adempiere/issues/588">
+ * 		@see FR [ 588 ] Webui status bar is located on up</a>
+  * @author Michael McKay, mckayERP@gmail.com
+ * 		<li><a href="https://github.com/adempiere/adempiere/issues/2373">#2373</a> Add copy record shortcut key Shift+F2
+* @date Feb 25, 2007
  * @version $Revision: 0.10 $
  */
 public class ADWindowPanel extends AbstractADWindowPanel
@@ -119,10 +125,13 @@ public class ADWindowPanel extends AbstractADWindowPanel
 	        Vbox box = new Vbox();
 	        box.setWidth("100%");
 	        toolbar.setParent(box);
-	        statusBar.setParent(box);
-	        statusBar.setNorth(n);
 	        box.setParent(n);
 	        toolbar.setWindowNo(getWindowNo());
+	        //	FR [ 588 ]
+	        South s = new South();
+	        layout.appendChild(s);
+	        s.setCollapsible(false);
+	        statusBar.setParent(s);
         }
         else
         {
@@ -189,7 +198,7 @@ public class ADWindowPanel extends AbstractADWindowPanel
         		keyListener.detach();
         	keyListener = new Keylistener();
         	statusBar.appendChild(keyListener);
-        	keyListener.setCtrlKeys("#f1#f2#f3#f4#f5#f6#f7#f8#f9#f10#f11#f12^f^i^n^s^d@#left@#right@#up@#down@#pgup@#pgdn@p^p@z@x#enter");
+        	keyListener.setCtrlKeys("#f1#f2$#f2#f3#f4#f5#f6#f7#f8#f9#f10#f11#f12^f^i^n^s^d@#left@#right@#up@#down@#pgup@#pgdn@p^p@z@x#enter");
         	keyListener.addEventListener(Events.ON_CTRL_KEY, toolbar);
         	keyListener.addEventListener(Events.ON_CTRL_KEY, this);
         	keyListener.setAutoBlur(false);

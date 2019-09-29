@@ -124,13 +124,13 @@ public class InvoiceNGL extends SvrProcess
 		
 		//	Insert Trx
 		String dateStr = DB.TO_DATE(p_DateReval, true);
-		sql = "INSERT INTO T_InvoiceGL (AD_Client_ID, AD_Org_ID, IsActive, Created,CreatedBy, Updated,UpdatedBy,"
+		sql = "INSERT INTO T_InvoiceGL (t_invoicegl_id , AD_Client_ID, AD_Org_ID, IsActive, Created,CreatedBy, Updated,UpdatedBy,"
 			+ " AD_PInstance_ID, C_Invoice_ID, GrandTotal, OpenAmt, "
 			+ " Fact_Acct_ID, AmtSourceBalance, AmtAcctBalance, "
 			+ " AmtRevalDr, AmtRevalCr, C_DocTypeReval_ID, IsAllCurrencies, "
-			+ " DateReval, C_ConversionTypeReval_ID, AmtRevalDrDiff, AmtRevalCrDiff, APAR) "
+			+ " DateReval, C_ConversionTypeReval_ID, AmtRevalDrDiff, AmtRevalCrDiff, APAR, UUID) "
 			//	--
-			+ "SELECT i.AD_Client_ID, i.AD_Org_ID, i.IsActive, i.Created,i.CreatedBy, i.Updated,i.UpdatedBy,"
+			+ "SELECT nextidfunc(1144,'Y') ,i.AD_Client_ID, i.AD_Org_ID, i.IsActive, i.Created,i.CreatedBy, i.Updated,i.UpdatedBy,"
 			+  getAD_PInstance_ID() + ", i.C_Invoice_ID, i.GrandTotal, invoiceOpen(i.C_Invoice_ID, 0), "
 			+ " fa.Fact_Acct_ID, fa.AmtSourceDr-fa.AmtSourceCr, fa.AmtAcctDr-fa.AmtAcctCr, " 
 			//	AmtRevalDr, AmtRevalCr,
@@ -138,7 +138,7 @@ public class InvoiceNGL extends SvrProcess
 		    + " currencyConvert(fa.AmtSourceCr, i.C_Currency_ID, a.C_Currency_ID, " + dateStr + ", " + p_C_ConversionTypeReval_ID + ", i.AD_Client_ID, i.AD_Org_ID),"
 		    + (p_C_DocTypeReval_ID==0 ? "NULL" : String.valueOf(p_C_DocTypeReval_ID)) + ", "
 		    + (p_IsAllCurrencies ? "'Y'," : "'N',")
-		    + dateStr + ", " + p_C_ConversionTypeReval_ID + ", 0, 0, '" + p_APAR + "' "
+		    + dateStr + ", " + p_C_ConversionTypeReval_ID + ", 0, 0, '" + p_APAR + "', getUUID() "
 		    //
 		    + "FROM C_Invoice_v i"
 		    + " INNER JOIN Fact_Acct fa ON (fa.AD_Table_ID=318 AND fa.Record_ID=i.C_Invoice_ID"
@@ -308,52 +308,54 @@ public class InvoiceNGL extends SvrProcess
 
 	/**
 	 * 	Create Balancing Entry
-	 *	@param asDefaultAccts acct schema default accounts
+	 *	@param acctSchemaDefault acct schema default accounts
 	 *	@param journal journal
-	 *	@param drTotal dr
-	 *	@param crTotal cr
-	 *	@param AD_Org_ID org
+	 *	@param debitTotal dr
+	 *	@param creditTotal cr
+	 *	@param orgId org
 	 *	@param lineNo base line no
 	 */
-	private void createBalancing (MAcctSchemaDefault asDefaultAccts, MJournal journal, 
-		BigDecimal drTotal, BigDecimal crTotal, int AD_Org_ID, int lineNo)
+	private void createBalancing (MAcctSchemaDefault acctSchemaDefault, MJournal journal,
+		BigDecimal debitTotal, BigDecimal creditTotal, int orgId, int lineNo)
 	{
 		if (journal == null)
 			throw new IllegalArgumentException("Jornal is null");
 		//		CR Entry = Gain
-		if (drTotal.signum() != 0)
+		if (debitTotal.signum() != 0)
 		{
 			MJournalLine line = new MJournalLine(journal);
 			line.setLine(lineNo+1);
-			MAccount base = MAccount.get(getCtx(), asDefaultAccts.getUnrealizedGain_Acct());
-			MAccount acct = MAccount.get(getCtx(), asDefaultAccts.getAD_Client_ID(), AD_Org_ID, 
-				asDefaultAccts.getC_AcctSchema_ID(), base.getAccount_ID(), base.getC_SubAcct_ID(),
+			MAccount base = MAccount.getValidCombination(getCtx(), acctSchemaDefault.getUnrealizedGain_Acct(), get_TrxName());
+			MAccount acct = MAccount.get(getCtx(), acctSchemaDefault.getAD_Client_ID(), orgId,
+				acctSchemaDefault.getC_AcctSchema_ID(), base.getAccount_ID(), base.getC_SubAcct_ID(),
 				base.getM_Product_ID(), base.getC_BPartner_ID(), base.getAD_OrgTrx_ID(), 
 				base.getC_LocFrom_ID(), base.getC_LocTo_ID(), base.getC_SalesRegion_ID(), 
 				base.getC_Project_ID(), base.getC_Campaign_ID(), base.getC_Activity_ID(),
-				base.getUser1_ID(), base.getUser2_ID(), base.getUserElement1_ID(), base.getUserElement2_ID(), null);
+				base.getUser1_ID(), base.getUser2_ID() , base.getUser3_ID(), base.getUser4_ID(),
+				base.getUserElement1_ID(), base.getUserElement2_ID(), get_TrxName());
 			line.setDescription(Msg.getElement(getCtx(), "UnrealizedGain_Acct"));
 			line.setC_ValidCombination_ID(acct.getC_ValidCombination_ID());
-			line.setAmtSourceCr (drTotal);
-			line.setAmtAcctCr (drTotal);
+			line.setAmtSourceCr (debitTotal);
+			line.setAmtAcctCr (debitTotal);
 			line.saveEx();
 		}
 		//	DR Entry = Loss
-		if (crTotal.signum() != 0)
+		if (creditTotal.signum() != 0)
 		{
 			MJournalLine line = new MJournalLine(journal);
 			line.setLine(lineNo+2);
-			MAccount base = MAccount.get(getCtx(), asDefaultAccts.getUnrealizedLoss_Acct());
-			MAccount acct = MAccount.get(getCtx(), asDefaultAccts.getAD_Client_ID(), AD_Org_ID, 
-				asDefaultAccts.getC_AcctSchema_ID(), base.getAccount_ID(), base.getC_SubAcct_ID(),
+			MAccount base = MAccount.getValidCombination(getCtx(), acctSchemaDefault.getUnrealizedLoss_Acct(), get_TrxName());
+			MAccount acct = MAccount.get(getCtx(), acctSchemaDefault.getAD_Client_ID(), orgId,
+				acctSchemaDefault.getC_AcctSchema_ID(), base.getAccount_ID(), base.getC_SubAcct_ID(),
 				base.getM_Product_ID(), base.getC_BPartner_ID(), base.getAD_OrgTrx_ID(), 
 				base.getC_LocFrom_ID(), base.getC_LocTo_ID(), base.getC_SalesRegion_ID(), 
 				base.getC_Project_ID(), base.getC_Campaign_ID(), base.getC_Activity_ID(),
-				base.getUser1_ID(), base.getUser2_ID(), base.getUserElement1_ID(), base.getUserElement2_ID(), null);
+				base.getUser1_ID(), base.getUser2_ID() , base.getUser3_ID(), base.getUser4_ID(),
+				base.getUserElement1_ID(), base.getUserElement2_ID(), get_TrxName());
 			line.setDescription(Msg.getElement(getCtx(), "UnrealizedLoss_Acct"));
 			line.setC_ValidCombination_ID(acct.getC_ValidCombination_ID());
-			line.setAmtSourceDr (crTotal);
-			line.setAmtAcctDr (crTotal);
+			line.setAmtSourceDr (creditTotal);
+			line.setAmtAcctDr (creditTotal);
 			line.saveEx();
 		}
 	}	//	createBalancing

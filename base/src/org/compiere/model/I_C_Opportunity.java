@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_Opportunity
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_Opportunity 
 {
@@ -122,45 +122,6 @@ public interface I_C_Opportunity
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
-    /** Column name C_Opportunity_ID */
-    public static final String COLUMNNAME_C_Opportunity_ID = "C_Opportunity_ID";
-
-	/** Set Sales Opportunity	  */
-	public void setC_Opportunity_ID (int C_Opportunity_ID);
-
-	/** Get Sales Opportunity	  */
-	public int getC_Opportunity_ID();
-
-    /** Column name C_Order_ID */
-    public static final String COLUMNNAME_C_Order_ID = "C_Order_ID";
-
-	/** Set Order.
-	  * Order
-	  */
-	public void setC_Order_ID (int C_Order_ID);
-
-	/** Get Order.
-	  * Order
-	  */
-	public int getC_Order_ID();
-
-	public org.compiere.model.I_C_Order getC_Order() throws RuntimeException;
-
-    /** Column name C_SalesStage_ID */
-    public static final String COLUMNNAME_C_SalesStage_ID = "C_SalesStage_ID";
-
-	/** Set Sales Stage.
-	  * Stages of the sales process
-	  */
-	public void setC_SalesStage_ID (int C_SalesStage_ID);
-
-	/** Get Sales Stage.
-	  * Stages of the sales process
-	  */
-	public int getC_SalesStage_ID();
-
-	public org.compiere.model.I_C_SalesStage getC_SalesStage() throws RuntimeException;
-
     /** Column name CloseDate */
     public static final String COLUMNNAME_CloseDate = "CloseDate";
 
@@ -187,6 +148,30 @@ public interface I_C_Opportunity
 	  */
 	public String getComments();
 
+    /** Column name C_Opportunity_ID */
+    public static final String COLUMNNAME_C_Opportunity_ID = "C_Opportunity_ID";
+
+	/** Set Sales Opportunity	  */
+	public void setC_Opportunity_ID (int C_Opportunity_ID);
+
+	/** Get Sales Opportunity	  */
+	public int getC_Opportunity_ID();
+
+    /** Column name C_Order_ID */
+    public static final String COLUMNNAME_C_Order_ID = "C_Order_ID";
+
+	/** Set Order.
+	  * Order
+	  */
+	public void setC_Order_ID (int C_Order_ID);
+
+	/** Get Order.
+	  * Order
+	  */
+	public int getC_Order_ID();
+
+	public org.compiere.model.I_C_Order getC_Order() throws RuntimeException;
+
     /** Column name Cost */
     public static final String COLUMNNAME_Cost = "Cost";
 
@@ -199,6 +184,21 @@ public interface I_C_Opportunity
 	  * Cost information
 	  */
 	public BigDecimal getCost();
+
+    /** Column name C_Project_ID */
+    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
+
+	/** Set Project.
+	  * Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID);
+
+	/** Get Project.
+	  * Financial Project
+	  */
+	public int getC_Project_ID();
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -215,6 +215,21 @@ public interface I_C_Opportunity
 	  * User who created this records
 	  */
 	public int getCreatedBy();
+
+    /** Column name C_SalesStage_ID */
+    public static final String COLUMNNAME_C_SalesStage_ID = "C_SalesStage_ID";
+
+	/** Set Sales Stage.
+	  * Stages of the sales process
+	  */
+	public void setC_SalesStage_ID (int C_SalesStage_ID);
+
+	/** Get Sales Stage.
+	  * Stages of the sales process
+	  */
+	public int getC_SalesStage_ID();
+
+	public org.compiere.model.I_C_SalesStage getC_SalesStage() throws RuntimeException;
 
     /** Column name Description */
     public static final String COLUMNNAME_Description = "Description";
@@ -320,6 +335,19 @@ public interface I_C_Opportunity
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name WeightedAmt */
     public static final String COLUMNNAME_WeightedAmt = "WeightedAmt";

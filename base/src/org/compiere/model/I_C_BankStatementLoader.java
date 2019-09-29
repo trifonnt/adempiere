@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_BankStatementLoader
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_BankStatementLoader 
 {
@@ -40,6 +40,19 @@ public interface I_C_BankStatementLoader
     BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
+
+    /** Column name AccountNo */
+    public static final String COLUMNNAME_AccountNo = "AccountNo";
+
+	/** Set Account No.
+	  * Account Number
+	  */
+	public void setAccountNo (String AccountNo);
+
+	/** Get Account No.
+	  * Account Number
+	  */
+	public String getAccountNo();
 
     /** Column name AD_Client_ID */
     public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
@@ -61,19 +74,6 @@ public interface I_C_BankStatementLoader
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
-
-    /** Column name AccountNo */
-    public static final String COLUMNNAME_AccountNo = "AccountNo";
-
-	/** Set Account No.
-	  * Account Number
-	  */
-	public void setAccountNo (String AccountNo);
-
-	/** Get Account No.
-	  * Account Number
-	  */
-	public String getAccountNo();
 
     /** Column name BranchID */
     public static final String COLUMNNAME_BranchID = "BranchID";
@@ -249,19 +249,6 @@ public interface I_C_BankStatementLoader
 	  */
 	public String getName();
 
-    /** Column name PIN */
-    public static final String COLUMNNAME_PIN = "PIN";
-
-	/** Set PIN.
-	  * Personal Identification Number
-	  */
-	public void setPIN (String PIN);
-
-	/** Get PIN.
-	  * Personal Identification Number
-	  */
-	public String getPIN();
-
     /** Column name Password */
     public static final String COLUMNNAME_Password = "Password";
 
@@ -274,6 +261,19 @@ public interface I_C_BankStatementLoader
 	  * Password of any length (case sensitive)
 	  */
 	public String getPassword();
+
+    /** Column name PIN */
+    public static final String COLUMNNAME_PIN = "PIN";
+
+	/** Set PIN.
+	  * Personal Identification Number
+	  */
+	public void setPIN (String PIN);
+
+	/** Get PIN.
+	  * Personal Identification Number
+	  */
+	public String getPIN();
 
     /** Column name ProxyAddress */
     public static final String COLUMNNAME_ProxyAddress = "ProxyAddress";
@@ -368,4 +368,17 @@ public interface I_C_BankStatementLoader
 	  * User ID or account number
 	  */
 	public String getUserID();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

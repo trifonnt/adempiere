@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.adempiere.model;
 
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for AD_Browse_Field
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_AD_Browse_Field 
 {
@@ -379,6 +379,19 @@ public interface I_AD_Browse_Field
 	  */
 	public boolean isIdentifier();
 
+    /** Column name IsInfoOnly */
+    public static final String COLUMNNAME_IsInfoOnly = "IsInfoOnly";
+
+	/** Set Is Information Only.
+	  * When a Parameter is Information Only
+	  */
+	public void setIsInfoOnly (boolean IsInfoOnly);
+
+	/** Get Is Information Only.
+	  * When a Parameter is Information Only
+	  */
+	public boolean isInfoOnly();
+
     /** Column name IsKey */
     public static final String COLUMNNAME_IsKey = "IsKey";
 
@@ -498,6 +511,21 @@ public interface I_AD_Browse_Field
 	  */
 	public int getSeqNo();
 
+    /** Column name SeqNoGrid */
+    public static final String COLUMNNAME_SeqNoGrid = "SeqNoGrid";
+
+	/** Set Grid Sequence.
+	  * Method of ordering records;
+ lowest number comes first
+	  */
+	public void setSeqNoGrid (int SeqNoGrid);
+
+	/** Get Grid Sequence.
+	  * Method of ordering records;
+ lowest number comes first
+	  */
+	public int getSeqNoGrid();
+
     /** Column name SortNo */
     public static final String COLUMNNAME_SortNo = "SortNo";
 
@@ -527,20 +555,18 @@ public interface I_AD_Browse_Field
 	  */
 	public int getUpdatedBy();
 
-    /** Column name VFormat */
-    public static final String COLUMNNAME_VFormat = "VFormat";
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
 
-	/** Set Value Format.
-	  * Format of the value;
- Can contain fixed format elements, Variables: "_lLoOaAcCa09"
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
 	  */
-	public void setVFormat (String VFormat);
+	public void setUUID (String UUID);
 
-	/** Get Value Format.
-	  * Format of the value;
- Can contain fixed format elements, Variables: "_lLoOaAcCa09"
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
 	  */
-	public String getVFormat();
+	public String getUUID();
 
     /** Column name ValueMax */
     public static final String COLUMNNAME_ValueMax = "ValueMax";
@@ -567,4 +593,19 @@ public interface I_AD_Browse_Field
 	  * Minimum Value for a field
 	  */
 	public String getValueMin();
+
+    /** Column name VFormat */
+    public static final String COLUMNNAME_VFormat = "VFormat";
+
+	/** Set Value Format.
+	  * Format of the value;
+ Can contain fixed format elements, Variables: "_lLoOaAcCa09"
+	  */
+	public void setVFormat (String VFormat);
+
+	/** Get Value Format.
+	  * Format of the value;
+ Can contain fixed format elements, Variables: "_lLoOaAcCa09"
+	  */
+	public String getVFormat();
 }

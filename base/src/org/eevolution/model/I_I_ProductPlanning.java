@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.eevolution.model;
 
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for I_ProductPlanning
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_I_ProductPlanning 
 {
@@ -76,6 +76,8 @@ public interface I_I_ProductPlanning
 	  */
 	public int getAD_Workflow_ID();
 
+	public org.compiere.model.I_AD_Workflow getAD_Workflow() throws RuntimeException;
+
     /** Column name BPartner_Value */
     public static final String COLUMNNAME_BPartner_Value = "BPartner_Value";
 
@@ -120,6 +122,19 @@ public interface I_I_ProductPlanning
 	  */
 	public int getCreatedBy();
 
+    /** Column name DatePromised */
+    public static final String COLUMNNAME_DatePromised = "DatePromised";
+
+	/** Set Date Promised.
+	  * Date Order was promised
+	  */
+	public void setDatePromised (Timestamp DatePromised);
+
+	/** Get Date Promised.
+	  * Date Order was promised
+	  */
+	public Timestamp getDatePromised();
+
     /** Column name DD_NetworkDistribution_ID */
     public static final String COLUMNNAME_DD_NetworkDistribution_ID = "DD_NetworkDistribution_ID";
 
@@ -133,18 +148,7 @@ public interface I_I_ProductPlanning
 	  */
 	public int getDD_NetworkDistribution_ID();
 
-    /** Column name DatePromised */
-    public static final String COLUMNNAME_DatePromised = "DatePromised";
-
-	/** Set Date Promised.
-	  * Date Order was promised
-	  */
-	public void setDatePromised (Timestamp DatePromised);
-
-	/** Get Date Promised.
-	  * Date Order was promised
-	  */
-	public Timestamp getDatePromised();
+	public org.eevolution.model.I_DD_NetworkDistribution getDD_NetworkDistribution() throws RuntimeException;
 
     /** Column name DeliveryTime_Promised */
     public static final String COLUMNNAME_DeliveryTime_Promised = "DeliveryTime_Promised";
@@ -259,21 +263,6 @@ public interface I_I_ProductPlanning
 	  */
 	public boolean isPhantom();
 
-    /** Column name M_ForecastLine_ID */
-    public static final String COLUMNNAME_M_ForecastLine_ID = "M_ForecastLine_ID";
-
-	/** Set Forecast Line.
-	  * Forecast Line
-	  */
-	public void setM_ForecastLine_ID (int M_ForecastLine_ID);
-
-	/** Get Forecast Line.
-	  * Forecast Line
-	  */
-	public int getM_ForecastLine_ID();
-
-	public org.compiere.model.I_M_ForecastLine getM_ForecastLine() throws RuntimeException;
-
     /** Column name M_Forecast_ID */
     public static final String COLUMNNAME_M_Forecast_ID = "M_Forecast_ID";
 
@@ -288,6 +277,21 @@ public interface I_I_ProductPlanning
 	public int getM_Forecast_ID();
 
 	public org.compiere.model.I_M_Forecast getM_Forecast() throws RuntimeException;
+
+    /** Column name M_ForecastLine_ID */
+    public static final String COLUMNNAME_M_ForecastLine_ID = "M_ForecastLine_ID";
+
+	/** Set Forecast Line.
+	  * Forecast Line
+	  */
+	public void setM_ForecastLine_ID (int M_ForecastLine_ID);
+
+	/** Get Forecast Line.
+	  * Forecast Line
+	  */
+	public int getM_ForecastLine_ID();
+
+	public org.compiere.model.I_M_ForecastLine getM_ForecastLine() throws RuntimeException;
 
     /** Column name M_Product_ID */
     public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
@@ -423,6 +427,34 @@ public interface I_I_ProductPlanning
 	  */
 	public String getOrgValue();
 
+    /** Column name Planner_ID */
+    public static final String COLUMNNAME_Planner_ID = "Planner_ID";
+
+	/** Set Planner.
+	  * Company Agent for Planning
+	  */
+	public void setPlanner_ID (int Planner_ID);
+
+	/** Get Planner.
+	  * Company Agent for Planning
+	  */
+	public int getPlanner_ID();
+
+	public org.compiere.model.I_AD_User getPlanner() throws RuntimeException;
+
+    /** Column name PlannerValue */
+    public static final String COLUMNNAME_PlannerValue = "PlannerValue";
+
+	/** Set Planner Key.
+	  * Search Key of the Planning
+	  */
+	public void setPlannerValue (String PlannerValue);
+
+	/** Get Planner Key.
+	  * Search Key of the Planning
+	  */
+	public String getPlannerValue();
+
     /** Column name PP_Product_BOM_ID */
     public static final String COLUMNNAME_PP_Product_BOM_ID = "PP_Product_BOM_ID";
 
@@ -453,34 +485,6 @@ public interface I_I_ProductPlanning
 
 	public org.eevolution.model.I_PP_Product_Planning getPP_Product_Planning() throws RuntimeException;
 
-    /** Column name PlannerValue */
-    public static final String COLUMNNAME_PlannerValue = "PlannerValue";
-
-	/** Set Planner Key.
-	  * Search Key of the Planning
-	  */
-	public void setPlannerValue (String PlannerValue);
-
-	/** Get Planner Key.
-	  * Search Key of the Planning
-	  */
-	public String getPlannerValue();
-
-    /** Column name Planner_ID */
-    public static final String COLUMNNAME_Planner_ID = "Planner_ID";
-
-	/** Set Planner.
-	  * Company Agent for Planning
-	  */
-	public void setPlanner_ID (int Planner_ID);
-
-	/** Get Planner.
-	  * Company Agent for Planning
-	  */
-	public int getPlanner_ID();
-
-	public org.compiere.model.I_AD_User getPlanner() throws RuntimeException;
-
     /** Column name Processed */
     public static final String COLUMNNAME_Processed = "Processed";
 
@@ -503,19 +507,6 @@ public interface I_I_ProductPlanning
 	/** Get Process Now	  */
 	public boolean isProcessing();
 
-    /** Column name ProductValue */
-    public static final String COLUMNNAME_ProductValue = "ProductValue";
-
-	/** Set Product Key.
-	  * Key of the Product
-	  */
-	public void setProductValue (String ProductValue);
-
-	/** Get Product Key.
-	  * Key of the Product
-	  */
-	public String getProductValue();
-
     /** Column name Product_BOM_Value */
     public static final String COLUMNNAME_Product_BOM_Value = "Product_BOM_Value";
 
@@ -528,6 +519,19 @@ public interface I_I_ProductPlanning
 	  * Key of Product BOM
 	  */
 	public String getProduct_BOM_Value();
+
+    /** Column name ProductValue */
+    public static final String COLUMNNAME_ProductValue = "ProductValue";
+
+	/** Set Product Key.
+	  * Key of the Product
+	  */
+	public void setProductValue (String ProductValue);
+
+	/** Get Product Key.
+	  * Key of the Product
+	  */
+	public String getProductValue();
 
     /** Column name Qty */
     public static final String COLUMNNAME_Qty = "Qty";
@@ -555,21 +559,6 @@ public interface I_I_ProductPlanning
 	  */
 	public String getResourceValue();
 
-    /** Column name S_Resource_ID */
-    public static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
-
-	/** Set Resource.
-	  * Resource
-	  */
-	public void setS_Resource_ID (int S_Resource_ID);
-
-	/** Get Resource.
-	  * Resource
-	  */
-	public int getS_Resource_ID();
-
-	public org.compiere.model.I_S_Resource getS_Resource() throws RuntimeException;
-
     /** Column name SafetyStock */
     public static final String COLUMNNAME_SafetyStock = "SafetyStock";
 
@@ -595,6 +584,23 @@ public interface I_I_ProductPlanning
 	  * Sales Representative or Company Agent
 	  */
 	public int getSalesRep_ID();
+
+	public org.compiere.model.I_AD_User getSalesRep() throws RuntimeException;
+
+    /** Column name S_Resource_ID */
+    public static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
+
+	/** Set Resource.
+	  * Resource
+	  */
+	public void setS_Resource_ID (int S_Resource_ID);
+
+	/** Get Resource.
+	  * Resource
+	  */
+	public int getS_Resource_ID();
+
+	public org.compiere.model.I_S_Resource getS_Resource() throws RuntimeException;
 
     /** Column name TimeFence */
     public static final String COLUMNNAME_TimeFence = "TimeFence";
@@ -637,6 +643,19 @@ public interface I_I_ProductPlanning
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name VendorProductNo */
     public static final String COLUMNNAME_VendorProductNo = "VendorProductNo";

@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_RfQ
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_RfQ 
 {
@@ -122,6 +122,15 @@ public interface I_C_RfQ
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
+    /** Column name CopyLines */
+    public static final String COLUMNNAME_CopyLines = "CopyLines";
+
+	/** Set Copy Lines	  */
+	public void setCopyLines (String CopyLines);
+
+	/** Get Copy Lines	  */
+	public String getCopyLines();
+
     /** Column name C_Order_ID */
     public static final String COLUMNNAME_C_Order_ID = "C_Order_ID";
 
@@ -136,6 +145,44 @@ public interface I_C_RfQ
 	public int getC_Order_ID();
 
 	public org.compiere.model.I_C_Order getC_Order() throws RuntimeException;
+
+    /** Column name Created */
+    public static final String COLUMNNAME_Created = "Created";
+
+	/** Get Created.
+	  * Date this record was created
+	  */
+	public Timestamp getCreated();
+
+    /** Column name CreatedBy */
+    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
+
+	/** Get Created By.
+	  * User who created this records
+	  */
+	public int getCreatedBy();
+
+    /** Column name CreatePO */
+    public static final String COLUMNNAME_CreatePO = "CreatePO";
+
+	/** Set Create PO.
+	  * Create Purchase Order
+	  */
+	public void setCreatePO (String CreatePO);
+
+	/** Get Create PO.
+	  * Create Purchase Order
+	  */
+	public String getCreatePO();
+
+    /** Column name CreateSO */
+    public static final String COLUMNNAME_CreateSO = "CreateSO";
+
+	/** Set Create SO	  */
+	public void setCreateSO (String CreateSO);
+
+	/** Get Create SO	  */
+	public String getCreateSO();
 
     /** Column name C_RfQ_ID */
     public static final String COLUMNNAME_C_RfQ_ID = "C_RfQ_ID";
@@ -164,53 +211,6 @@ public interface I_C_RfQ
 	public int getC_RfQ_Topic_ID();
 
 	public org.compiere.model.I_C_RfQ_Topic getC_RfQ_Topic() throws RuntimeException;
-
-    /** Column name CopyLines */
-    public static final String COLUMNNAME_CopyLines = "CopyLines";
-
-	/** Set Copy Lines	  */
-	public void setCopyLines (String CopyLines);
-
-	/** Get Copy Lines	  */
-	public String getCopyLines();
-
-    /** Column name CreatePO */
-    public static final String COLUMNNAME_CreatePO = "CreatePO";
-
-	/** Set Create PO.
-	  * Create Purchase Order
-	  */
-	public void setCreatePO (String CreatePO);
-
-	/** Get Create PO.
-	  * Create Purchase Order
-	  */
-	public String getCreatePO();
-
-    /** Column name CreateSO */
-    public static final String COLUMNNAME_CreateSO = "CreateSO";
-
-	/** Set Create SO	  */
-	public void setCreateSO (String CreateSO);
-
-	/** Get Create SO	  */
-	public String getCreateSO();
-
-    /** Column name Created */
-    public static final String COLUMNNAME_Created = "Created";
-
-	/** Get Created.
-	  * Date this record was created
-	  */
-	public Timestamp getCreated();
-
-    /** Column name CreatedBy */
-    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
-
-	/** Get Created By.
-	  * User who created this records
-	  */
-	public int getCreatedBy();
 
     /** Column name DateResponse */
     public static final String COLUMNNAME_DateResponse = "DateResponse";
@@ -490,4 +490,17 @@ public interface I_C_RfQ
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

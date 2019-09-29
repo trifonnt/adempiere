@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -24,14 +24,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for T_Replenish
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_T_Replenish extends PO implements I_T_Replenish, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_T_Replenish (Properties ctx, int T_Replenish_ID, String trxName)
@@ -229,6 +229,34 @@ public class X_T_Replenish extends PO implements I_T_Replenish, I_Persistent
 		return ii.intValue();
 	}
 
+	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException
+    {
+		return (org.compiere.model.I_M_Warehouse)MTable.get(getCtx(), org.compiere.model.I_M_Warehouse.Table_Name)
+			.getPO(getM_Warehouse_ID(), get_TrxName());	}
+
+	/** Set Warehouse.
+		@param M_Warehouse_ID 
+		Storage Warehouse and Service Point
+	  */
+	public void setM_Warehouse_ID (int M_Warehouse_ID)
+	{
+		if (M_Warehouse_ID < 0) 
+			set_ValueNoCheck (COLUMNNAME_M_Warehouse_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
+	}
+
+	/** Get Warehouse.
+		@return Storage Warehouse and Service Point
+	  */
+	public int getM_Warehouse_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_Warehouse_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	public org.compiere.model.I_M_Warehouse getM_WarehouseSource() throws RuntimeException
     {
 		return (org.compiere.model.I_M_Warehouse)MTable.get(getCtx(), org.compiere.model.I_M_Warehouse.Table_Name)
@@ -252,34 +280,6 @@ public class X_T_Replenish extends PO implements I_T_Replenish, I_Persistent
 	public int getM_WarehouseSource_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_M_WarehouseSource_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException
-    {
-		return (org.compiere.model.I_M_Warehouse)MTable.get(getCtx(), org.compiere.model.I_M_Warehouse.Table_Name)
-			.getPO(getM_Warehouse_ID(), get_TrxName());	}
-
-	/** Set Warehouse.
-		@param M_Warehouse_ID 
-		Storage Warehouse and Service Point
-	  */
-	public void setM_Warehouse_ID (int M_Warehouse_ID)
-	{
-		if (M_Warehouse_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_M_Warehouse_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
-	}
-
-	/** Get Warehouse.
-		@return Storage Warehouse and Service Point
-	  */
-	public int getM_Warehouse_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_Warehouse_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -402,34 +402,6 @@ public class X_T_Replenish extends PO implements I_T_Replenish, I_Persistent
 		return bd;
 	}
 
-	/** ReplenishType AD_Reference_ID=164 */
-	public static final int REPLENISHTYPE_AD_Reference_ID=164;
-	/** Maintain Maximum Level = 2 */
-	public static final String REPLENISHTYPE_MaintainMaximumLevel = "2";
-	/** Manual = 0 */
-	public static final String REPLENISHTYPE_Manual = "0";
-	/** Reorder below Minimum Level = 1 */
-	public static final String REPLENISHTYPE_ReorderBelowMinimumLevel = "1";
-	/** Custom = 9 */
-	public static final String REPLENISHTYPE_Custom = "9";
-	/** Set Replenish Type.
-		@param ReplenishType 
-		Method for re-ordering a product
-	  */
-	public void setReplenishType (String ReplenishType)
-	{
-
-		set_Value (COLUMNNAME_ReplenishType, ReplenishType);
-	}
-
-	/** Get Replenish Type.
-		@return Method for re-ordering a product
-	  */
-	public String getReplenishType () 
-	{
-		return (String)get_Value(COLUMNNAME_ReplenishType);
-	}
-
 	/** ReplenishmentCreate AD_Reference_ID=329 */
 	public static final int REPLENISHMENTCREATE_AD_Reference_ID=329;
 	/** Purchase Order = POO */
@@ -456,5 +428,52 @@ public class X_T_Replenish extends PO implements I_T_Replenish, I_Persistent
 	public String getReplenishmentCreate () 
 	{
 		return (String)get_Value(COLUMNNAME_ReplenishmentCreate);
+	}
+
+	/** ReplenishType AD_Reference_ID=164 */
+	public static final int REPLENISHTYPE_AD_Reference_ID=164;
+	/** Maintain Maximum Level = 2 */
+	public static final String REPLENISHTYPE_MaintainMaximumLevel = "2";
+	/** Manual = 0 */
+	public static final String REPLENISHTYPE_Manual = "0";
+	/** Reorder below Minimum Level = 1 */
+	public static final String REPLENISHTYPE_ReorderBelowMinimumLevel = "1";
+	/** Custom = 9 */
+	public static final String REPLENISHTYPE_Custom = "9";
+	/** Replenish Plan Calculated = 4 */
+	public static final String REPLENISHTYPE_ReplenishPlanCalculated = "4";
+	/** Set Replenish Type.
+		@param ReplenishType 
+		Method for re-ordering a product
+	  */
+	public void setReplenishType (String ReplenishType)
+	{
+
+		set_Value (COLUMNNAME_ReplenishType, ReplenishType);
+	}
+
+	/** Get Replenish Type.
+		@return Method for re-ordering a product
+	  */
+	public String getReplenishType () 
+	{
+		return (String)get_Value(COLUMNNAME_ReplenishType);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

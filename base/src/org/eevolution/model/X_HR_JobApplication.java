@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.eevolution.model;
@@ -25,14 +25,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for HR_JobApplication
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_HR_JobApplication (Properties ctx, int HR_JobApplication_ID, String trxName)
@@ -41,9 +41,9 @@ public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Pe
       /** if (HR_JobApplication_ID == 0)
         {
 			setFirstName (null);
+			setHighestEducation (null);
 			setHR_JobApplication_ID (0);
 			setHR_JobOpening_ID (0);
-			setHighestEducation (null);
 			setIdentityProof (null);
 			setIdentityProofNo (null);
 			setJobApplicationDate (new Timestamp( System.currentTimeMillis() ));
@@ -127,6 +127,23 @@ public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Pe
 		return ii.intValue();
 	}
 
+	/** Set City.
+		@param City 
+		Identifies a City
+	  */
+	public void setCity (String City)
+	{
+		set_Value (COLUMNNAME_City, City);
+	}
+
+	/** Get City.
+		@return Identifies a City
+	  */
+	public String getCity () 
+	{
+		return (String)get_Value(COLUMNNAME_City);
+	}
+
 	public I_C_Location getC_Location() throws RuntimeException
     {
 		return (I_C_Location)MTable.get(getCtx(), I_C_Location.Table_Name)
@@ -153,23 +170,6 @@ public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Pe
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** Set City.
-		@param City 
-		Identifies a City
-	  */
-	public void setCity (String City)
-	{
-		set_Value (COLUMNNAME_City, City);
-	}
-
-	/** Get City.
-		@return Identifies a City
-	  */
-	public String getCity () 
-	{
-		return (String)get_Value(COLUMNNAME_City);
 	}
 
 	/** Set Comments.
@@ -265,6 +265,23 @@ public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Pe
         return new KeyNamePair(get_ID(), getFirstName());
     }
 
+	/** Set Highest Education.
+		@param HighestEducation 
+		Highest Education for this position
+	  */
+	public void setHighestEducation (String HighestEducation)
+	{
+		set_Value (COLUMNNAME_HighestEducation, HighestEducation);
+	}
+
+	/** Get Highest Education.
+		@return Highest Education for this position
+	  */
+	public String getHighestEducation () 
+	{
+		return (String)get_Value(COLUMNNAME_HighestEducation);
+	}
+
 	public org.eevolution.model.I_HR_Designation getHR_Designation() throws RuntimeException
     {
 		return (org.eevolution.model.I_HR_Designation)MTable.get(getCtx(), org.eevolution.model.I_HR_Designation.Table_Name)
@@ -342,23 +359,6 @@ public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Pe
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** Set Highest Education.
-		@param HighestEducation 
-		Highest Education for this position
-	  */
-	public void setHighestEducation (String HighestEducation)
-	{
-		set_Value (COLUMNNAME_HighestEducation, HighestEducation);
-	}
-
-	/** Get Highest Education.
-		@return Highest Education for this position
-	  */
-	public String getHighestEducation () 
-	{
-		return (String)get_Value(COLUMNNAME_HighestEducation);
 	}
 
 	/** IdentityProof AD_Reference_ID=53622 */
@@ -773,6 +773,23 @@ public class X_HR_JobApplication extends PO implements I_HR_JobApplication, I_Pe
 	public String getTotalRelevantExperience () 
 	{
 		return (String)get_Value(COLUMNNAME_TotalRelevantExperience);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	/** YearOfPassing AD_Reference_ID=53618 */

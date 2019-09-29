@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_OrderLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_OrderLine 
 {
@@ -49,6 +49,19 @@ public interface I_C_OrderLine
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name AD_OrgTrx_ID */
     public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
 
@@ -62,18 +75,7 @@ public interface I_C_OrderLine
 	  */
 	public int getAD_OrgTrx_ID();
 
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException;
 
     /** Column name C_Activity_ID */
     public static final String COLUMNNAME_C_Activity_ID = "C_Activity_ID";
@@ -165,19 +167,6 @@ public interface I_C_OrderLine
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
-    /** Column name C_OrderLine_ID */
-    public static final String COLUMNNAME_C_OrderLine_ID = "C_OrderLine_ID";
-
-	/** Set Sales Order Line.
-	  * Sales Order Line
-	  */
-	public void setC_OrderLine_ID (int C_OrderLine_ID);
-
-	/** Get Sales Order Line.
-	  * Sales Order Line
-	  */
-	public int getC_OrderLine_ID();
-
     /** Column name C_Order_ID */
     public static final String COLUMNNAME_C_Order_ID = "C_Order_ID";
 
@@ -192,6 +181,34 @@ public interface I_C_OrderLine
 	public int getC_Order_ID();
 
 	public org.compiere.model.I_C_Order getC_Order() throws RuntimeException;
+
+    /** Column name C_OrderLine_ID */
+    public static final String COLUMNNAME_C_OrderLine_ID = "C_OrderLine_ID";
+
+	/** Set Sales Order Line.
+	  * Sales Order Line
+	  */
+	public void setC_OrderLine_ID (int C_OrderLine_ID);
+
+	/** Get Sales Order Line.
+	  * Sales Order Line
+	  */
+	public int getC_OrderLine_ID();
+
+    /** Column name C_Project_ID */
+    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
+
+	/** Set Project.
+	  * Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID);
+
+	/** Get Project.
+	  * Financial Project
+	  */
+	public int getC_Project_ID();
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
 
     /** Column name C_ProjectPhase_ID */
     public static final String COLUMNNAME_C_ProjectPhase_ID = "C_ProjectPhase_ID";
@@ -223,20 +240,47 @@ public interface I_C_OrderLine
 
 	public org.compiere.model.I_C_ProjectTask getC_ProjectTask() throws RuntimeException;
 
-    /** Column name C_Project_ID */
-    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
+    /** Column name Created */
+    public static final String COLUMNNAME_Created = "Created";
 
-	/** Set Project.
-	  * Financial Project
+	/** Get Created.
+	  * Date this record was created
 	  */
-	public void setC_Project_ID (int C_Project_ID);
+	public Timestamp getCreated();
 
-	/** Get Project.
-	  * Financial Project
+    /** Column name CreatedBy */
+    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
+
+	/** Get Created By.
+	  * User who created this records
 	  */
-	public int getC_Project_ID();
+	public int getCreatedBy();
 
-	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
+    /** Column name CreateFrom */
+    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
+
+	/** Set Create lines from.
+	  * Process which will generate a new document lines based on an existing document
+	  */
+	public void setCreateFrom (String CreateFrom);
+
+	/** Get Create lines from.
+	  * Process which will generate a new document lines based on an existing document
+	  */
+	public String getCreateFrom();
+
+    /** Column name CreateShipment */
+    public static final String COLUMNNAME_CreateShipment = "CreateShipment";
+
+	/** Set Create Shipment.
+	  * Create Shipment From Order Line
+	  */
+	public void setCreateShipment (String CreateShipment);
+
+	/** Get Create Shipment.
+	  * Create Shipment From Order Line
+	  */
+	public String getCreateShipment();
 
     /** Column name C_Tax_ID */
     public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
@@ -267,35 +311,6 @@ public interface I_C_OrderLine
 	public int getC_UOM_ID();
 
 	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
-
-    /** Column name CreateFrom */
-    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
-
-	/** Set Create lines from.
-	  * Process which will generate a new document lines based on an existing document
-	  */
-	public void setCreateFrom (String CreateFrom);
-
-	/** Get Create lines from.
-	  * Process which will generate a new document lines based on an existing document
-	  */
-	public String getCreateFrom();
-
-    /** Column name Created */
-    public static final String COLUMNNAME_Created = "Created";
-
-	/** Get Created.
-	  * Date this record was created
-	  */
-	public Timestamp getCreated();
-
-    /** Column name CreatedBy */
-    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
-
-	/** Get Created By.
-	  * User who created this records
-	  */
-	public int getCreatedBy();
 
     /** Column name DateDelivered */
     public static final String COLUMNNAME_DateDelivered = "DateDelivered";
@@ -483,6 +498,21 @@ public interface I_C_OrderLine
 
 	public I_M_AttributeSetInstance getM_AttributeSetInstance() throws RuntimeException;
 
+    /** Column name M_FreightCategory_ID */
+    public static final String COLUMNNAME_M_FreightCategory_ID = "M_FreightCategory_ID";
+
+	/** Set Freight Category.
+	  * Category of the Freight
+	  */
+	public void setM_FreightCategory_ID (int M_FreightCategory_ID);
+
+	/** Get Freight Category.
+	  * Category of the Freight
+	  */
+	public int getM_FreightCategory_ID();
+
+	public org.compiere.model.I_M_FreightCategory getM_FreightCategory() throws RuntimeException;
+
     /** Column name M_Product_ID */
     public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
 
@@ -538,6 +568,15 @@ public interface I_C_OrderLine
 	public int getM_Warehouse_ID();
 
 	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
+
+    /** Column name PickedQty */
+    public static final String COLUMNNAME_PickedQty = "PickedQty";
+
+	/** Set Picked Qty	  */
+	public void setPickedQty (BigDecimal PickedQty);
+
+	/** Get Picked Qty	  */
+	public BigDecimal getPickedQty();
 
     /** Column name PP_Cost_Collector_ID */
     public static final String COLUMNNAME_PP_Cost_Collector_ID = "PP_Cost_Collector_ID";
@@ -706,6 +745,21 @@ public interface I_C_OrderLine
 	  */
 	public BigDecimal getQtyReserved();
 
+    /** Column name Ref_OrderLine_ID */
+    public static final String COLUMNNAME_Ref_OrderLine_ID = "Ref_OrderLine_ID";
+
+	/** Set Referenced Order Line.
+	  * Reference to corresponding Sales/Purchase Order
+	  */
+	public void setRef_OrderLine_ID (int Ref_OrderLine_ID);
+
+	/** Get Referenced Order Line.
+	  * Reference to corresponding Sales/Purchase Order
+	  */
+	public int getRef_OrderLine_ID();
+
+	public org.compiere.model.I_C_OrderLine getRef_OrderLine() throws RuntimeException;
+
     /** Column name RRAmt */
     public static final String COLUMNNAME_RRAmt = "RRAmt";
 
@@ -731,21 +785,6 @@ public interface I_C_OrderLine
 	  * Revenue Recognition Start Date
 	  */
 	public Timestamp getRRStartDate();
-
-    /** Column name Ref_OrderLine_ID */
-    public static final String COLUMNNAME_Ref_OrderLine_ID = "Ref_OrderLine_ID";
-
-	/** Set Referenced Order Line.
-	  * Reference to corresponding Sales/Purchase Order
-	  */
-	public void setRef_OrderLine_ID (int Ref_OrderLine_ID);
-
-	/** Get Referenced Order Line.
-	  * Reference to corresponding Sales/Purchase Order
-	  */
-	public int getRef_OrderLine_ID();
-
-	public org.compiere.model.I_C_OrderLine getRef_OrderLine() throws RuntimeException;
 
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";
@@ -806,12 +845,46 @@ public interface I_C_OrderLine
 
 	public org.compiere.model.I_C_ElementValue getUser2() throws RuntimeException;
 
-    /** Column name createshipment */
-    public static final String COLUMNNAME_createshipment = "createshipment";
+    /** Column name User3_ID */
+    public static final String COLUMNNAME_User3_ID = "User3_ID";
 
-	/** Set createshipment	  */
-	public void setcreateshipment (String createshipment);
+	/** Set User List 3.
+	  * User defined list element #3
+	  */
+	public void setUser3_ID (int User3_ID);
 
-	/** Get createshipment	  */
-	public String getcreateshipment();
+	/** Get User List 3.
+	  * User defined list element #3
+	  */
+	public int getUser3_ID();
+
+	public org.compiere.model.I_C_ElementValue getUser3() throws RuntimeException;
+
+    /** Column name User4_ID */
+    public static final String COLUMNNAME_User4_ID = "User4_ID";
+
+	/** Set User List 4.
+	  * User defined list element #4
+	  */
+	public void setUser4_ID (int User4_ID);
+
+	/** Get User List 4.
+	  * User defined list element #4
+	  */
+	public int getUser4_ID();
+
+	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -26,14 +26,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for I_Asset
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_I_Asset extends PO implements I_I_Asset, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_I_Asset (Properties ctx, int I_Asset_ID, String trxName)
@@ -72,29 +72,6 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
         .append(get_ID()).append("]");
       return sb.toString();
     }
-
-	/** Set User/Contact.
-		@param AD_User_ID 
-		User within the system - Internal or Business Partner Contact
-	  */
-	public void setAD_User_ID (int AD_User_ID)
-	{
-		if (AD_User_ID < 1) 
-			set_Value (COLUMNNAME_AD_User_ID, null);
-		else 
-			set_Value (COLUMNNAME_AD_User_ID, Integer.valueOf(AD_User_ID));
-	}
-
-	/** Get User/Contact.
-		@return User within the system - Internal or Business Partner Contact
-	  */
-	public int getAD_User_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_AD_User_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
 
 	public I_C_ValidCombination getA_Accumdepreciation_A() throws RuntimeException
     {
@@ -157,15 +134,18 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Asset Cost.
-		@param A_Asset_Cost Asset Cost	  */
+	/** Set Fixed Asset Cost.
+		@param A_Asset_Cost 
+		Cost of acquisition of the Fixed Asset
+	  */
 	public void setA_Asset_Cost (BigDecimal A_Asset_Cost)
 	{
 		set_Value (COLUMNNAME_A_Asset_Cost, A_Asset_Cost);
 	}
 
-	/** Get Asset Cost.
-		@return Asset Cost	  */
+	/** Get Fixed Asset Cost.
+		@return Cost of acquisition of the Fixed Asset
+	  */
 	public BigDecimal getA_Asset_Cost () 
 	{
 		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_A_Asset_Cost);
@@ -202,9 +182,9 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Asset.
+	/** Set Fixed Asset.
 		@param A_Asset_ID 
-		Asset used internally or by customers
+		Fixed Asset used internally or by customers
 	  */
 	public void setA_Asset_ID (int A_Asset_ID)
 	{
@@ -214,8 +194,8 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 			set_ValueNoCheck (COLUMNNAME_A_Asset_ID, Integer.valueOf(A_Asset_ID));
 	}
 
-	/** Get Asset.
-		@return Asset used internally or by customers
+	/** Get Fixed Asset.
+		@return Fixed Asset used internally or by customers
 	  */
 	public int getA_Asset_ID () 
 	{
@@ -517,6 +497,29 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 		return ii.intValue();
 	}
 
+	/** Set User/Contact.
+		@param AD_User_ID 
+		User within the system - Internal or Business Partner Contact
+	  */
+	public void setAD_User_ID (int AD_User_ID)
+	{
+		if (AD_User_ID < 1) 
+			set_Value (COLUMNNAME_AD_User_ID, null);
+		else 
+			set_Value (COLUMNNAME_AD_User_ID, Integer.valueOf(AD_User_ID));
+	}
+
+	/** Get User/Contact.
+		@return User within the system - Internal or Business Partner Contact
+	  */
+	public int getAD_User_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_AD_User_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Life Periods.
 		@param A_Life_Period Life Periods	  */
 	public void setA_Life_Period (int A_Life_Period)
@@ -622,15 +625,18 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 		return bd;
 	}
 
-	/** Set Current Qty.
-		@param A_QTY_Current Current Qty	  */
+	/** Set Fixed Asset Current Qty.
+		@param A_QTY_Current 
+		Fixed Asset Current Quantity
+	  */
 	public void setA_QTY_Current (int A_QTY_Current)
 	{
 		set_Value (COLUMNNAME_A_QTY_Current, Integer.valueOf(A_QTY_Current));
 	}
 
-	/** Get Current Qty.
-		@return Current Qty	  */
+	/** Get Fixed Asset Current Qty.
+		@return Fixed Asset Current Quantity
+	  */
 	public int getA_QTY_Current () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_A_QTY_Current);
@@ -1457,7 +1463,7 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 	public static final String POSTINGTYPE_Statistical = "S";
 	/** Reservation = R */
 	public static final String POSTINGTYPE_Reservation = "R";
-	/** Set PostingType.
+	/** Set Posting Type.
 		@param PostingType 
 		The type of posted amount for the transaction
 	  */
@@ -1467,7 +1473,7 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 		set_Value (COLUMNNAME_PostingType, PostingType);
 	}
 
-	/** Get PostingType.
+	/** Get Posting Type.
 		@return The type of posted amount for the transaction
 	  */
 	public String getPostingType () 
@@ -1595,6 +1601,23 @@ public class X_I_Asset extends PO implements I_I_Asset, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	/** Set Search Key.

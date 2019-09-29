@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -25,14 +25,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for M_ProductOperation
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_M_ProductOperation extends PO implements I_M_ProductOperation, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_M_ProductOperation (Properties ctx, int M_ProductOperation_ID, String trxName)
@@ -40,8 +40,8 @@ public class X_M_ProductOperation extends PO implements I_M_ProductOperation, I_
       super (ctx, M_ProductOperation_ID, trxName);
       /** if (M_ProductOperation_ID == 0)
         {
-			setM_ProductOperation_ID (0);
 			setM_Product_ID (0);
+			setM_ProductOperation_ID (0);
 			setName (null);
         } */
     }
@@ -108,29 +108,6 @@ public class X_M_ProductOperation extends PO implements I_M_ProductOperation, I_
 		return (String)get_Value(COLUMNNAME_Help);
 	}
 
-	/** Set Product Operation.
-		@param M_ProductOperation_ID 
-		Product Manufacturing Operation
-	  */
-	public void setM_ProductOperation_ID (int M_ProductOperation_ID)
-	{
-		if (M_ProductOperation_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_M_ProductOperation_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_M_ProductOperation_ID, Integer.valueOf(M_ProductOperation_ID));
-	}
-
-	/** Get Product Operation.
-		@return Product Manufacturing Operation
-	  */
-	public int getM_ProductOperation_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_ProductOperation_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException
     {
 		return (org.compiere.model.I_M_Product)MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
@@ -154,6 +131,29 @@ public class X_M_ProductOperation extends PO implements I_M_ProductOperation, I_
 	public int getM_Product_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_M_Product_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Product Operation.
+		@param M_ProductOperation_ID 
+		Product Manufacturing Operation
+	  */
+	public void setM_ProductOperation_ID (int M_ProductOperation_ID)
+	{
+		if (M_ProductOperation_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_M_ProductOperation_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_M_ProductOperation_ID, Integer.valueOf(M_ProductOperation_ID));
+	}
+
+	/** Get Product Operation.
+		@return Product Manufacturing Operation
+	  */
+	public int getM_ProductOperation_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_ProductOperation_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -242,5 +242,22 @@ public class X_M_ProductOperation extends PO implements I_M_ProductOperation, I_
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

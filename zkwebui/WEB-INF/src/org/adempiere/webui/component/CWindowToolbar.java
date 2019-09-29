@@ -24,16 +24,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
+
 import org.adempiere.webui.LayoutUtils;
 import org.adempiere.webui.event.ToolbarListener;
 import org.adempiere.webui.panel.IADTabPanel;
 import org.adempiere.webui.session.SessionManager;
+import org.adempiere.webui.theme.ITheme;
 import org.compiere.model.MRole;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.HtmlBasedComponent;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -51,6 +52,13 @@ import org.zkoss.zul.Space;
  *
  * @author Cristina Ghita, www.arhipac.ro
  * 				<li>FR [ 2076330 ] Add new methods in CWindowToolbar class
+ * @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
+ *		<a href="https://github.com/adempiere/adempiere/issues/990">
+ * 		@see FR [ 990 ] Sort Tab is not MVC</a>
+ * 		<a href="https://github.com/adempiere/adempiere/issues/999">
+ * 		@see FR [ 999 ] Add ZK Support for Process Action</a>
+ * @author Michael McKay, mckayERP@gmail.com
+ * 		<li><a href="https://github.com/adempiere/adempiere/issues/2373">#2373</a> Add copy record shortcut key Shift+F2
  */
 public class CWindowToolbar extends FToolbar implements EventListener
 {
@@ -83,6 +91,10 @@ public class CWindowToolbar extends FToolbar implements EventListener
 
     private ToolBarButton btnChat;
     
+    private ToolBarButton btnProcess;
+    
+    private ToolBarButton btnQuickEntry;
+    
     private HashMap<String, ToolBarButton> buttons = new HashMap<String, ToolBarButton>();
 
 //    private ToolBarButton btnExit;
@@ -94,6 +106,7 @@ public class CWindowToolbar extends FToolbar implements EventListener
     private Map<Integer, ToolBarButton> keyMap = new HashMap<Integer, ToolBarButton>();
     private Map<Integer, ToolBarButton> altKeyMap = new HashMap<Integer, ToolBarButton>();
     private Map<Integer, ToolBarButton> ctrlKeyMap = new HashMap<Integer, ToolBarButton>();
+    private Map<Integer, ToolBarButton> shiftKeyMap = new HashMap<Integer, ToolBarButton>();
 
 	private boolean embedded;
 
@@ -189,6 +202,10 @@ public class CWindowToolbar extends FToolbar implements EventListener
 		btnZoomAcross = createButton("ZoomAcross", "ZoomAcross", "ZoomAcross");
         btnActiveWorkflows = createButton("ActiveWorkflows", "WorkFlow", "WorkFlow");
         btnRequests = createButton("Requests", "Request", "Request");
+        //	Add Process Action
+        btnProcess = createButton("Process", "Process", "Process");
+        btnProcess.setDisabled(false);
+        //	
         btnProductInfo = createButton("ProductInfo", "Product", "InfoProduct");
         btnProductInfo.setVisible(isAllowProductInfo);
 
@@ -203,6 +220,10 @@ public class CWindowToolbar extends FToolbar implements EventListener
         btnArchive.setDisabled(false); // Elaine 2008/07/28
         btnLock.setDisabled(!isPersonalLock); // Elaine 2008/12/04
 
+        btnQuickEntry = createButton("QuickEntry", "QuickEntry","QuickEntry");
+        btnQuickEntry.setVisible(true);
+        btnQuickEntry.setDisabled(false);
+        
         configureKeyMap();
 
         if (embedded)
@@ -227,7 +248,7 @@ public class CWindowToolbar extends FToolbar implements EventListener
     {
     	ToolBarButton btn = new ToolBarButton("");
         btn.setName("btn"+name);
-        btn.setImage("/images/"+image + (embedded ? "16.png" : "24.png"));
+        btn.setImage(ITheme.TOOLBAR_FOLDER_IMAGE + "/"+image + (embedded ? "16.png" : "24.png"));
         btn.setTooltiptext(Msg.getMsg(Env.getCtx(),tooltip));
         if (embedded)
         {
@@ -293,6 +314,7 @@ public class CWindowToolbar extends FToolbar implements EventListener
 		keyMap.put(KeyEvent.F7, btnAttachment);
 		keyMap.put(KeyEvent.F8, btnGridToggle);
 		keyMap.put(KeyEvent.F9, btnHistoryRecords);
+		keyMap.put(KeyEvent.F10, btnQuickEntry);
 		keyMap.put(KeyEvent.F11, btnReport);
 		keyMap.put(KeyEvent.F12, btnPrint);
 
@@ -311,6 +333,8 @@ public class CWindowToolbar extends FToolbar implements EventListener
 		ctrlKeyMap.put(VK_S, btnSave);
 		ctrlKeyMap.put(VK_D, btnDelete);
 		ctrlKeyMap.put(VK_F, btnFind);
+		
+		shiftKeyMap.put(KeyEvent.F2, btnCopy);
 	}
 
 	protected void addSeparator()
@@ -531,12 +555,44 @@ public class CWindowToolbar extends FToolbar implements EventListener
     {
     	btnGridToggle.setDisabled(!enabled);
     }
-
+    
+    public void enableWorkflows(boolean enabled) {
+    	btnActiveWorkflows.setDisabled(!enabled);
+    }
+    
+    public void enableRequests(boolean enabled) {
+    	btnRequests.setDisabled(!enabled);
+    }
+    
+    public void enableProductInfo(boolean enabled) {
+    	btnProductInfo.setDisabled(!enabled);
+    }
+    
+    public void enableZoomAcross(boolean enabled) {
+    	btnZoomAcross.setDisabled(!enabled);
+    }
+    
+    public void enableProcess(boolean enabled) {
+    	btnProcess.setDisabled(!enabled);
+    }
+    
+    public void enableArchive(boolean enabled) {
+    	btnArchive.setDisabled(!enabled);
+    }
+    
+    public void enableQuickEntry(boolean enabled)
+    {
+    	btnQuickEntry.setDisabled(!enabled);
+    }
+    public void enableHelp(boolean enabled)
+    {
+        this.btnHelp.setDisabled(!enabled);
+    }
     public void lock(boolean locked)
     {
     	this.btnLock.setPressed(locked);
 
-    	String imgURL = "/images/"+ (this.btnLock.isPressed() ? "LockX" : "Lock") + (embedded ? "16.png" : "24.png");
+    	String imgURL = "/images/dark/"+ (this.btnLock.isPressed() ? "LockX" : "Lock") + (embedded ? "16.png" : "24.png");
 		this.btnLock.setImage(imgURL);
     }
 
@@ -547,6 +603,7 @@ public class CWindowToolbar extends FToolbar implements EventListener
 
 	private void onCtrlKeyEvent(KeyEvent keyEvent) {
 		ToolBarButton btn = null;
+		// <Alt>
 		if (keyEvent.isAltKey() && !keyEvent.isCtrlKey() && !keyEvent.isShiftKey())
 		{
 			if (keyEvent.getKeyCode() == VK_X)
@@ -564,19 +621,28 @@ public class CWindowToolbar extends FToolbar implements EventListener
 				btn = altKeyMap.get(keyEvent.getKeyCode());
 			}
 		}
+		// <Ctrl>
 		else if (!keyEvent.isAltKey() && keyEvent.isCtrlKey() && !keyEvent.isShiftKey())
+		{
 			btn = ctrlKeyMap.get(keyEvent.getKeyCode());
-		else if (!keyEvent.isAltKey() && !keyEvent.isCtrlKey() && !keyEvent.isShiftKey())
-			btn = keyMap.get(keyEvent.getKeyCode());
-
-		if (btn != null) {
-			prevKeyEventTime = System.currentTimeMillis();
-        	prevKeyEvent = keyEvent;
-			keyEvent.stopPropagation();
-			if (!btn.isDisabled() && btn.isVisible()) {
-				Events.sendEvent(btn, new Event(Events.ON_CLICK, btn));
-			}
 		}
+		// <Shift>
+		else if (!keyEvent.isAltKey() && !keyEvent.isCtrlKey() && keyEvent.isShiftKey())
+		{
+			btn = shiftKeyMap.get(keyEvent.getKeyCode());
+		}
+		// Normal eg <F2>
+		else if (!keyEvent.isAltKey() && !keyEvent.isCtrlKey() && !keyEvent.isShiftKey())
+		{
+			btn = keyMap.get(keyEvent.getKeyCode());
+		}
+//		else if (!keyEvent.isAltKey() && keyEvent.isCtrlKey() && !keyEvent.isShiftKey())
+//			btn = ctrlKeyMap.get(keyEvent.getKeyCode());
+//		else if (!keyEvent.isAltKey() && !keyEvent.isCtrlKey() && !keyEvent.isShiftKey())
+//			btn = keyMap.get(keyEvent.getKeyCode());
+
+
+		sendButtonClickEvent(keyEvent, btn);
 	}
 
 	private boolean isRealVisible() {
@@ -590,7 +656,24 @@ public class CWindowToolbar extends FToolbar implements EventListener
 		}
 		return true;
 	}
-
+	/**
+	 * @param keyEvent
+	 * @param btn
+	 */
+	public void sendButtonClickEvent(KeyEvent keyEvent, ToolBarButton btn)
+	{
+		if (btn != null)
+		{
+			prevKeyEventTime = System.currentTimeMillis();
+			prevKeyEvent = keyEvent;
+			keyEvent.stopPropagation();
+			if (!btn.isDisabled() && btn.isVisible())
+			{
+				Events.sendEvent(btn, new Event(Events.ON_CLICK, btn));
+			}
+		}
+	}
+	 
 	/**
 	 *
 	 * @param visible

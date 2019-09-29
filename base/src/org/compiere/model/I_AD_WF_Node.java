@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for AD_WF_Node
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_AD_WF_Node 
 {
@@ -40,6 +40,19 @@ public interface I_AD_WF_Node
     BigDecimal accessLevel = BigDecimal.valueOf(6);
 
     /** Load Meta Data */
+
+    /** Column name Action */
+    public static final String COLUMNNAME_Action = "Action";
+
+	/** Set Action.
+	  * Indicates the Action to be performed
+	  */
+	public void setAction (String Action);
+
+	/** Get Action.
+	  * Indicates the Action to be performed
+	  */
+	public String getAction();
 
     /** Column name AD_Browse_ID */
     public static final String COLUMNNAME_AD_Browse_ID = "AD_Browse_ID";
@@ -235,19 +248,6 @@ public interface I_AD_WF_Node
 	public int getAD_Workflow_ID();
 
 	public org.compiere.model.I_AD_Workflow getAD_Workflow() throws RuntimeException;
-
-    /** Column name Action */
-    public static final String COLUMNNAME_Action = "Action";
-
-	/** Set Action.
-	  * Indicates the Action to be performed
-	  */
-	public void setAction (String Action);
-
-	/** Get Action.
-	  * Indicates the Action to be performed
-	  */
-	public String getAction();
 
     /** Column name AttributeName */
     public static final String COLUMNNAME_AttributeName = "AttributeName";
@@ -597,21 +597,6 @@ public interface I_AD_WF_Node
 
 	public org.compiere.model.I_R_MailText getR_MailText() throws RuntimeException;
 
-    /** Column name S_Resource_ID */
-    public static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
-
-	/** Set Resource.
-	  * Resource
-	  */
-	public void setS_Resource_ID (int S_Resource_ID);
-
-	/** Get Resource.
-	  * Resource
-	  */
-	public int getS_Resource_ID();
-
-	public org.compiere.model.I_S_Resource getS_Resource() throws RuntimeException;
-
     /** Column name SetupTime */
     public static final String COLUMNNAME_SetupTime = "SetupTime";
 
@@ -637,6 +622,21 @@ public interface I_AD_WF_Node
 	  * Semantics for multiple outgoing Transitions
 	  */
 	public String getSplitElement();
+
+    /** Column name S_Resource_ID */
+    public static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
+
+	/** Set Resource.
+	  * Resource
+	  */
+	public void setS_Resource_ID (int S_Resource_ID);
+
+	/** Get Resource.
+	  * Resource
+	  */
+	public int getS_Resource_ID();
+
+	public org.compiere.model.I_S_Resource getS_Resource() throws RuntimeException;
 
     /** Column name StartMode */
     public static final String COLUMNNAME_StartMode = "StartMode";
@@ -693,6 +693,19 @@ public interface I_AD_WF_Node
 	  */
 	public int getUpdatedBy();
 
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
+
     /** Column name ValidFrom */
     public static final String COLUMNNAME_ValidFrom = "ValidFrom";
 
@@ -732,19 +745,6 @@ public interface I_AD_WF_Node
 	  */
 	public String getValue();
 
-    /** Column name WaitTime */
-    public static final String COLUMNNAME_WaitTime = "WaitTime";
-
-	/** Set Wait Time.
-	  * Time in minutes to wait (sleep)
-	  */
-	public void setWaitTime (int WaitTime);
-
-	/** Get Wait Time.
-	  * Time in minutes to wait (sleep)
-	  */
-	public int getWaitTime();
-
     /** Column name WaitingTime */
     public static final String COLUMNNAME_WaitingTime = "WaitingTime";
 
@@ -757,6 +757,19 @@ public interface I_AD_WF_Node
 	  * Workflow Simulation Waiting time
 	  */
 	public int getWaitingTime();
+
+    /** Column name WaitTime */
+    public static final String COLUMNNAME_WaitTime = "WaitTime";
+
+	/** Set Wait Time.
+	  * Time in minutes to wait (sleep)
+	  */
+	public void setWaitTime (int WaitTime);
+
+	/** Get Wait Time.
+	  * Time in minutes to wait (sleep)
+	  */
+	public int getWaitTime();
 
     /** Column name Workflow_ID */
     public static final String COLUMNNAME_Workflow_ID = "Workflow_ID";
@@ -799,19 +812,6 @@ public interface I_AD_WF_Node
 	  */
 	public int getXPosition();
 
-    /** Column name YPosition */
-    public static final String COLUMNNAME_YPosition = "YPosition";
-
-	/** Set Y Position.
-	  * Absolute Y (vertical) position in 1/72 of an inch
-	  */
-	public void setYPosition (int YPosition);
-
-	/** Get Y Position.
-	  * Absolute Y (vertical) position in 1/72 of an inch
-	  */
-	public int getYPosition();
-
     /** Column name Yield */
     public static final String COLUMNNAME_Yield = "Yield";
 
@@ -824,4 +824,17 @@ public interface I_AD_WF_Node
 	  * The Yield is the percentage of a lot that is expected to be of acceptable wuality may fall below 100 percent
 	  */
 	public int getYield();
+
+    /** Column name YPosition */
+    public static final String COLUMNNAME_YPosition = "YPosition";
+
+	/** Set Y Position.
+	  * Absolute Y (vertical) position in 1/72 of an inch
+	  */
+	public void setYPosition (int YPosition);
+
+	/** Get Y Position.
+	  * Absolute Y (vertical) position in 1/72 of an inch
+	  */
+	public int getYPosition();
 }

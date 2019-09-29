@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -25,14 +25,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for W_BasketLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_W_BasketLine extends PO implements I_W_BasketLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_W_BasketLine (Properties ctx, int W_BasketLine_ID, String trxName)
@@ -45,8 +45,8 @@ public class X_W_BasketLine extends PO implements I_W_BasketLine, I_Persistent
 			setPrice (Env.ZERO);
 			setProduct (null);
 			setQty (Env.ZERO);
-			setW_BasketLine_ID (0);
 			setW_Basket_ID (0);
+			setW_BasketLine_ID (0);
         } */
     }
 
@@ -205,27 +205,21 @@ public class X_W_BasketLine extends PO implements I_W_BasketLine, I_Persistent
 		return bd;
 	}
 
-	/** Set Basket Line.
-		@param W_BasketLine_ID 
-		Web Basket Line
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
 	  */
-	public void setW_BasketLine_ID (int W_BasketLine_ID)
+	public void setUUID (String UUID)
 	{
-		if (W_BasketLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_W_BasketLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_W_BasketLine_ID, Integer.valueOf(W_BasketLine_ID));
+		set_Value (COLUMNNAME_UUID, UUID);
 	}
 
-	/** Get Basket Line.
-		@return Web Basket Line
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
 	  */
-	public int getW_BasketLine_ID () 
+	public String getUUID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_W_BasketLine_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	public org.compiere.model.I_W_Basket getW_Basket() throws RuntimeException
@@ -251,6 +245,29 @@ public class X_W_BasketLine extends PO implements I_W_BasketLine, I_Persistent
 	public int getW_Basket_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_W_Basket_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Basket Line.
+		@param W_BasketLine_ID 
+		Web Basket Line
+	  */
+	public void setW_BasketLine_ID (int W_BasketLine_ID)
+	{
+		if (W_BasketLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_W_BasketLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_W_BasketLine_ID, Integer.valueOf(W_BasketLine_ID));
+	}
+
+	/** Get Basket Line.
+		@return Web Basket Line
+	  */
+	public int getW_BasketLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_W_BasketLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();

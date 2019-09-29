@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -22,14 +22,14 @@ import java.util.Properties;
 
 /** Generated Model for M_RelatedProduct
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_M_RelatedProduct extends PO implements I_M_RelatedProduct, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_M_RelatedProduct (Properties ctx, int M_RelatedProduct_ID, String trxName)
@@ -39,8 +39,8 @@ public class X_M_RelatedProduct extends PO implements I_M_RelatedProduct, I_Pers
         {
 			setM_Product_ID (0);
 			setName (null);
-			setRelatedProductType (null);
 			setRelatedProduct_ID (0);
+			setRelatedProductType (null);
         } */
     }
 
@@ -134,29 +134,6 @@ public class X_M_RelatedProduct extends PO implements I_M_RelatedProduct, I_Pers
 		return (String)get_Value(COLUMNNAME_Name);
 	}
 
-	/** RelatedProductType AD_Reference_ID=313 */
-	public static final int RELATEDPRODUCTTYPE_AD_Reference_ID=313;
-	/** Web Promotion = P */
-	public static final String RELATEDPRODUCTTYPE_WebPromotion = "P";
-	/** Alternative = A */
-	public static final String RELATEDPRODUCTTYPE_Alternative = "A";
-	/** Supplemental = S */
-	public static final String RELATEDPRODUCTTYPE_Supplemental = "S";
-	/** Set Related Product Type.
-		@param RelatedProductType Related Product Type	  */
-	public void setRelatedProductType (String RelatedProductType)
-	{
-
-		set_ValueNoCheck (COLUMNNAME_RelatedProductType, RelatedProductType);
-	}
-
-	/** Get Related Product Type.
-		@return Related Product Type	  */
-	public String getRelatedProductType () 
-	{
-		return (String)get_Value(COLUMNNAME_RelatedProductType);
-	}
-
 	public org.compiere.model.I_M_Product getRelatedProduct() throws RuntimeException
     {
 		return (org.compiere.model.I_M_Product)MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
@@ -183,5 +160,45 @@ public class X_M_RelatedProduct extends PO implements I_M_RelatedProduct, I_Pers
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** RelatedProductType AD_Reference_ID=313 */
+	public static final int RELATEDPRODUCTTYPE_AD_Reference_ID=313;
+	/** Web Promotion = P */
+	public static final String RELATEDPRODUCTTYPE_WebPromotion = "P";
+	/** Alternative = A */
+	public static final String RELATEDPRODUCTTYPE_Alternative = "A";
+	/** Supplemental = S */
+	public static final String RELATEDPRODUCTTYPE_Supplemental = "S";
+	/** Set Related Product Type.
+		@param RelatedProductType Related Product Type	  */
+	public void setRelatedProductType (String RelatedProductType)
+	{
+
+		set_ValueNoCheck (COLUMNNAME_RelatedProductType, RelatedProductType);
+	}
+
+	/** Get Related Product Type.
+		@return Related Product Type	  */
+	public String getRelatedProductType () 
+	{
+		return (String)get_Value(COLUMNNAME_RelatedProductType);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

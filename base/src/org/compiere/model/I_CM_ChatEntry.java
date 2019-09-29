@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for CM_ChatEntry
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_CM_ChatEntry 
 {
@@ -77,64 +77,6 @@ public interface I_CM_ChatEntry
 
 	public org.compiere.model.I_AD_User getAD_User() throws RuntimeException;
 
-    /** Column name CM_ChatEntryGrandParent_ID */
-    public static final String COLUMNNAME_CM_ChatEntryGrandParent_ID = "CM_ChatEntryGrandParent_ID";
-
-	/** Set Chat Entry Grandparent.
-	  * Link to Grand Parent (root level)
-	  */
-	public void setCM_ChatEntryGrandParent_ID (int CM_ChatEntryGrandParent_ID);
-
-	/** Get Chat Entry Grandparent.
-	  * Link to Grand Parent (root level)
-	  */
-	public int getCM_ChatEntryGrandParent_ID();
-
-	public org.compiere.model.I_CM_ChatEntry getCM_ChatEntryGrandParent() throws RuntimeException;
-
-    /** Column name CM_ChatEntryParent_ID */
-    public static final String COLUMNNAME_CM_ChatEntryParent_ID = "CM_ChatEntryParent_ID";
-
-	/** Set Chat Entry Parent.
-	  * Link to direct Parent
-	  */
-	public void setCM_ChatEntryParent_ID (int CM_ChatEntryParent_ID);
-
-	/** Get Chat Entry Parent.
-	  * Link to direct Parent
-	  */
-	public int getCM_ChatEntryParent_ID();
-
-	public org.compiere.model.I_CM_ChatEntry getCM_ChatEntryParent() throws RuntimeException;
-
-    /** Column name CM_ChatEntry_ID */
-    public static final String COLUMNNAME_CM_ChatEntry_ID = "CM_ChatEntry_ID";
-
-	/** Set Chat Entry.
-	  * Individual Chat / Discussion Entry
-	  */
-	public void setCM_ChatEntry_ID (int CM_ChatEntry_ID);
-
-	/** Get Chat Entry.
-	  * Individual Chat / Discussion Entry
-	  */
-	public int getCM_ChatEntry_ID();
-
-    /** Column name CM_Chat_ID */
-    public static final String COLUMNNAME_CM_Chat_ID = "CM_Chat_ID";
-
-	/** Set Chat.
-	  * Chat or discussion thread
-	  */
-	public void setCM_Chat_ID (int CM_Chat_ID);
-
-	/** Get Chat.
-	  * Chat or discussion thread
-	  */
-	public int getCM_Chat_ID();
-
-	public org.compiere.model.I_CM_Chat getCM_Chat() throws RuntimeException;
-
     /** Column name CharacterData */
     public static final String COLUMNNAME_CharacterData = "CharacterData";
 
@@ -160,6 +102,64 @@ public interface I_CM_ChatEntry
 	  * Type of Chat/Forum Entry
 	  */
 	public String getChatEntryType();
+
+    /** Column name CM_ChatEntryGrandParent_ID */
+    public static final String COLUMNNAME_CM_ChatEntryGrandParent_ID = "CM_ChatEntryGrandParent_ID";
+
+	/** Set Chat Entry Grandparent.
+	  * Link to Grand Parent (root level)
+	  */
+	public void setCM_ChatEntryGrandParent_ID (int CM_ChatEntryGrandParent_ID);
+
+	/** Get Chat Entry Grandparent.
+	  * Link to Grand Parent (root level)
+	  */
+	public int getCM_ChatEntryGrandParent_ID();
+
+	public org.compiere.model.I_CM_ChatEntry getCM_ChatEntryGrandParent() throws RuntimeException;
+
+    /** Column name CM_ChatEntry_ID */
+    public static final String COLUMNNAME_CM_ChatEntry_ID = "CM_ChatEntry_ID";
+
+	/** Set Chat Entry.
+	  * Individual Chat / Discussion Entry
+	  */
+	public void setCM_ChatEntry_ID (int CM_ChatEntry_ID);
+
+	/** Get Chat Entry.
+	  * Individual Chat / Discussion Entry
+	  */
+	public int getCM_ChatEntry_ID();
+
+    /** Column name CM_ChatEntryParent_ID */
+    public static final String COLUMNNAME_CM_ChatEntryParent_ID = "CM_ChatEntryParent_ID";
+
+	/** Set Chat Entry Parent.
+	  * Link to direct Parent
+	  */
+	public void setCM_ChatEntryParent_ID (int CM_ChatEntryParent_ID);
+
+	/** Get Chat Entry Parent.
+	  * Link to direct Parent
+	  */
+	public int getCM_ChatEntryParent_ID();
+
+	public org.compiere.model.I_CM_ChatEntry getCM_ChatEntryParent() throws RuntimeException;
+
+    /** Column name CM_Chat_ID */
+    public static final String COLUMNNAME_CM_Chat_ID = "CM_Chat_ID";
+
+	/** Set Chat.
+	  * Chat or discussion thread
+	  */
+	public void setCM_Chat_ID (int CM_Chat_ID);
+
+	/** Get Chat.
+	  * Chat or discussion thread
+	  */
+	public int getCM_Chat_ID();
+
+	public org.compiere.model.I_CM_Chat getCM_Chat() throws RuntimeException;
 
     /** Column name ConfidentialType */
     public static final String COLUMNNAME_ConfidentialType = "ConfidentialType";
@@ -244,4 +244,17 @@ public interface I_CM_ChatEntry
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

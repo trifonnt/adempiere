@@ -36,6 +36,7 @@ import org.compiere.util.Msg;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Vbox;
@@ -59,6 +60,7 @@ public class UserPanel extends Vbox  implements EventListener
     private ToolBarButton logout = new ToolBarButton();
     private ToolBarButton role = new ToolBarButton();
     private ToolBarButton preference = new ToolBarButton();
+    private ToolBarButton changeRole = new ToolBarButton();
     private ToolBarButton context = new ToolBarButton();
 
     private Label lblUserNameValue = new Label();
@@ -94,13 +96,17 @@ public class UserPanel extends Vbox  implements EventListener
     	LayoutUtils.addSclass("desktop-header-font", context);
     	context.setParent(hbox);    	
 
+    	Separator sep = new Separator("vertical");
+    	sep.setBar(true);
+    	sep.setParent(hbox);
+
     	preference.setLabel(Msg.getMsg(Env.getCtx(), "Preference"));
     	preference.addEventListener(Events.ON_CLICK, this);
     	preference.setStyle("text-align:right");
     	LayoutUtils.addSclass("desktop-header-font", preference);
     	preference.setParent(hbox);
 
-    	Separator sep = new Separator("vertical");
+    	sep = new Separator("vertical");
     	sep.setBar(true);
     	sep.setParent(hbox);
 
@@ -110,6 +116,16 @@ public class UserPanel extends Vbox  implements EventListener
     	LayoutUtils.addSclass("desktop-header-font", role);
     	role.setParent(hbox);
 
+    	sep = new Separator("vertical");
+    	sep.setBar(true);
+    	sep.setParent(hbox);
+
+    	changeRole.setLabel(Msg.getMsg(Env.getCtx(),"changeRole"));
+    	changeRole.addEventListener(Events.ON_CLICK, this);
+    	changeRole.setStyle("text-align:right");
+    	LayoutUtils.addSclass("desktop-header-font", changeRole);
+    	changeRole.setParent(hbox);
+    	
     	sep = new Separator("vertical");
     	sep.setBar(true);
     	sep.setParent(hbox);
@@ -187,6 +203,12 @@ public class UserPanel extends Vbox  implements EventListener
 			}
 			contextPopup = new WContext();
 			AEnv.showWindow(contextPopup);
+		}
+		else if (changeRole == event.getTarget())
+		{
+			MUser user = MUser.get(ctx);
+			Clients.confirmClose(null);
+			SessionManager.changeRole(user);
 		}
 
 	}

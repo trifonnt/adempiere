@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -22,14 +22,14 @@ import java.util.Properties;
 
 /** Generated Model for C_CashBook_Acct
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_C_CashBook_Acct extends PO implements I_C_CashBook_Acct, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_C_CashBook_Acct (Properties ctx, int C_CashBook_Acct_ID, String trxName)
@@ -37,12 +37,12 @@ public class X_C_CashBook_Acct extends PO implements I_C_CashBook_Acct, I_Persis
       super (ctx, C_CashBook_Acct_ID, trxName);
       /** if (C_CashBook_Acct_ID == 0)
         {
+			setC_AcctSchema_ID (0);
 			setCB_Asset_Acct (0);
 			setCB_CashTransfer_Acct (0);
 			setCB_Differences_Acct (0);
 			setCB_Expense_Acct (0);
 			setCB_Receipt_Acct (0);
-			setC_AcctSchema_ID (0);
 			setC_CashBook_ID (0);
         } */
     }
@@ -74,6 +74,34 @@ public class X_C_CashBook_Acct extends PO implements I_C_CashBook_Acct, I_Persis
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_C_AcctSchema getC_AcctSchema() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_AcctSchema)MTable.get(getCtx(), org.compiere.model.I_C_AcctSchema.Table_Name)
+			.getPO(getC_AcctSchema_ID(), get_TrxName());	}
+
+	/** Set Accounting Schema.
+		@param C_AcctSchema_ID 
+		Rules for accounting
+	  */
+	public void setC_AcctSchema_ID (int C_AcctSchema_ID)
+	{
+		if (C_AcctSchema_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_C_AcctSchema_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_C_AcctSchema_ID, Integer.valueOf(C_AcctSchema_ID));
+	}
+
+	/** Get Accounting Schema.
+		@return Rules for accounting
+	  */
+	public int getC_AcctSchema_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_AcctSchema_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
 
 	public I_C_ValidCombination getCB_Asset_A() throws RuntimeException
     {
@@ -200,34 +228,6 @@ public class X_C_CashBook_Acct extends PO implements I_C_CashBook_Acct, I_Persis
 		return ii.intValue();
 	}
 
-	public org.compiere.model.I_C_AcctSchema getC_AcctSchema() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_AcctSchema)MTable.get(getCtx(), org.compiere.model.I_C_AcctSchema.Table_Name)
-			.getPO(getC_AcctSchema_ID(), get_TrxName());	}
-
-	/** Set Accounting Schema.
-		@param C_AcctSchema_ID 
-		Rules for accounting
-	  */
-	public void setC_AcctSchema_ID (int C_AcctSchema_ID)
-	{
-		if (C_AcctSchema_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_AcctSchema_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_AcctSchema_ID, Integer.valueOf(C_AcctSchema_ID));
-	}
-
-	/** Get Accounting Schema.
-		@return Rules for accounting
-	  */
-	public int getC_AcctSchema_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_AcctSchema_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_C_CashBook getC_CashBook() throws RuntimeException
     {
 		return (org.compiere.model.I_C_CashBook)MTable.get(getCtx(), org.compiere.model.I_C_CashBook.Table_Name)
@@ -254,5 +254,22 @@ public class X_C_CashBook_Acct extends PO implements I_C_CashBook_Acct, I_Persis
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

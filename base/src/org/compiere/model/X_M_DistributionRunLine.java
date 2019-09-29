@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -25,14 +25,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for M_DistributionRunLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_M_DistributionRunLine extends PO implements I_M_DistributionRunLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_M_DistributionRunLine (Properties ctx, int M_DistributionRunLine_ID, String trxName)
@@ -43,11 +43,11 @@ public class X_M_DistributionRunLine extends PO implements I_M_DistributionRunLi
 			setLine (0);
 // @SQL=SELECT NVL(MAX(Line),0)+10 AS DefaultValue FROM M_DistributionRunLine WHERE M_DistributionRun_ID=@M_DistributionRun_ID@
 			setM_DistributionList_ID (0);
-			setM_DistributionRunLine_ID (0);
 			setM_DistributionRun_ID (0);
-			setM_Product_ID (0);
+			setM_DistributionRunLine_ID (0);
 			setMinQty (Env.ZERO);
 // 0
+			setM_Product_ID (0);
 			setTotalQty (Env.ZERO);
         } */
     }
@@ -145,29 +145,6 @@ public class X_M_DistributionRunLine extends PO implements I_M_DistributionRunLi
 		return ii.intValue();
 	}
 
-	/** Set Distribution Run Line.
-		@param M_DistributionRunLine_ID 
-		Distribution Run Lines define Distribution List, the Product and Quantities
-	  */
-	public void setM_DistributionRunLine_ID (int M_DistributionRunLine_ID)
-	{
-		if (M_DistributionRunLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_M_DistributionRunLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_M_DistributionRunLine_ID, Integer.valueOf(M_DistributionRunLine_ID));
-	}
-
-	/** Get Distribution Run Line.
-		@return Distribution Run Lines define Distribution List, the Product and Quantities
-	  */
-	public int getM_DistributionRunLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_DistributionRunLine_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_M_DistributionRun getM_DistributionRun() throws RuntimeException
     {
 		return (org.compiere.model.I_M_DistributionRun)MTable.get(getCtx(), org.compiere.model.I_M_DistributionRun.Table_Name)
@@ -204,6 +181,49 @@ public class X_M_DistributionRunLine extends PO implements I_M_DistributionRunLi
         return new KeyNamePair(get_ID(), String.valueOf(getM_DistributionRun_ID()));
     }
 
+	/** Set Distribution Run Line.
+		@param M_DistributionRunLine_ID 
+		Distribution Run Lines define Distribution List, the Product and Quantities
+	  */
+	public void setM_DistributionRunLine_ID (int M_DistributionRunLine_ID)
+	{
+		if (M_DistributionRunLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_M_DistributionRunLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_M_DistributionRunLine_ID, Integer.valueOf(M_DistributionRunLine_ID));
+	}
+
+	/** Get Distribution Run Line.
+		@return Distribution Run Lines define Distribution List, the Product and Quantities
+	  */
+	public int getM_DistributionRunLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_DistributionRunLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Minimum Quantity.
+		@param MinQty 
+		Minimum quantity for the business partner
+	  */
+	public void setMinQty (BigDecimal MinQty)
+	{
+		set_Value (COLUMNNAME_MinQty, MinQty);
+	}
+
+	/** Get Minimum Quantity.
+		@return Minimum quantity for the business partner
+	  */
+	public BigDecimal getMinQty () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_MinQty);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
 	public org.compiere.model.I_M_Product getM_Product() throws RuntimeException
     {
 		return (org.compiere.model.I_M_Product)MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
@@ -232,26 +252,6 @@ public class X_M_DistributionRunLine extends PO implements I_M_DistributionRunLi
 		return ii.intValue();
 	}
 
-	/** Set Minimum Quantity.
-		@param MinQty 
-		Minimum quantity for the business partner
-	  */
-	public void setMinQty (BigDecimal MinQty)
-	{
-		set_Value (COLUMNNAME_MinQty, MinQty);
-	}
-
-	/** Get Minimum Quantity.
-		@return Minimum quantity for the business partner
-	  */
-	public BigDecimal getMinQty () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_MinQty);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
-	}
-
 	/** Set Total Quantity.
 		@param TotalQty 
 		Total Quantity
@@ -270,5 +270,22 @@ public class X_M_DistributionRunLine extends PO implements I_M_DistributionRunLi
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

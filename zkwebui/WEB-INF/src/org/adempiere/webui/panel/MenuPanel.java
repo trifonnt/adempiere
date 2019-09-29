@@ -25,6 +25,7 @@ import org.adempiere.webui.component.Checkbox;
 import org.adempiere.webui.event.MenuListener;
 import org.adempiere.webui.exception.ApplicationException;
 import org.adempiere.webui.session.SessionManager;
+import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.util.TreeUtils;
 import org.compiere.model.MTree;
 import org.compiere.model.MTreeNode;
@@ -64,18 +65,14 @@ public class MenuPanel extends Panel implements EventListener
     
     private Checkbox chkExpand; // Elaine 2009/02/27 - expand tree
     
+    public static final String MENU_ITEM_DRAGGABLE_TYPE = "menu_item";
+    
     public MenuPanel()
     {
         ctx = Env.getCtx();
         int adRoleId = Env.getAD_Role_ID(ctx);
         int adTreeId = getTreeId(ctx, adRoleId);
-        MTree mTree = new MTree(ctx, adTreeId, false, true, null);
-        
-        if(mTree == null)
-        {
-            throw new ApplicationException("Could not load menu tree");
-        }
-        
+        MTree mTree = new MTree(ctx, adTreeId, false, null);
         MTreeNode rootNode = mTree.getRoot();
         init();
         initMenu(rootNode);
@@ -168,15 +165,17 @@ public class MenuPanel extends Panel implements EventListener
                 treeitem.setValue(String.valueOf(mChildNode.getNode_ID()));
                 
                 if (mChildNode.isReport())
-                	treeitem.setImage("/images/mReport.png");
+                	treeitem.setImage(ITheme.MENU_REPORT_IMAGE);
                 else if (mChildNode.isProcess() || mChildNode.isTask())
-                	treeitem.setImage("/images/mProcess.png");
+                	treeitem.setImage(ITheme.MENU_PROCESS_IMAGE);
                 else if (mChildNode.isWorkFlow())
-                	treeitem.setImage("/images/mWorkFlow.png");
+                	treeitem.setImage(ITheme.MENU_WORKFLOW_IMAGE);
+                else if (mChildNode.isBrowse())
+                	treeitem.setImage(ITheme.MENU_BROWSER_IMAGE);
                 else
-                	treeitem.setImage("/images/mWindow.png");
+                	treeitem.setImage(ITheme.MENU_WINDOW_IMAGE);
                 
-                treeitem.getTreerow().setDraggable("favourite"); // Elaine 2008/07/24
+                treeitem.getTreerow().setDraggable(MENU_ITEM_DRAGGABLE_TYPE); // Elaine 2008/07/24
                 
                 treeitem.getTreerow().addEventListener(Events.ON_CLICK, this);
             }

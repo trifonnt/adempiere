@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.eevolution.model;
@@ -26,14 +26,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for T_BOMLine
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_T_BOMLine (Properties ctx, int T_BOMLine_ID, String trxName)
@@ -150,26 +150,6 @@ public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent
 		return bd;
 	}
 
-	/** Set Standard Cost.
-		@param CostStandard 
-		Standard Costs
-	  */
-	public void setCostStandard (BigDecimal CostStandard)
-	{
-		set_Value (COLUMNNAME_CostStandard, CostStandard);
-	}
-
-	/** Get Standard Cost.
-		@return Standard Costs
-	  */
-	public BigDecimal getCostStandard () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_CostStandard);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
-	}
-
 	/** CostingMethod AD_Reference_ID=122 */
 	public static final int COSTINGMETHOD_AD_Reference_ID=122;
 	/** Standard Costing = S */
@@ -206,6 +186,26 @@ public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent
 	public String getCostingMethod () 
 	{
 		return (String)get_Value(COLUMNNAME_CostingMethod);
+	}
+
+	/** Set Standard Cost.
+		@param CostStandard 
+		Standard Costs
+	  */
+	public void setCostStandard (BigDecimal CostStandard)
+	{
+		set_Value (COLUMNNAME_CostStandard, CostStandard);
+	}
+
+	/** Get Standard Cost.
+		@return Standard Costs
+	  */
+	public BigDecimal getCostStandard () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_CostStandard);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
 	}
 
 	/** Set Current Cost Price.
@@ -473,7 +473,7 @@ public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent
 	  */
 	public void setM_Warehouse_ID (int M_Warehouse_ID)
 	{
-		if (M_Warehouse_ID < 1) 
+		if (M_Warehouse_ID < 0) 
 			set_Value (COLUMNNAME_M_Warehouse_ID, null);
 		else 
 			set_Value (COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
@@ -485,34 +485,6 @@ public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent
 	public int getM_Warehouse_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_M_Warehouse_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.eevolution.model.I_PP_Product_BOMLine getPP_Product_BOMLine() throws RuntimeException
-    {
-		return (org.eevolution.model.I_PP_Product_BOMLine)MTable.get(getCtx(), org.eevolution.model.I_PP_Product_BOMLine.Table_Name)
-			.getPO(getPP_Product_BOMLine_ID(), get_TrxName());	}
-
-	/** Set BOM Line.
-		@param PP_Product_BOMLine_ID 
-		BOM Line
-	  */
-	public void setPP_Product_BOMLine_ID (int PP_Product_BOMLine_ID)
-	{
-		if (PP_Product_BOMLine_ID < 1) 
-			set_Value (COLUMNNAME_PP_Product_BOMLine_ID, null);
-		else 
-			set_Value (COLUMNNAME_PP_Product_BOMLine_ID, Integer.valueOf(PP_Product_BOMLine_ID));
-	}
-
-	/** Get BOM Line.
-		@return BOM Line
-	  */
-	public int getPP_Product_BOMLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Product_BOMLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -541,6 +513,34 @@ public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent
 	public int getPP_Product_BOM_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Product_BOM_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.model.I_PP_Product_BOMLine getPP_Product_BOMLine() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_Product_BOMLine)MTable.get(getCtx(), org.eevolution.model.I_PP_Product_BOMLine.Table_Name)
+			.getPO(getPP_Product_BOMLine_ID(), get_TrxName());	}
+
+	/** Set BOM Line.
+		@param PP_Product_BOMLine_ID 
+		BOM Line
+	  */
+	public void setPP_Product_BOMLine_ID (int PP_Product_BOMLine_ID)
+	{
+		if (PP_Product_BOMLine_ID < 1) 
+			set_Value (COLUMNNAME_PP_Product_BOMLine_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_Product_BOMLine_ID, Integer.valueOf(PP_Product_BOMLine_ID));
+	}
+
+	/** Get BOM Line.
+		@return BOM Line
+	  */
+	public int getPP_Product_BOMLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Product_BOMLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -641,5 +641,22 @@ public class X_T_BOMLine extends PO implements I_T_BOMLine, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

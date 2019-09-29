@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -26,14 +26,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for R_RequestUpdate
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_R_RequestUpdate (Properties ctx, int R_RequestUpdate_ID, String trxName)
@@ -42,8 +42,8 @@ public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persis
       /** if (R_RequestUpdate_ID == 0)
         {
 			setConfidentialTypeEntry (null);
-			setR_RequestUpdate_ID (0);
 			setR_Request_ID (0);
+			setR_RequestUpdate_ID (0);
         } */
     }
 
@@ -74,6 +74,34 @@ public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persis
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_C_InvoiceLine getC_InvoiceLine() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_InvoiceLine)MTable.get(getCtx(), org.compiere.model.I_C_InvoiceLine.Table_Name)
+			.getPO(getC_InvoiceLine_ID(), get_TrxName());	}
+
+	/** Set Invoice Line.
+		@param C_InvoiceLine_ID 
+		Invoice Detail Line
+	  */
+	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID)
+	{
+		if (C_InvoiceLine_ID < 1) 
+			set_Value (COLUMNNAME_C_InvoiceLine_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_InvoiceLine_ID, Integer.valueOf(C_InvoiceLine_ID));
+	}
+
+	/** Get Invoice Line.
+		@return Invoice Detail Line
+	  */
+	public int getC_InvoiceLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_InvoiceLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
 
 	/** ConfidentialTypeEntry AD_Reference_ID=340 */
 	public static final int CONFIDENTIALTYPEENTRY_AD_Reference_ID=340;
@@ -148,6 +176,30 @@ public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persis
 		return ii.intValue();
 	}
 
+	/** Set Processed.
+		@param Processed 
+		The document has been processed
+	  */
+	public void setProcessed (boolean Processed)
+	{
+		set_Value (COLUMNNAME_Processed, Boolean.valueOf(Processed));
+	}
+
+	/** Get Processed.
+		@return The document has been processed
+	  */
+	public boolean isProcessed () 
+	{
+		Object oo = get_Value(COLUMNNAME_Processed);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set Quantity Invoiced.
 		@param QtyInvoiced 
 		Invoiced Quantity
@@ -188,6 +240,79 @@ public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persis
 		return bd;
 	}
 
+	/** Set Result.
+		@param Result 
+		Result of the action taken
+	  */
+	public void setResult (String Result)
+	{
+		set_ValueNoCheck (COLUMNNAME_Result, Result);
+	}
+
+	/** Get Result.
+		@return Result of the action taken
+	  */
+	public String getResult () 
+	{
+		return (String)get_Value(COLUMNNAME_Result);
+	}
+
+	public org.compiere.model.I_R_RequestAction getR_RequestAction() throws RuntimeException
+    {
+		return (org.compiere.model.I_R_RequestAction)MTable.get(getCtx(), org.compiere.model.I_R_RequestAction.Table_Name)
+			.getPO(getR_RequestAction_ID(), get_TrxName());	}
+
+	/** Set Request History.
+		@param R_RequestAction_ID 
+		Request has been changed
+	  */
+	public void setR_RequestAction_ID (int R_RequestAction_ID)
+	{
+		if (R_RequestAction_ID < 1) 
+			set_Value (COLUMNNAME_R_RequestAction_ID, null);
+		else 
+			set_Value (COLUMNNAME_R_RequestAction_ID, Integer.valueOf(R_RequestAction_ID));
+	}
+
+	/** Get Request History.
+		@return Request has been changed
+	  */
+	public int getR_RequestAction_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_R_RequestAction_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_R_Request getR_Request() throws RuntimeException
+    {
+		return (org.compiere.model.I_R_Request)MTable.get(getCtx(), org.compiere.model.I_R_Request.Table_Name)
+			.getPO(getR_Request_ID(), get_TrxName());	}
+
+	/** Set Request.
+		@param R_Request_ID 
+		Request from a Business Partner or Prospect
+	  */
+	public void setR_Request_ID (int R_Request_ID)
+	{
+		if (R_Request_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_R_Request_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_R_Request_ID, Integer.valueOf(R_Request_ID));
+	}
+
+	/** Get Request.
+		@return Request from a Business Partner or Prospect
+	  */
+	public int getR_Request_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_R_Request_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Request Update.
 		@param R_RequestUpdate_ID 
 		Request Updates
@@ -219,51 +344,6 @@ public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persis
         return new KeyNamePair(get_ID(), String.valueOf(getR_RequestUpdate_ID()));
     }
 
-	public org.compiere.model.I_R_Request getR_Request() throws RuntimeException
-    {
-		return (org.compiere.model.I_R_Request)MTable.get(getCtx(), org.compiere.model.I_R_Request.Table_Name)
-			.getPO(getR_Request_ID(), get_TrxName());	}
-
-	/** Set Request.
-		@param R_Request_ID 
-		Request from a Business Partner or Prospect
-	  */
-	public void setR_Request_ID (int R_Request_ID)
-	{
-		if (R_Request_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_R_Request_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_R_Request_ID, Integer.valueOf(R_Request_ID));
-	}
-
-	/** Get Request.
-		@return Request from a Business Partner or Prospect
-	  */
-	public int getR_Request_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_R_Request_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set Result.
-		@param Result 
-		Result of the action taken
-	  */
-	public void setResult (String Result)
-	{
-		set_ValueNoCheck (COLUMNNAME_Result, Result);
-	}
-
-	/** Get Result.
-		@return Result of the action taken
-	  */
-	public String getResult () 
-	{
-		return (String)get_Value(COLUMNNAME_Result);
-	}
-
 	/** Set Start Time.
 		@param StartTime 
 		Time started
@@ -279,5 +359,22 @@ public class X_R_RequestUpdate extends PO implements I_R_RequestUpdate, I_Persis
 	public Timestamp getStartTime () 
 	{
 		return (Timestamp)get_Value(COLUMNNAME_StartTime);
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

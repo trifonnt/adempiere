@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_BP_Withholding
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_BP_Withholding 
 {
@@ -77,21 +77,6 @@ public interface I_C_BP_Withholding
 
 	public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException;
 
-    /** Column name C_Withholding_ID */
-    public static final String COLUMNNAME_C_Withholding_ID = "C_Withholding_ID";
-
-	/** Set Withholding.
-	  * Withholding type defined
-	  */
-	public void setC_Withholding_ID (int C_Withholding_ID);
-
-	/** Get Withholding.
-	  * Withholding type defined
-	  */
-	public int getC_Withholding_ID();
-
-	public org.compiere.model.I_C_Withholding getC_Withholding() throws RuntimeException;
-
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
 
@@ -107,6 +92,21 @@ public interface I_C_BP_Withholding
 	  * User who created this records
 	  */
 	public int getCreatedBy();
+
+    /** Column name C_Withholding_ID */
+    public static final String COLUMNNAME_C_Withholding_ID = "C_Withholding_ID";
+
+	/** Set Withholding.
+	  * Withholding type defined
+	  */
+	public void setC_Withholding_ID (int C_Withholding_ID);
+
+	/** Get Withholding.
+	  * Withholding type defined
+	  */
+	public int getC_Withholding_ID();
+
+	public org.compiere.model.I_C_Withholding getC_Withholding() throws RuntimeException;
 
     /** Column name ExemptReason */
     public static final String COLUMNNAME_ExemptReason = "ExemptReason";
@@ -175,4 +175,17 @@ public interface I_C_BP_Withholding
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

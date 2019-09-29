@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.eevolution.model;
 
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for PP_ForecastRunDetail
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_PP_ForecastRunDetail 
 {
@@ -92,6 +92,19 @@ public interface I_PP_ForecastRunDetail
 	  */
 	public boolean isActive();
 
+    /** Column name PeriodNo */
+    public static final String COLUMNNAME_PeriodNo = "PeriodNo";
+
+	/** Set Period No.
+	  * Unique Period Number
+	  */
+	public void setPeriodNo (int PeriodNo);
+
+	/** Get Period No.
+	  * Unique Period Number
+	  */
+	public int getPeriodNo();
+
     /** Column name PP_ForecastRunDetail_ID */
     public static final String COLUMNNAME_PP_ForecastRunDetail_ID = "PP_ForecastRunDetail_ID";
 
@@ -104,17 +117,6 @@ public interface I_PP_ForecastRunDetail
 	  * Contains the forecasting calculation results based on forecast definition.
 	  */
 	public int getPP_ForecastRunDetail_ID();
-
-    /** Column name PP_ForecastRunMaster_ID */
-    public static final String COLUMNNAME_PP_ForecastRunMaster_ID = "PP_ForecastRunMaster_ID";
-
-	/** Set Forecast Run Master	  */
-	public void setPP_ForecastRunMaster_ID (int PP_ForecastRunMaster_ID);
-
-	/** Get Forecast Run Master	  */
-	public int getPP_ForecastRunMaster_ID();
-
-	public org.eevolution.model.I_PP_ForecastRunMaster getPP_ForecastRunMaster() throws RuntimeException;
 
     /** Column name PP_ForecastRun_ID */
     public static final String COLUMNNAME_PP_ForecastRun_ID = "PP_ForecastRun_ID";
@@ -131,6 +133,17 @@ public interface I_PP_ForecastRunDetail
 
 	public org.eevolution.model.I_PP_ForecastRun getPP_ForecastRun() throws RuntimeException;
 
+    /** Column name PP_ForecastRunMaster_ID */
+    public static final String COLUMNNAME_PP_ForecastRunMaster_ID = "PP_ForecastRunMaster_ID";
+
+	/** Set Forecast Run Master	  */
+	public void setPP_ForecastRunMaster_ID (int PP_ForecastRunMaster_ID);
+
+	/** Get Forecast Run Master	  */
+	public int getPP_ForecastRunMaster_ID();
+
+	public org.eevolution.model.I_PP_ForecastRunMaster getPP_ForecastRunMaster() throws RuntimeException;
+
     /** Column name PP_Period_ID */
     public static final String COLUMNNAME_PP_Period_ID = "PP_Period_ID";
 
@@ -145,19 +158,6 @@ public interface I_PP_ForecastRunDetail
 	public int getPP_Period_ID();
 
 	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException;
-
-    /** Column name PeriodNo */
-    public static final String COLUMNNAME_PeriodNo = "PeriodNo";
-
-	/** Set Period No.
-	  * Unique Period Number
-	  */
-	public void setPeriodNo (int PeriodNo);
-
-	/** Get Period No.
-	  * Unique Period Number
-	  */
-	public int getPeriodNo();
 
     /** Column name QtyCalculated */
     public static final String COLUMNNAME_QtyCalculated = "QtyCalculated";
@@ -187,4 +187,17 @@ public interface I_PP_ForecastRunDetail
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_BP_BankAccount
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_C_BP_BankAccount 
 {
@@ -40,6 +40,45 @@ public interface I_C_BP_BankAccount
     BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
+
+    /** Column name AccountNo */
+    public static final String COLUMNNAME_AccountNo = "AccountNo";
+
+	/** Set Account No.
+	  * Account Number
+	  */
+	public void setAccountNo (String AccountNo);
+
+	/** Get Account No.
+	  * Account Number
+	  */
+	public String getAccountNo();
+
+    /** Column name A_City */
+    public static final String COLUMNNAME_A_City = "A_City";
+
+	/** Set Account City.
+	  * City or the Credit Card or Account Holder
+	  */
+	public void setA_City (String A_City);
+
+	/** Get Account City.
+	  * City or the Credit Card or Account Holder
+	  */
+	public String getA_City();
+
+    /** Column name A_Country */
+    public static final String COLUMNNAME_A_Country = "A_Country";
+
+	/** Set Account Country.
+	  * Country
+	  */
+	public void setA_Country (String A_Country);
+
+	/** Get Account Country.
+	  * Country
+	  */
+	public String getA_Country();
 
     /** Column name AD_Client_ID */
     public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
@@ -76,32 +115,6 @@ public interface I_C_BP_BankAccount
 	public int getAD_User_ID();
 
 	public org.compiere.model.I_AD_User getAD_User() throws RuntimeException;
-
-    /** Column name A_City */
-    public static final String COLUMNNAME_A_City = "A_City";
-
-	/** Set Account City.
-	  * City or the Credit Card or Account Holder
-	  */
-	public void setA_City (String A_City);
-
-	/** Get Account City.
-	  * City or the Credit Card or Account Holder
-	  */
-	public String getA_City();
-
-    /** Column name A_Country */
-    public static final String COLUMNNAME_A_Country = "A_Country";
-
-	/** Set Account Country.
-	  * Country
-	  */
-	public void setA_Country (String A_Country);
-
-	/** Get Account Country.
-	  * Country
-	  */
-	public String getA_Country();
 
     /** Column name A_EMail */
     public static final String COLUMNNAME_A_EMail = "A_EMail";
@@ -194,18 +207,18 @@ public interface I_C_BP_BankAccount
 	  */
 	public String getA_Zip();
 
-    /** Column name AccountNo */
-    public static final String COLUMNNAME_AccountNo = "AccountNo";
+    /** Column name BankAccountType */
+    public static final String COLUMNNAME_BankAccountType = "BankAccountType";
 
-	/** Set Account No.
-	  * Account Number
+	/** Set Bank Account Type.
+	  * Bank Account Type
 	  */
-	public void setAccountNo (String AccountNo);
+	public void setBankAccountType (String BankAccountType);
 
-	/** Get Account No.
-	  * Account Number
+	/** Get Bank Account Type.
+	  * Bank Account Type
 	  */
-	public String getAccountNo();
+	public String getBankAccountType();
 
     /** Column name BPBankAcctUse */
     public static final String COLUMNNAME_BPBankAcctUse = "BPBankAcctUse";
@@ -220,31 +233,20 @@ public interface I_C_BP_BankAccount
 	  */
 	public String getBPBankAcctUse();
 
-    /** Column name BankAccountType */
-    public static final String COLUMNNAME_BankAccountType = "BankAccountType";
+    /** Column name C_Bank_ID */
+    public static final String COLUMNNAME_C_Bank_ID = "C_Bank_ID";
 
-	/** Set Bank Account Type.
-	  * Bank Account Type
+	/** Set Bank.
+	  * Bank
 	  */
-	public void setBankAccountType (String BankAccountType);
+	public void setC_Bank_ID (int C_Bank_ID);
 
-	/** Get Bank Account Type.
-	  * Bank Account Type
+	/** Get Bank.
+	  * Bank
 	  */
-	public String getBankAccountType();
+	public int getC_Bank_ID();
 
-    /** Column name C_BP_BankAccount_ID */
-    public static final String COLUMNNAME_C_BP_BankAccount_ID = "C_BP_BankAccount_ID";
-
-	/** Set Partner Bank Account.
-	  * Bank Account of the Business Partner
-	  */
-	public void setC_BP_BankAccount_ID (int C_BP_BankAccount_ID);
-
-	/** Get Partner Bank Account.
-	  * Bank Account of the Business Partner
-	  */
-	public int getC_BP_BankAccount_ID();
+	public org.compiere.model.I_C_Bank getC_Bank() throws RuntimeException;
 
     /** Column name C_BPartner_ID */
     public static final String COLUMNNAME_C_BPartner_ID = "C_BPartner_ID";
@@ -261,20 +263,18 @@ public interface I_C_BP_BankAccount
 
 	public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException;
 
-    /** Column name C_Bank_ID */
-    public static final String COLUMNNAME_C_Bank_ID = "C_Bank_ID";
+    /** Column name C_BP_BankAccount_ID */
+    public static final String COLUMNNAME_C_BP_BankAccount_ID = "C_BP_BankAccount_ID";
 
-	/** Set Bank.
-	  * Bank
+	/** Set Partner Bank Account.
+	  * Bank Account of the Business Partner
 	  */
-	public void setC_Bank_ID (int C_Bank_ID);
+	public void setC_BP_BankAccount_ID (int C_BP_BankAccount_ID);
 
-	/** Get Bank.
-	  * Bank
+	/** Get Partner Bank Account.
+	  * Bank Account of the Business Partner
 	  */
-	public int getC_Bank_ID();
-
-	public org.compiere.model.I_C_Bank getC_Bank() throws RuntimeException;
+	public int getC_BP_BankAccount_ID();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -357,6 +357,19 @@ public interface I_C_BP_BankAccount
 	  */
 	public String getCreditCardVV();
 
+    /** Column name IBAN */
+    public static final String COLUMNNAME_IBAN = "IBAN";
+
+	/** Set IBAN.
+	  * International Bank Account Number
+	  */
+	public void setIBAN (String IBAN);
+
+	/** Get IBAN.
+	  * International Bank Account Number
+	  */
+	public String getIBAN();
+
     /** Column name IsACH */
     public static final String COLUMNNAME_IsACH = "IsACH";
 
@@ -382,6 +395,19 @@ public interface I_C_BP_BankAccount
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsPayrollAccount */
+    public static final String COLUMNNAME_IsPayrollAccount = "IsPayrollAccount";
+
+	/** Set Payroll Account.
+	  * Used for mark a bank account defined for payment of payroll
+	  */
+	public void setIsPayrollAccount (boolean IsPayrollAccount);
+
+	/** Get Payroll Account.
+	  * Used for mark a bank account defined for payment of payroll
+	  */
+	public boolean isPayrollAccount();
 
     /** Column name R_AvsAddr */
     public static final String COLUMNNAME_R_AvsAddr = "R_AvsAddr";
@@ -437,4 +463,17 @@ public interface I_C_BP_BankAccount
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

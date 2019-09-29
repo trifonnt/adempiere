@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for PA_DashboardContent
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_PA_DashboardContent 
 {
@@ -40,6 +40,19 @@ public interface I_PA_DashboardContent
     BigDecimal accessLevel = BigDecimal.valueOf(6);
 
     /** Load Meta Data */
+
+    /** Column name AccessLevel */
+    public static final String COLUMNNAME_AccessLevel = "AccessLevel";
+
+	/** Set Data Access Level.
+	  * Access Level required
+	  */
+	public void setAccessLevel (String AccessLevel);
+
+	/** Get Data Access Level.
+	  * Access Level required
+	  */
+	public String getAccessLevel();
 
     /** Column name AD_Browse_ID */
     public static final String COLUMNNAME_AD_Browse_ID = "AD_Browse_ID";
@@ -202,12 +215,12 @@ public interface I_PA_DashboardContent
 	/** Set Line No.
 	  * Unique line for this document
 	  */
-	public void setLine (BigDecimal Line);
+	public void setLine (int Line);
 
 	/** Get Line No.
 	  * Unique line for this document
 	  */
-	public BigDecimal getLine();
+	public int getLine();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
@@ -222,6 +235,15 @@ public interface I_PA_DashboardContent
 	  */
 	public String getName();
 
+    /** Column name onevent */
+    public static final String COLUMNNAME_onevent = "onevent";
+
+	/** Set onevent	  */
+	public void setonevent (String onevent);
+
+	/** Get onevent	  */
+	public String getonevent();
+
     /** Column name PA_DashboardContent_ID */
     public static final String COLUMNNAME_PA_DashboardContent_ID = "PA_DashboardContent_ID";
 
@@ -230,6 +252,15 @@ public interface I_PA_DashboardContent
 
 	/** Get Dashboard Content	  */
 	public int getPA_DashboardContent_ID();
+
+    /** Column name PageSize */
+    public static final String COLUMNNAME_PageSize = "PageSize";
+
+	/** Set PageSize	  */
+	public void setPageSize (BigDecimal PageSize);
+
+	/** Get PageSize	  */
+	public BigDecimal getPageSize();
 
     /** Column name PA_Goal_ID */
     public static final String COLUMNNAME_PA_Goal_ID = "PA_Goal_ID";
@@ -246,15 +277,6 @@ public interface I_PA_DashboardContent
 
 	public org.compiere.model.I_PA_Goal getPA_Goal() throws RuntimeException;
 
-    /** Column name PageSize */
-    public static final String COLUMNNAME_PageSize = "PageSize";
-
-	/** Set PageSize	  */
-	public void setPageSize (BigDecimal PageSize);
-
-	/** Get PageSize	  */
-	public BigDecimal getPageSize();
-
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
 
@@ -270,6 +292,19 @@ public interface I_PA_DashboardContent
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name Zoom_Field_ID */
     public static final String COLUMNNAME_Zoom_Field_ID = "Zoom_Field_ID";
@@ -316,13 +351,4 @@ public interface I_PA_DashboardContent
 	  * Absolute path to zul file
 	  */
 	public String getZulFilePath();
-
-    /** Column name onevent */
-    public static final String COLUMNNAME_onevent = "onevent";
-
-	/** Set onevent	  */
-	public void setonevent (String onevent);
-
-	/** Get onevent	  */
-	public String getonevent();
 }

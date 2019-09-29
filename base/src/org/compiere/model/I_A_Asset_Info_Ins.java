@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.compiere.model;
 
@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for A_Asset_Info_Ins
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_A_Asset_Info_Ins 
 {
@@ -40,6 +40,28 @@ public interface I_A_Asset_Info_Ins
     BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
+
+    /** Column name A_Asset_ID */
+    public static final String COLUMNNAME_A_Asset_ID = "A_Asset_ID";
+
+	/** Set Fixed Asset.
+	  * Fixed Asset used internally or by customers
+	  */
+	public void setA_Asset_ID (int A_Asset_ID);
+
+	/** Get Fixed Asset.
+	  * Fixed Asset used internally or by customers
+	  */
+	public int getA_Asset_ID();
+
+    /** Column name A_Asset_Info_Ins_ID */
+    public static final String COLUMNNAME_A_Asset_Info_Ins_ID = "A_Asset_Info_Ins_ID";
+
+	/** Set A_Asset_Info_Ins_ID	  */
+	public void setA_Asset_Info_Ins_ID (int A_Asset_Info_Ins_ID);
+
+	/** Get A_Asset_Info_Ins_ID	  */
+	public int getA_Asset_Info_Ins_ID();
 
     /** Column name AD_Client_ID */
     public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
@@ -62,28 +84,6 @@ public interface I_A_Asset_Info_Ins
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name A_Asset_ID */
-    public static final String COLUMNNAME_A_Asset_ID = "A_Asset_ID";
-
-	/** Set Asset.
-	  * Asset used internally or by customers
-	  */
-	public void setA_Asset_ID (int A_Asset_ID);
-
-	/** Get Asset.
-	  * Asset used internally or by customers
-	  */
-	public int getA_Asset_ID();
-
-    /** Column name A_Asset_Info_Ins_ID */
-    public static final String COLUMNNAME_A_Asset_Info_Ins_ID = "A_Asset_Info_Ins_ID";
-
-	/** Set A_Asset_Info_Ins_ID	  */
-	public void setA_Asset_Info_Ins_ID (int A_Asset_Info_Ins_ID);
-
-	/** Get A_Asset_Info_Ins_ID	  */
-	public int getA_Asset_Info_Ins_ID();
-
     /** Column name A_Ins_Premium */
     public static final String COLUMNNAME_A_Ins_Premium = "A_Ins_Premium";
 
@@ -93,15 +93,6 @@ public interface I_A_Asset_Info_Ins
 	/** Get Asset Insurance Premium	  */
 	public BigDecimal getA_Ins_Premium();
 
-    /** Column name A_Ins_Value */
-    public static final String COLUMNNAME_A_Ins_Value = "A_Ins_Value";
-
-	/** Set Asset Insurance Value	  */
-	public void setA_Ins_Value (BigDecimal A_Ins_Value);
-
-	/** Get Asset Insurance Value	  */
-	public BigDecimal getA_Ins_Value();
-
     /** Column name A_Insurance_Co */
     public static final String COLUMNNAME_A_Insurance_Co = "A_Insurance_Co";
 
@@ -110,6 +101,15 @@ public interface I_A_Asset_Info_Ins
 
 	/** Get Insurance Company	  */
 	public String getA_Insurance_Co();
+
+    /** Column name A_Ins_Value */
+    public static final String COLUMNNAME_A_Ins_Value = "A_Ins_Value";
+
+	/** Set Asset Insurance Value	  */
+	public void setA_Ins_Value (BigDecimal A_Ins_Value);
+
+	/** Get Asset Insurance Value	  */
+	public BigDecimal getA_Ins_Value();
 
     /** Column name A_Policy_No */
     public static final String COLUMNNAME_A_Policy_No = "A_Policy_No";
@@ -191,4 +191,17 @@ public interface I_A_Asset_Info_Ins
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

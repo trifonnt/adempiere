@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 package org.eevolution.model;
 
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for WM_InOutBound
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0
+ *  @version Release 3.9.2
  */
 public interface I_WM_InOutBound 
 {
@@ -50,6 +50,19 @@ public interface I_WM_InOutBound
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name AD_OrgTrx_ID */
     public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
 
@@ -63,18 +76,7 @@ public interface I_WM_InOutBound
 	  */
 	public int getAD_OrgTrx_ID();
 
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException;
 
     /** Column name C_Activity_ID */
     public static final String COLUMNNAME_C_Activity_ID = "C_Activity_ID";
@@ -137,6 +139,19 @@ public interface I_WM_InOutBound
 	  */
 	public int getCreatedBy();
 
+    /** Column name CreateFrom */
+    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
+
+	/** Set Create lines from.
+	  * Process which will generate a new document lines based on an existing document
+	  */
+	public void setCreateFrom (String CreateFrom);
+
+	/** Get Create lines from.
+	  * Process which will generate a new document lines based on an existing document
+	  */
+	public String getCreateFrom();
+
     /** Column name DatePrinted */
     public static final String COLUMNNAME_DatePrinted = "DatePrinted";
 
@@ -149,6 +164,19 @@ public interface I_WM_InOutBound
 	  * Date the document was printed.
 	  */
 	public Timestamp getDatePrinted();
+
+    /** Column name DateTrx */
+    public static final String COLUMNNAME_DateTrx = "DateTrx";
+
+	/** Set Transaction Date.
+	  * Transaction Date
+	  */
+	public void setDateTrx (Timestamp DateTrx);
+
+	/** Get Transaction Date.
+	  * Transaction Date
+	  */
+	public Timestamp getDateTrx();
 
     /** Column name DeliveryRule */
     public static final String COLUMNNAME_DeliveryRule = "DeliveryRule";
@@ -299,6 +327,19 @@ public interface I_WM_InOutBound
 	  */
 	public String getFreightCostRule();
 
+    /** Column name GenerateTo */
+    public static final String COLUMNNAME_GenerateTo = "GenerateTo";
+
+	/** Set Generate To.
+	  * Generate To
+	  */
+	public void setGenerateTo (String GenerateTo);
+
+	/** Get Generate To.
+	  * Generate To
+	  */
+	public String getGenerateTo();
+
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -377,6 +418,36 @@ public interface I_WM_InOutBound
 	  */
 	public boolean isSOTrx();
 
+    /** Column name M_FreightCategory_ID */
+    public static final String COLUMNNAME_M_FreightCategory_ID = "M_FreightCategory_ID";
+
+	/** Set Freight Category.
+	  * Category of the Freight
+	  */
+	public void setM_FreightCategory_ID (int M_FreightCategory_ID);
+
+	/** Get Freight Category.
+	  * Category of the Freight
+	  */
+	public int getM_FreightCategory_ID();
+
+	public org.compiere.model.I_M_FreightCategory getM_FreightCategory() throws RuntimeException;
+
+    /** Column name M_Locator_ID */
+    public static final String COLUMNNAME_M_Locator_ID = "M_Locator_ID";
+
+	/** Set Locator.
+	  * Warehouse Locator
+	  */
+	public void setM_Locator_ID (int M_Locator_ID);
+
+	/** Get Locator.
+	  * Warehouse Locator
+	  */
+	public int getM_Locator_ID();
+
+	public org.compiere.model.I_M_Locator getM_Locator() throws RuntimeException;
+
     /** Column name M_Shipper_ID */
     public static final String COLUMNNAME_M_Shipper_ID = "M_Shipper_ID";
 
@@ -407,19 +478,6 @@ public interface I_WM_InOutBound
 
 	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
 
-    /** Column name POReference */
-    public static final String COLUMNNAME_POReference = "POReference";
-
-	/** Set Order Reference.
-	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
-	  */
-	public void setPOReference (String POReference);
-
-	/** Get Order Reference.
-	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
-	  */
-	public String getPOReference();
-
     /** Column name PickDate */
     public static final String COLUMNNAME_PickDate = "PickDate";
 
@@ -432,6 +490,19 @@ public interface I_WM_InOutBound
 	  * Date/Time when picked for Shipment
 	  */
 	public Timestamp getPickDate();
+
+    /** Column name POReference */
+    public static final String COLUMNNAME_POReference = "POReference";
+
+	/** Set Order Reference.
+	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
+	  */
+	public void setPOReference (String POReference);
+
+	/** Get Order Reference.
+	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
+	  */
+	public String getPOReference();
 
     /** Column name PriorityRule */
     public static final String COLUMNNAME_PriorityRule = "PriorityRule";
@@ -568,6 +639,19 @@ public interface I_WM_InOutBound
 
 	public org.compiere.model.I_C_ElementValue getUser2() throws RuntimeException;
 
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
+
     /** Column name Volume */
     public static final String COLUMNNAME_Volume = "Volume";
 
@@ -581,15 +665,6 @@ public interface I_WM_InOutBound
 	  */
 	public BigDecimal getVolume();
 
-    /** Column name WM_InOutBound_ID */
-    public static final String COLUMNNAME_WM_InOutBound_ID = "WM_InOutBound_ID";
-
-	/** Set In & Out Bound Order	  */
-	public void setWM_InOutBound_ID (int WM_InOutBound_ID);
-
-	/** Get In & Out Bound Order	  */
-	public int getWM_InOutBound_ID();
-
     /** Column name Weight */
     public static final String COLUMNNAME_Weight = "Weight";
 
@@ -602,4 +677,13 @@ public interface I_WM_InOutBound
 	  * Weight of a product
 	  */
 	public BigDecimal getWeight();
+
+    /** Column name WM_InOutBound_ID */
+    public static final String COLUMNNAME_WM_InOutBound_ID = "WM_InOutBound_ID";
+
+	/** Set In & Out Bound Order	  */
+	public void setWM_InOutBound_ID (int WM_InOutBound_ID);
+
+	/** Get In & Out Bound Order	  */
+	public int getWM_InOutBound_ID();
 }

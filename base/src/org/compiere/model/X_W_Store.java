@@ -1,8 +1,9 @@
 /******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2007 ComPiere, Inc. All Rights Reserved.                *
+ * Product: ADempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2006-2017 ADempiere Foundation, All Rights Reserved.         *
  * This program is free software, you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
+ * or (at your option) any later version.										*
  * by the Free Software Foundation. This program is distributed in the hope   *
  * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
@@ -11,8 +12,7 @@
  * with this program, if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package org.compiere.model;
@@ -23,14 +23,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for W_Store
  *  @author Adempiere (generated) 
- *  @version Release 3.8.0 - $Id$ */
+ *  @version Release 3.9.2 - $Id$ */
 public class X_W_Store extends PO implements I_W_Store, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20150223L;
+	private static final long serialVersionUID = 20190501L;
 
     /** Standard Constructor */
     public X_W_Store (Properties ctx, int W_Store_ID, String trxName)
@@ -65,8 +65,8 @@ public class X_W_Store extends PO implements I_W_Store, I_Persistent
 			setName (null);
 			setSalesRep_ID (0);
 			setURL (null);
-			setW_Store_ID (0);
 			setWebContext (null);
+			setW_Store_ID (0);
         } */
     }
 
@@ -497,7 +497,7 @@ public class X_W_Store extends PO implements I_W_Store, I_Persistent
 	  */
 	public void setM_Warehouse_ID (int M_Warehouse_ID)
 	{
-		if (M_Warehouse_ID < 1) 
+		if (M_Warehouse_ID < 0) 
 			set_Value (COLUMNNAME_M_Warehouse_ID, null);
 		else 
 			set_Value (COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
@@ -601,78 +601,21 @@ public class X_W_Store extends PO implements I_W_Store, I_Persistent
 		return (String)get_Value(COLUMNNAME_URL);
 	}
 
-	/** Set Web Store EMail.
-		@param WStoreEMail 
-		EMail address used as the sender (From)
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
 	  */
-	public void setWStoreEMail (String WStoreEMail)
+	public void setUUID (String UUID)
 	{
-		set_Value (COLUMNNAME_WStoreEMail, WStoreEMail);
+		set_Value (COLUMNNAME_UUID, UUID);
 	}
 
-	/** Get Web Store EMail.
-		@return EMail address used as the sender (From)
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
 	  */
-	public String getWStoreEMail () 
+	public String getUUID () 
 	{
-		return (String)get_Value(COLUMNNAME_WStoreEMail);
-	}
-
-	/** Set WebStore User.
-		@param WStoreUser 
-		User ID of the Web Store EMail address
-	  */
-	public void setWStoreUser (String WStoreUser)
-	{
-		set_Value (COLUMNNAME_WStoreUser, WStoreUser);
-	}
-
-	/** Get WebStore User.
-		@return User ID of the Web Store EMail address
-	  */
-	public String getWStoreUser () 
-	{
-		return (String)get_Value(COLUMNNAME_WStoreUser);
-	}
-
-	/** Set WebStore Password.
-		@param WStoreUserPW 
-		Password of the Web Store EMail address
-	  */
-	public void setWStoreUserPW (String WStoreUserPW)
-	{
-		set_Value (COLUMNNAME_WStoreUserPW, WStoreUserPW);
-	}
-
-	/** Get WebStore Password.
-		@return Password of the Web Store EMail address
-	  */
-	public String getWStoreUserPW () 
-	{
-		return (String)get_Value(COLUMNNAME_WStoreUserPW);
-	}
-
-	/** Set Web Store.
-		@param W_Store_ID 
-		A Web Store of the Client
-	  */
-	public void setW_Store_ID (int W_Store_ID)
-	{
-		if (W_Store_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_W_Store_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_W_Store_ID, Integer.valueOf(W_Store_ID));
-	}
-
-	/** Get Web Store.
-		@return A Web Store of the Client
-	  */
-	public int getW_Store_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_W_Store_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	/** Set Web Context.
@@ -826,5 +769,79 @@ public class X_W_Store extends PO implements I_W_Store, I_Persistent
 	public String getWebParam6 () 
 	{
 		return (String)get_Value(COLUMNNAME_WebParam6);
+	}
+
+	/** Set Web Store EMail.
+		@param WStoreEMail 
+		EMail address used as the sender (From)
+	  */
+	public void setWStoreEMail (String WStoreEMail)
+	{
+		set_Value (COLUMNNAME_WStoreEMail, WStoreEMail);
+	}
+
+	/** Get Web Store EMail.
+		@return EMail address used as the sender (From)
+	  */
+	public String getWStoreEMail () 
+	{
+		return (String)get_Value(COLUMNNAME_WStoreEMail);
+	}
+
+	/** Set Web Store.
+		@param W_Store_ID 
+		A Web Store of the Client
+	  */
+	public void setW_Store_ID (int W_Store_ID)
+	{
+		if (W_Store_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_W_Store_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_W_Store_ID, Integer.valueOf(W_Store_ID));
+	}
+
+	/** Get Web Store.
+		@return A Web Store of the Client
+	  */
+	public int getW_Store_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_W_Store_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set WebStore User.
+		@param WStoreUser 
+		User ID of the Web Store EMail address
+	  */
+	public void setWStoreUser (String WStoreUser)
+	{
+		set_Value (COLUMNNAME_WStoreUser, WStoreUser);
+	}
+
+	/** Get WebStore User.
+		@return User ID of the Web Store EMail address
+	  */
+	public String getWStoreUser () 
+	{
+		return (String)get_Value(COLUMNNAME_WStoreUser);
+	}
+
+	/** Set WebStore Password.
+		@param WStoreUserPW 
+		Password of the Web Store EMail address
+	  */
+	public void setWStoreUserPW (String WStoreUserPW)
+	{
+		set_Value (COLUMNNAME_WStoreUserPW, WStoreUserPW);
+	}
+
+	/** Get WebStore Password.
+		@return Password of the Web Store EMail address
+	  */
+	public String getWStoreUserPW () 
+	{
+		return (String)get_Value(COLUMNNAME_WStoreUserPW);
 	}
 }
